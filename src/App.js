@@ -27,9 +27,9 @@ function App() {
           path="/bebidas/:idRecipe"
           render={(props) => <DrinkDetails {...props} />}
         />
-        {/* <Route exact path="/comidas/:idRecipe/in-progress" 
+        {/* <Route exact path="/comidas/:idRecipe/in-progress"
 render={(props) => <FoodProcess {...props} />} />
-<Route exact path="/bebidas/:idRecipein-progress" 
+<Route exact path="/bebidas/:idRecipein-progress"
 render={(props) => <DrinkProcess {...props} />} /> */}
         <Route path="/perfil" component={Profile} />
       </Switch>

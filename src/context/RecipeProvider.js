@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+/* import React, from 'react';
 import RecipeContext from './RecipeContext';
 
 const RecipeProvider = ({ children }) => {
-  const context = {}
+  const context = {};
     return (
       <RecipeContext.Provider value={context}>
         {children};
@@ -10,4 +10,4 @@ const RecipeProvider = ({ children }) => {
     );
 };
 
-export default RecipeProvider;
+export default RecipeProvider; */
