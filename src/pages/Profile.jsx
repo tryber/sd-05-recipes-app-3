@@ -1,12 +1,16 @@
 import React from 'react';
 import Footer from './components/Footer';
+import { render } from '@testing-library/react';
 
 function Profile() {
-  return (
-    <div>
-      Profile Page
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        Profile Page
+      </div>
+      <Footer />
+    );
+  }
 }
 
 render() {

@@ -1,18 +1,16 @@
 import React from 'react';
 import Footer from './components/Footer';
+import { render } from '@testing-library/react';
 
 function MainDrink() {
-  return (
-    <div>
-      MainDrink Page
-    </div>
-  );
-}
-
-render() {
-  return (
-    <Footer />
-  );
+  render() {
+    return (
+      <div>
+        MainDrink Page
+      </div>
+      <Footer />
+    );
+  }
 }
 
 export default MainDrink;
