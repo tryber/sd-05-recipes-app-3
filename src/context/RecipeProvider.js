@@ -13,11 +13,7 @@ const RecipeProvider = ({ children }) => {
     setPassword,
   };
 
-  return (
-    <RecipeContext.Provider value={context}>
-      {children}
-    </RecipeContext.Provider>
-  );
+  return <RecipeContext.Provider value={context}>{children}</RecipeContext.Provider>;
 };
 
 export default RecipeProvider;

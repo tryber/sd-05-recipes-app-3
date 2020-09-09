@@ -6,17 +6,17 @@ function Login() {
   const [checkedEmail, setCheckedEmail] = useState(false);
   const [checkedPassword, setCheckedPassword] = useState(false);
   const { email, setEmail, setPassword } = useContext(RecipeContext);
-  
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     checkEmail(e.target.value);
   };
-  
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     checkPassword(e.target.value);
   };
-  
+
   const checkEmail = (emailTested) => {
     const regexEmail = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/;
     if (regexEmail.test(emailTested) === true) {
@@ -31,15 +31,12 @@ function Login() {
     }
   };
 
-  const provokeApis = () => {
-  // 1. fetch Tokens (make both functions in service file)
-  // apifood
-  // apidrink
-  // 2. diverse storage operations
-  localStorage.setItem('mealsToken', 1);
-  localStorage.setItem('cocktailsToken', 1);
-  localStorage.setItem('email', JSON.stringify({ email }));
-  }
+  const storage = () => {
+    // still no fetch here.
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+    localStorage.setItem('email', JSON.stringify({ email }));
+  };
 
   return (
     <div data-testid="">
@@ -63,7 +60,7 @@ function Login() {
           type="button"
           data-testid="login-submit-btn"
           disabled={!(checkedEmail && checkedPassword)}
-          onClick={() => provokeApis()}
+          onClick={() => storage()}
         >
           Entrar
         </button>
