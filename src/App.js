@@ -36,7 +36,14 @@ function App() {
         {/* <Route exact path="/comidas/:idRecipe/in-progress"
 render={(props) => <FoodProcess {...props} />} />
 <Route exact path="/bebidas/:idRecipe/in-progress"
-render={(props) => <DrinkProcess {...props} />} /> */}
+render={(props) => <DrinkProcess {...props} />} /> 
+        <Route exact path="/explorar" component={Explore} />
+        <Route exact path="/explorar/comidas" component={ExploreFood} />
+        <Route exact path="/explorar/bebidas" component={ExploreDrink} />
+        <Route exact path="/explorar/comidas/ingredientes" component={ExploreFoodIngredient} />
+        <Route exact path="/explorar/bebidas/ingredientes" component={ExploreDrinkIngredient} />
+        <Route exact path="/explorar/comidas/area component={ExploreFoodOrigin} />
+      */}
         <Route path="/perfil" component={Profile} />
       </Switch>
     </BrowserRouter>
