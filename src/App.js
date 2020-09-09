@@ -29,7 +29,7 @@ function App() {
         />
         {/* <Route exact path="/comidas/:idRecipe/in-progress"
 render={(props) => <FoodProcess {...props} />} />
-<Route exact path="/bebidas/:idRecipein-progress"
+<Route exact path="/bebidas/:idRecipe/in-progress"
 render={(props) => <DrinkProcess {...props} />} /> */}
         <Route path="/perfil" component={Profile} />
       </Switch>
