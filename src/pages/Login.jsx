@@ -1,40 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
 
-// function handleEmailChange(e) {
-//   const { setUser } = useContext(RecipeContext);
-//   setUser({ userData: { email: e.target.value } });
-//   checkForm();
-// }
-
-// function handlePasswordChange(e) {
-//   const { setUser } = useContext(RecipeContext);
-//   setUser({ userData: { password: e.target.value } });
-//   checkForm();
-// }
-
-// function checkForm() {
-// const { email, password, setChecked } = useContext(RecipeContext);
-// if ((password.length > 6) && (/^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email) === true)) {
-// setChecked(true);
-// }
-// }
-// problema: useContext recusado quando nao for dentro de componente
-
-function provokeApis(emailInput) {
-  // 1. fetch Tokens
-  // apifood
-  // apidrink
-  // make both in services and after token
-  // 2. diverse storage operations
-  // localStorage.setItem('mealsToken', ...)
-  // localStorage.setItem('cocktailsToken', ...)
-  // localStorage.setItem('email', email do input)
-}
+// ref for regex: https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
 
 function Login() {
-  const { setUser, checked } = useContext(RecipeContext);
+  const { setUser, email, password, checked, setChecked } = useContext(RecipeContext);
+  
+  useEffect(() => {
+    checkForm(email, password);
+  }, [email, password]);
+  
+  const checkForm = (emailTested, passwordTested) => {
+    if (passwordTested.length > 6 && /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(emailTested) === true) {
+      setChecked(true);
+    }
+  }
+  
+  // const provokeApis = () => {
+    // 1. fetch Tokens (make both functions in service file)
+    // apifood
+    // apidrink
+    // 2. diverse storage operations
+    // localStorage.setItem('mealsToken', 1);
+    // localStorage.setItem('cocktailsToken', 1);
+    // localStorage.setItem('email', JSON.stringify({ email }));
+  // }
+
   return (
     <div data-testid="">
       <h1>Login</h1>
@@ -43,20 +35,23 @@ function Login() {
         placeholder="Email"
         data-testid="email-input"
         name="email"
-        // onChange={(e) => handleEmailChange(e) }
         onChange={(e) => setUser({ userData: { email: e.target.value } })}
-        // problema para ambos onChange: também chamar o checkForm
+        // problem: provoke also checkForm. Solution: didUpdate via useEffect
       />
       <input
         type="password"
         placeholder="Senha"
         data-testid="password-input"
         name="password"
-        // onChange={(e) => handlePasswordChange(e) }
         onChange={(e) => setUser({ userData: { password: e.target.value } })}
       />
       <Link to="/comidas">
-        <button type="button" data-testid="login-submit-btn" disabled={!checked} onClick={() => provokeApis()}>
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={!checked}
+          // onClick={() => provokeApis()}
+        >
           Entrar
         </button>
       </Link>
