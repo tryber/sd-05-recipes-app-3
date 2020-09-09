@@ -8,6 +8,12 @@ import FoodDetails from './pages/FoodDetails';
 import DrinkDetails from './pages/FoodDetails';
 // import FoodProcess from './pages/FoodProcess';
 // import DrinkProcess from './pages/DrinkProcess';
+// import Explore from './pages/Explore';
+// import ExploreDrink from './pages/ExploreDrink';
+// import ExploreDrinkIngredient from './pages/ExploreDrinkIngredient';
+// import ExploreFood from './pages/ExploreFood';
+// import ExploreFoodIngredient from './pages/ExploreFoodIngredient';
+// import ExploreFoodOrigin from './pages/ExploreFoodOrigin';
 import Profile from './pages/Profile';
 
 function App() {

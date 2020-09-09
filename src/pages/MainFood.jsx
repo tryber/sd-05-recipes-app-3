@@ -1,16 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import Footer from './components/Footer';
+import Footer from '../components/Footer';
 
 function MainFood() {
-  render() {
-    return (
-      <div>
-        MainFood Page
-      </div>
+  return (
+    <div>
+      MainFood Page
       <Footer />
-    );
-  }
+    </div>
+  );
 }
 
 export default MainFood;
