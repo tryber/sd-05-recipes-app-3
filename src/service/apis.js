@@ -8,7 +8,7 @@ export const foodIngredientAPI = (ingrediente) => (
 );
 
 export const foodNameAPI = (nome) => (
-  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?s=${nome}`)
+  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${nome}`)
     .then((response) => (
       response
         .json()
@@ -17,7 +17,7 @@ export const foodNameAPI = (nome) => (
 );
 
 export const foodLetterAPI = (primeiraLetra) => (
-  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?f=${primeiraLetra}`)
+  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${primeiraLetra}`)
     .then((response) => (
       response
         .json()
@@ -46,6 +46,15 @@ export const drinkNameAPI = (nome) => (
 
 export const drinkLetterAPI = (primeiraLetra) => (
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${primeiraLetra}`)
+    .then((response) => (
+      response
+        .json()
+        .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
+    ))
+);
+
+export const allMealsList = () => (
+  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`)
     .then((response) => (
       response
         .json()

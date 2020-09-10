@@ -1,5 +1,5 @@
 import React,{ useEffect, useContext } from 'react';
-import { foodIngredientAPI } from '../service/apis';
+import { foodIngredientAPI, mealCategoryList, allMealsList } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,7 +8,7 @@ function MainFood() {
   const { data, setData, fetching, setFetching } = useContext(RecipeContext);
   useEffect(() => {
     setFetching(true);
-    foodIngredientAPI("chicken").then((response) => setData(response.meals));
+    allMealsList().then((response) => setData(response.meals));
     setFetching(false);
   }, []);
   return (
