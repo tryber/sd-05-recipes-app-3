@@ -18,9 +18,9 @@ const Button = (searchButton, radio, search) => (
 );
 
 const fetchAPI = (radio, search) => {
-  if(radio === 'Ingrediente') return foodIngredientAPI(search);
-  if(radio === 'Nome') return foodNameAPI(search);
-  if(radio === 'Primeira letra') return foodLetterAPI(search);
+  if (radio === 'Ingrediente') return foodIngredientAPI(search);
+  else if (radio === 'Nome') return foodNameAPI(search);
+  else if (radio === 'Primeira letra') return foodLetterAPI(search);
 };
 
 function SearchBar() {
