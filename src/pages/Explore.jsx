@@ -1,13 +1,13 @@
 import React from 'react';
 import Footer from '../components/Footer';
 
-function Profile() {
+function Explore() {
   return (
     <div>
-      Profile Page
+      Explore page
       <Footer />
     </div>
   );
 }
 
-export default Profile;
+export default Explore;
