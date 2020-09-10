@@ -2,16 +2,15 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import RecipeContext from '../context/RecipeContext';
-
-// test email and clearStorage do not pass, storage is cleared before i donot know why
 
 function Profile() {
-  const { email } = useContext(RecipeContext);
+  const storageUser = JSON.parse(localStorage.getItem('user'));
+  const emailUser = storageUser.email;
+  const logOut = () => localStorage.clear();
   return (
     <div>
       <Header />
-      <p data-testid="profile-email">{email}</p>
+      <p data-testid="profile-email">{emailUser}</p>
       <Link to="/receitas-feitas">
         <button type="button" data-testid="profile-done-btn">
           Receitas Feitas
@@ -23,7 +22,7 @@ function Profile() {
         </button>
       </Link>
       <Link to="/">
-        <button type="button" data-testid="profile-logout-btn" onClick={localStorage.clear()}>
+        <button type="button" data-testid="profile-logout-btn" onClick={() => logOut()}>
           Sair
         </button>
       </Link>
