@@ -45,7 +45,9 @@ function SearchBar() {
             dataTestId="first-letter-search-radio"
           />
         </div>
-        <div><button type="button" onClick={() => searchButton(radio, search)}>Buscar</button></div>
+        <div>
+          <button data-testid="exec-search-btn" type="button" onClick={() => searchButton(radio, search)}>Buscar</button>
+        </div>
       </form>
     </div>
   );
