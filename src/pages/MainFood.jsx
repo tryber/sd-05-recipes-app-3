@@ -19,9 +19,8 @@ function MainFood() {
         <div>
           <h2>{item.strMeal}</h2>
           <img src={item.strMealThumb} alt="meal thumb" width="200px" />
-        </div>
-      )};
-      {console.log(data)}
+        </div>,
+      )}
       <Footer />
     </div>
   );
