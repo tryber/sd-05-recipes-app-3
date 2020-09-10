@@ -4,6 +4,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import RecipeContext from '../context/RecipeContext';
 
+// test email and clearStorage do not pass, storage is cleared before i donot know why
+
 function Profile() {
   const { email } = useContext(RecipeContext);
   return (
@@ -17,7 +19,7 @@ function Profile() {
       </Link>
       <Link to="/receitas-favoritas">
         <button type="button" data-testid="profile-favorite-btn">
-          Receitas favoritas
+          Receitas Favoritas
         </button>
       </Link>
       <Link to="/">
