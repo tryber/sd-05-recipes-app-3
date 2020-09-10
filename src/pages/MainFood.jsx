@@ -1,7 +1,8 @@
 import React,{ useEffect, useContext } from 'react';
-import Header from '../components/Header';
 import { foodIngredientAPI } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function MainFood() {
   const { data, setData, fetching, setFetching } = useContext(RecipeContext);
@@ -20,7 +21,8 @@ function MainFood() {
         <img src={item.strMealThumb} width="200px" />
       </div>
       )}
-      { console.log(data)}
+      {console.log(data)}
+      <Footer />
     </div>
   );
 }
