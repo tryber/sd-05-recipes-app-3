@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Proptypes from 'prop-types;'
+import Proptypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
@@ -29,4 +29,4 @@ export default Header;
 
 Header.propTypes = {
   title: Proptypes.string.isRequired,
-}
+};
