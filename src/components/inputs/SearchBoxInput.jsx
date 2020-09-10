@@ -10,6 +10,7 @@ const SearchBoxInput = ({ handleChange, name, value, dataTestId }) => (
         name={name}
         value={value}
         onChange={({ target }) => handleChange(target.value)}
+        placeholder="Digite algo"
       />
     </label>
   </div>
