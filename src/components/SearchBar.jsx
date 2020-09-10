@@ -4,6 +4,17 @@ import RadioInput from './inputs/RadioInput';
 import SearchBoxInput from './inputs/SearchBoxInput';
 import '../components/SearchBar.css';
 
+const Button = (searchButton, radio, search) => (
+  <div>
+    <button
+      data-testid="exec-search-btn"
+      type="button" onClick={() => searchButton(radio, search)}
+    >
+      Buscar
+    </button>
+  </div>
+);
+
 function SearchBar() {
   const [radio, setRadio] = useState('');
   const [search, setSearch] = useState('');
@@ -45,9 +56,7 @@ function SearchBar() {
             dataTestId="first-letter-search-radio"
           />
         </div>
-        <div>
-          <button data-testid="exec-search-btn" type="button" onClick={() => searchButton(radio, search)}>Buscar</button>
-        </div>
+        {Button(searchButton, radio, search)}
       </form>
     </div>
   );
