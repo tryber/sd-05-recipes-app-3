@@ -88,10 +88,3 @@ export const allDrinksList = () => (
         .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
     ))
 );
-
-
-
-/* export const selectAPI = (page, radio, search) => (
-  (page === 'MainFood') ? fetchMealsAPI(radio, search)
-  : fetchDrinksAPI(radio, search)
-); */
