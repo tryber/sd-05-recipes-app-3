@@ -5,8 +5,9 @@ import RecipeContext from './RecipeContext';
 const RecipeProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [fetching, setFetching] = useState(false);
+  const [fetching, setFetching] = useState(true);
   const [data, setData] = useState([]);
+  const [page, setPage] = useState('')
 
   const context = {
     email,
@@ -17,6 +18,8 @@ const RecipeProvider = ({ children }) => {
     setFetching,
     data,
     setData,
+    page,
+    setPage,
   };
 
   return <RecipeContext.Provider value={context}>{children}</RecipeContext.Provider>;

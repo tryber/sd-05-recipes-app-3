@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../components/card_recipe.css';
 
-class Drink extends React.Component {
+class Drink extends Component {
   render() {
     const { strDrinkThumb, strDrink, idDrink } = this.props.drink;
     return (

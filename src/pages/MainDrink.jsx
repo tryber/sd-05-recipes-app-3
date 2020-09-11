@@ -7,16 +7,16 @@ import Footer from '../components/Footer';
 import Drink from '../components/Drink';
 
 function MainDrink() {
-  const { data, setData, setFetching, fetching , error, setError } = useContext(RecipeContext);
+  const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
   let previous = false;
   if (!data) previous = true;
   useEffect(() => {
-    setFetching(true);
-    allDrinksList().then((response) => !response ? true :  setData(response.drinks))
+    allDrinksList().then((response) => setData(response.drinks));
+    setPage('MainDrink');
     setFetching(false);
   }, [previous]);
   if (fetching) return <div className="loading">Loading...</div>
-  if (data.length === 0) {
+  if (data === null) {
     return (
       <div>
         <p>Redirecting...</p>

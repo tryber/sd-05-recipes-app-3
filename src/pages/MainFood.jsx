@@ -6,15 +6,14 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Food from '../components/Food';
 
-
 function MainFood() {
-  const { data, setData, setFetching, fetching } = useContext(RecipeContext);
+  const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
   let previous = false;
   if (!data) previous = true;
   useEffect(() => {
-    // setFetching(true);
-    allMealsList().then((response) => !response ? true :  setData(response.meals))
-    setFetching(false)
+    allMealsList().then((response) => setData(response.meals));
+    setPage('MainFood');
+    setFetching(false);
   }, [previous]);
   if (fetching) return <div className="loading">Loading...</div>
   if (data === null) {

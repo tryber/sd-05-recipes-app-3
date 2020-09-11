@@ -3,7 +3,7 @@ import { useState } from 'react';
 import RadioInput from './inputs/RadioInput';
 import SearchBoxInput from './inputs/SearchBoxInput';
 import '../components/SearchBar.css';
-import { foodIngredientAPI, foodNameAPI, foodLetterAPI } from '../service/apis';
+import { fetchDrinksAPI, fetchMealsAPI } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 
 const Button = (searchButton, radio, search) => (
@@ -17,26 +17,22 @@ const Button = (searchButton, radio, search) => (
   </div>
 );
 
-const fetchAPI = (radio, search) => {
-  if (radio === 'Ingrediente') return foodIngredientAPI(search);
-  if (radio === 'Nome') return foodNameAPI(search);
-  if (radio === 'Primeira letra') return foodLetterAPI(search);
-  return null;
-};
-
 function SearchBar() {
   const [radio, setRadio] = useState('');
   const [search, setSearch] = useState('');
-  const { setData } = useContext(RecipeContext);
+  const { setData, page } = useContext(RecipeContext);
 
   function searchButton(selectRadio, typing) {
     if (!selectRadio || !typing) {
       alert('Necessário dois parâmetros para buscar uma Receita!');
     } else if (selectRadio === 'Primeira letra' && typing.length > 1) {
-      alert('Sua busca deve conter somente 1 (um) caracter');
-      setSearch('');
-    } else fetchAPI(selectRadio, typing)
-        .then((data) => setData(data.meals))
+        alert('Sua busca deve conter somente 1 (um) caracter');
+        setSearch('');
+    } else if (page === 'MainFood') {
+        fetchMealsAPI(selectRadio, typing).then((data) => setData(data.meals));
+    } else if (page === 'MainDrink') {
+        fetchDrinksAPI(selectRadio, typing).then((data) => setData(data.drinks));
+    }
   }
 
   return (

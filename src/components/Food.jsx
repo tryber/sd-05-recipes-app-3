@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../components/card_recipe.css';
 
-class Food extends React.Component {
+class Food extends Component {
   render() {
     const { strMealThumb, strMeal, idMeal } = this.props.food;
     return (
