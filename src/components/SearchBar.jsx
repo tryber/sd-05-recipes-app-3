@@ -5,12 +5,13 @@ import SearchBoxInput from './inputs/SearchBoxInput';
 import '../components/SearchBar.css';
 import { fetchDrinksAPI, fetchMealsAPI } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
+import '../components/SearchBar.css';
 
-const Button = (searchButton, radio, search) => (
+const Button = (callback, radio, search) => (
   <div>
     <button
       data-testid="exec-search-btn"
-      type="button" onClick={() => searchButton(radio, search)}
+      type="button" onClick={() => callback(radio, search)}
     >
       Buscar
     </button>
@@ -26,17 +27,17 @@ function SearchBar() {
     if (!selectRadio || !typing) {
       alert('Necessário dois parâmetros para buscar uma Receita!');
     } else if (selectRadio === 'Primeira letra' && typing.length > 1) {
-        alert('Sua busca deve conter somente 1 (um) caracter');
-        setSearch('');
+      alert('Sua busca deve conter somente 1 (um) caracter');
+      setSearch('');
     } else if (page === 'MainFood') {
-        fetchMealsAPI(selectRadio, typing).then((data) => setData(data.meals));
+      fetchMealsAPI(selectRadio, typing).then((data) => setData(data.meals));
     } else if (page === 'MainDrink') {
-        fetchDrinksAPI(selectRadio, typing).then((data) => setData(data.drinks));
+      fetchDrinksAPI(selectRadio, typing).then((data) => setData(data.drinks));
     }
   }
 
   return (
-    <div className="searchBar">
+    <div>
       <form>
         <SearchBoxInput
           handleChange={setSearch}

@@ -1,6 +1,21 @@
 .footer {
+  background-color: white;
   bottom: 0;
-  display: flex;
-  flex-direction: row;
+  height: 10vh;
+  margin: 0;
   position: fixed;
+  width: 95%;
+}
+
+.footBar {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  width: 100%;
+}
+
+.drink , .explorer , .food {
+  display: flex;
+  padding: 10px;
+
 }

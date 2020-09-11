@@ -12,11 +12,11 @@ function MainFood() {
   if (!data) previous = true;
   useEffect(() => {
     allMealsList().then((response) => setData(response.meals))
-    .catch(error => alert('Algo inesperado aconteceu:', error))
+    .catch((error) => alert('Algo inesperado aconteceu:', error));
     setPage('MainFood');
     setFetching(false);
   }, [previous]);
-  if (fetching) return <div className="loading">Loading...</div>
+  if (fetching) return <div className="loading">Loading...</div>;
   if (data === null) {
     return (
       <div>
@@ -27,14 +27,14 @@ function MainFood() {
   }
   return (data.length === 1) ?
     <div>
-    <Redirect to={`/comidas/${data[0].idMeal}`} />
+      <Redirect to={`/comidas/${data[0].idMeal}`} />
     </div>
   : (
     <div>
       <Header />
       <div className="list-of-cards">
         {data.map((item) => (
-         <Food key={item.idMeal} food={item} />
+          <Food key={item.idMeal} food={item} />
         ))
         }
       </div>

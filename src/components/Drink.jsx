@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Proptypes from 'prop-types';
+
 import '../components/card_recipe.css';
 
 class Drink extends Component {
@@ -19,3 +21,10 @@ class Drink extends Component {
 }
 
 export default Drink;
+
+Drink.propTypes = {
+  drink: Proptypes.objectOf(Object).isRequired,
+  strDrinkThumb: Proptypes.string.isRequired,
+  strDrink: Proptypes.string.isRequired,
+  idDrink: Proptypes.string.isRequired,
+};

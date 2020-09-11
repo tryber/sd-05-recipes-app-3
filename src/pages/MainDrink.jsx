@@ -12,11 +12,11 @@ function MainDrink() {
   if (!data) previous = true;
   useEffect(() => {
     allDrinksList().then((response) => setData(response.drinks))
-    .catch(error => alert('Algo inesperado aconteceu:', error))
+    .catch((error) => alert('Algo inesperado aconteceu:', error));
     setPage('MainDrink');
     setFetching(false);
   }, [previous]);
-  if (fetching) return <div className="loading">Loading...</div>
+  if (fetching) return <div className="loading">Loading...</div>;
   if (data === null) {
     return (
       <div>
@@ -26,7 +26,7 @@ function MainDrink() {
     );
   }
   return (data.length === 1) ?
-    <div>{/* caso encontre uma unica receita redireciona para a pagina de datalhes desta receita. */}
+    <div>
       <Redirect to={`/bebidas/${data[0].idDrink}`} />
     </div>
   : (
@@ -34,7 +34,7 @@ function MainDrink() {
       <Header />
       <div className="list-of-cards">
         {data.map((item) => (
-         <Drink key={item.idDrink} drink={item} />
+          <Drink key={item.idDrink} drink={item} />
         ))
         }
       </div>
