@@ -1,40 +1,45 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import { allDrinksList } from '../service/apis';
+import RecipeContext from '../context/RecipeContext';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import Drink from '../components/Drink';
-import { drinks } from '../service/drinks';
-
 
 function MainDrink() {
-  const array = [...drinks,
-    {
-      teste: 'a variavel array deve receber uma requisicao da api',
-      idMeal: 1,
-    },
-  ];
-  // caso nao encontre nehuma receita, retorna uma alerta.
-  if (array.length === 0) {
+  const { data, setData, setFetching, fetching , error, setError } = useContext(RecipeContext);
+  let previous = false;
+  if (!data) previous = true;
+  useEffect(() => {
+    setFetching(true);
+    allDrinksList().then((response) => !response ? true :  setData(response.drinks))
+    setFetching(false);
+  }, [previous]);
+  if (fetching) return <div className="loading">Loading...</div>
+  if (data.length === 0) {
     return (
       <div>
+        <p>Redirecting...</p>
         {alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')}
       </div>
     );
   }
-  return (array.length === 1) ?
-    <Redirect to={`/bebidas/${array[0].idDrink}`} >
-      {/* caso encontre uma unica receita redireciona para a pagina de datalhes desta receita. */}
-    </Redirect>
-
-  // caso retorne mais de uma resultado na pesquisa
-  // retorna uma tema com doze cards contendo foto e nome da receita
-    : (
+  return (data.length === 1) ?
+    <div>{/* caso encontre uma unica receita redireciona para a pagina de datalhes desta receita. */}
+      <Redirect to={`/bebidas/${data[0].idDrink}`} />
+    </div>
+  : (
+    <div>
+      <Header />
       <div className="list-of-cards">
-        {/* MainDrink Page */}
-        {array.map((item) => (
-          <Drink drink={item} key={item.idDrink} />
+        {data.map((item) => (
+         <Drink key={item.idDrink} drink={item} />
         ))
         }
       </div>
-    );
+      <Footer />
+    </div>
+  );
 }
 
 export default MainDrink;

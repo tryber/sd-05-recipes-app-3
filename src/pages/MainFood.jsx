@@ -1,38 +1,46 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import { allMealsList } from '../service/apis';
+import RecipeContext from '../context/RecipeContext';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import Food from '../components/Food';
-import { meals } from '../service/meals';
+
 
 function MainFood() {
-  const array = [...meals,
-    {
-      teste: 'a variavel array deve receber uma requisicao da api',
-      idMeal: 2,
-    },
-
-  ];  // caso nao encontre nehuma receita, retorna uma alerta.
-  if (array.length === 0) {
+  const { data, setData, setFetching, fetching } = useContext(RecipeContext);
+  let previous = false;
+  if (!data) previous = true;
+  useEffect(() => {
+    // setFetching(true);
+    allMealsList().then((response) => !response ? true :  setData(response.meals))
+    setFetching(false)
+  }, [previous]);
+  if (fetching) return <div className="loading">Loading...</div>
+  if (data === null) {
     return (
       <div>
+        <p>Redirecting...</p>
         {alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')}
       </div>
     );
   }
-  return (array.length === 1) ?
-    <Redirect to={`/comidas/${array[0].idMeal}`} >
-      {/* caso encontre uma unica receita redireciona para a pagina de datalhes desta receita. */}
-    </Redirect>
-
-  // caso retorne mais de uma resultado na pesquisa
-  // retorna uma tela com doze cards contendo foto e nome da receita
-    : (
+  return (data.length === 1) ?
+    <div>
+    <Redirect to={`/comidas/${data[0].idMeal}`} />
+    </div>
+  : (
+    <div>
+      <Header />
       <div className="list-of-cards">
-        {array.map((item) => (
-          <Food key={item.idMeal} food={item} />
+        {data.map((item) => (
+         <Food key={item.idMeal} food={item} />
         ))
         }
       </div>
-    );
+      <Footer />
+    </div>
+  );
 }
 
 export default MainFood;
