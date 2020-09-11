@@ -35,5 +35,3 @@ test('Ao clickar no Entrar, redireciona para MainFood', () => {
   expect(getByText('Comidas')).toBeInTheDocument();
   // will fail until fixing our header title depending on food or drink
 });
-
-// tests failing for now because of some context stuff

@@ -31,7 +31,7 @@ function inputPassword(handlePasswordChange) {
 function Login() {
   const [checkedEmail, setCheckedEmail] = useState(false);
   const [checkedPassword, setCheckedPassword] = useState(false);
-  const { email, setEmail, setPassword } = useContext(RecipeContext);
+  const { setEmail, setPassword, email } = useContext(RecipeContext);
 
   const checkEmail = (emailTested) => {
     const regexEmail = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/;
@@ -52,7 +52,7 @@ function Login() {
   const storage = () => {
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
-    localStorage.setItem('email', JSON.stringify({ email }));
+    localStorage.setItem('user', JSON.stringify({ email }));
   };
 
   return (
