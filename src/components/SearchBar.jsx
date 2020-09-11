@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import RadioInput from './inputs/RadioInput';
 import SearchBoxInput from './inputs/SearchBoxInput';
 import '../components/SearchBar.css';
 // import { fetchDrinksAPI, fetchMealsAPI } from '../service/apis';
-import RecipeContext from '../context/RecipeContext';
+// import RecipeContext from '../context/RecipeContext';
 import '../components/SearchBar.css';
 
 // function searchButton(page, radio, search, setSearch, setData) {
@@ -18,12 +18,11 @@ import '../components/SearchBar.css';
 //     }
 //     if (page === 'MainFood') {
 //       fetchMealsAPI(radio, search).then((data) => setData(data.meals));
-//     } 
+//     }
 //     if (page === 'MainDrink') {
 //       fetchDrinksAPI(radio, search).then((data) => setData(data.drinks));
 //     }
 //   }
-  
 //   const Button = (page, radio, search, setData, setSearch) => (
 //     <div>
 //       <button
@@ -35,43 +34,43 @@ import '../components/SearchBar.css';
 //     </div>
 //   );
 
-  function SearchBar() {
-    const [radio, setRadio] = useState('');
-    const [search, setSearch] = useState('');
-    const { setData, page } = useContext(RecipeContext);
-    return (
-      <div>
-        <form>
-          <SearchBoxInput
-            handleChange={setSearch}
-            name="search"
-            value={search}
-            dataTestId="search-input"
+function SearchBar() {
+  const [radio, setRadio] = useState('');
+  const [search, setSearch] = useState('');
+  // const { setData, page } = useContext(RecipeContext);
+  return (
+    <div>
+      <form>
+        <SearchBoxInput
+          handleChange={setSearch}
+          name="search"
+          value={search}
+          dataTestId="search-input"
+        />
+        <div className="radio-set">
+          <RadioInput
+            handleChange={setRadio}
+            value="Ingrediente"
+            validation={radio}
+            dataTestId="ingredient-search-radio"
           />
-          <div className="radio-set">
-            <RadioInput
-              handleChange={setRadio}
-              value="Ingrediente"
-              validation={radio}
-              dataTestId="ingredient-search-radio"
-            />
-            <RadioInput
-              handleChange={setRadio}
-              value="Nome"
-              validation={radio}
-              dataTestId="name-search-radio"
-            />
-            <RadioInput
-              handleChange={setRadio}
-              value="Primeira letra"
-              validation={radio}
-              dataTestId="first-letter-search-radio"
-            />
-          </div>
-          {/* {Button(page, radio, search, setData, setSearch)} */}
-        </form>
-      </div>
-    );
+          <RadioInput
+            handleChange={setRadio}
+            value="Nome"
+            validation={radio}
+            dataTestId="name-search-radio"
+          />
+          <RadioInput
+            handleChange={setRadio}
+            value="Primeira letra"
+            validation={radio}
+            dataTestId="first-letter-search-radio"
+          />
+        </div>
+        {/* {Button(page, radio, search, setData, setSearch)} */}
+      </form>
+    </div>
+  );
 }
 
 export default SearchBar;
