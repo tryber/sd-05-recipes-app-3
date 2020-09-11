@@ -11,7 +11,8 @@ function MainDrink() {
   let previous = false;
   if (!data) previous = true;
   useEffect(() => {
-    allDrinksList().then((response) => setData(response.drinks));
+    allDrinksList().then((response) => setData(response.drinks))
+    .catch(error => alert('Algo inesperado aconteceu:', error))
     setPage('MainDrink');
     setFetching(false);
   }, [previous]);

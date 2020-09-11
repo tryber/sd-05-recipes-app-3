@@ -11,7 +11,8 @@ function MainFood() {
   let previous = false;
   if (!data) previous = true;
   useEffect(() => {
-    allMealsList().then((response) => setData(response.meals));
+    allMealsList().then((response) => setData(response.meals))
+    .catch(error => alert('Algo inesperado aconteceu:', error))
     setPage('MainFood');
     setFetching(false);
   }, [previous]);
