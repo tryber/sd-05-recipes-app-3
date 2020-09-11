@@ -14,6 +14,8 @@ import DrinkDetails from './pages/DrinkDetails';
 // import ExploreFood from './pages/ExploreFood';
 // import ExploreFoodIngredient from './pages/ExploreFoodIngredient';
 // import ExploreFoodOrigin from './pages/ExploreFoodOrigin';
+import DoneRecipes from './pages/DoneRecipes';
+import FavoriteRecipes from './pages/FavoriteRecipes';
 import Profile from './pages/Profile';
 
 function App() {
@@ -45,6 +47,8 @@ render={(props) => <DrinkProcess {...props} />} />
         <Route exact path="/explorar/comidas/area component={ExploreFoodOrigin} />
       */}
         <Route path="/perfil" component={Profile} />
+        <Route path="/receitas-feitas" component={DoneRecipes} />
+        <Route path="/receitas-favoritas" component={FavoriteRecipes} />
       </Switch>
     </BrowserRouter>
   );
