@@ -1,9 +1,7 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useContext } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { lookUpIdDrink } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-// import DrinkDescriptions from '../components/DrinkDescriptions';
 
 function DrinkDetails(props) {
   const { idRecipe } = props.match.params;
@@ -21,22 +19,20 @@ function DrinkDetails(props) {
   ) : (
     <div>
       DrinkDetails Page
-      <Header />
       <div className="card-recipe">
         <img alt={strDrink} className="card-recipe-image" src={strDrinkThumb} />
         <div className="card-recipe-body">
           <h3 className="card-recipe-name"> ID: {strDrink}</h3>
         </div>
       </div>
-      {/* <DrinkDescriptions id={idRecipe} /> */}
-      <Footer />
     </div>
   );
 }
 
 export default DrinkDetails;
 
-// DrinkDetails.propTypes = {
-//   match: PropTypes.objectOf(Object).isRequired,
-//     params: PropTypes.objectOf(String).isRequired,
-// };
+DrinkDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.objectOf(String).isRequired,
+  }).isRequired,
+};

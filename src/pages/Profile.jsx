@@ -9,7 +9,7 @@ function Profile() {
   const logOut = () => localStorage.clear();
   return (
     <div>
-      <Header />
+      <Header title="Perfil" />
       <p data-testid="profile-email">{emailUser}</p>
       <Link to="/receitas-feitas">
         <button type="button" data-testid="profile-done-btn">

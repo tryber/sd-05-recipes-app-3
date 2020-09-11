@@ -31,7 +31,7 @@ function MainDrink() {
     </div>
   : (
     <div>
-      <Header />
+      <Header title="Bebidas" />
       <div className="list-of-cards">
         {data.map((item) => (
           <Drink key={item.idDrink} drink={item} />
@@ -44,3 +44,4 @@ function MainDrink() {
 }
 
 export default MainDrink;
+

@@ -12,27 +12,21 @@ function Header(props) {
   return (
     <div className="header">
       <div className="topbar">
-          <div className="perfil">
-            <Link to="/perfil" data-testid="profile-top-btn">
-              <img src={profileIcon} alt="profile icon" />
-            </Link>
-          </div>
-          <div className="titulo">
-            <p>Título{title}</p>
-          </div>
-          <div className="explorer">
-            <button
-              type="button"
-              data-testid="search-top-btn"
-              onClick={() => setClicked(!clicked)}
-            >
-              <img src={searchIcon} alt="profile icon" />
-            </button>
-          </div>
+        <div className="perfil">
+          <Link to="/perfil" data-testid="profile-top-btn">
+            <img src={profileIcon} alt="profile icon" />
+          </Link>
+        </div>
+        <div className="titulo">
+          <p>{title}</p>
+        </div>
+        <div className="explorer">
+          <button type="button" data-testid="search-top-btn" onClick={() => setClicked(!clicked)}>
+            <img src={searchIcon} alt="profile icon" />
+          </button>
+        </div>
       </div>
-      <div className="searchBar">
-        {clicked && <SearchBar />}
-      </div>
+      <div className="searchBar">{clicked && <SearchBar />}</div>
     </div>
   );
 }

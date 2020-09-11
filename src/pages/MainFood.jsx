@@ -31,7 +31,7 @@ function MainFood() {
     </div>
   : (
     <div>
-      <Header />
+      <Header title="Comidas" />
       <div className="list-of-cards">
         {data.map((item) => (
           <Food key={item.idMeal} food={item} />

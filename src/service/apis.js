@@ -102,8 +102,3 @@ export const fetchDrinksAPI = (radio, search) => {
   if (radio === 'Primeira letra') return drinkLetterAPI(search);
   return;
 };
-
-// export const selectAPI = (page, radio, search) => (
-//   (page === 'MainFood') ? fetchMealsAPI(radio, search)
-//   : fetchDrinksAPI(radio, search)
-// );
