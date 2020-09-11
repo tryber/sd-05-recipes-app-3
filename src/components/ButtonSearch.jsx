@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ButtonSearch(props) {
+function ButtonSearch() {
   return (
     <button
       data-testid="exec-search-btn"
