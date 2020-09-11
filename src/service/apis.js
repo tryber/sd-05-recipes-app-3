@@ -89,21 +89,9 @@ export const allDrinksList = () => (
     ))
 );
 
-// export const fetchMealsAPI = (radio, search) => {
-//   if (radio === 'Ingrediente') return foodIngredientAPI(search);
-//   if (radio === 'Nome') return foodNameAPI(search);
-//   if (radio === 'Primeira letra') return foodLetterAPI(search);
-//   return null;
-// };
 
-// export const fetchDrinksAPI = (radio, search) => {
-//   if (radio === 'Ingrediente') return drinkIngredientAPI(search);
-//   if (radio === 'Nome') return drinkNameAPI(search);
-//   if (radio === 'Primeira letra') return drinkLetterAPI(search);
-//   return null;
-// };
 
-// export const selectAPI = (page, radio, search) => (
-//   (page === 'MainFood') ? fetchMealsAPI(radio, search)
-//   : fetchDrinksAPI(radio, search)
-// );
+/* export const selectAPI = (page, radio, search) => (
+  (page === 'MainFood') ? fetchMealsAPI(radio, search)
+  : fetchDrinksAPI(radio, search)
+); */
