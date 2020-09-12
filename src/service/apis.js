@@ -1,3 +1,21 @@
+export const lookUpIdMeal = (id) => (
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then((response) => (
+      response
+        .json()
+        .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
+    ))
+);
+
+export const lookUpIdDrink = (id) => (
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then((response) => (
+      response
+        .json()
+        .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
+    ))
+);
+
 export const foodIngredientAPI = (ingrediente) => (
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingrediente}`)
     .then((response) => (
@@ -55,6 +73,15 @@ export const drinkLetterAPI = (primeiraLetra) => (
 
 export const allMealsList = () => (
   fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+    .then((response) => (
+      response
+        .json()
+        .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
+    ))
+);
+
+export const allDrinksList = () => (
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
     .then((response) => (
       response
         .json()

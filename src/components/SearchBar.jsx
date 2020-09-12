@@ -3,42 +3,50 @@ import { useState } from 'react';
 import RadioInput from './inputs/RadioInput';
 import SearchBoxInput from './inputs/SearchBoxInput';
 import '../components/SearchBar.css';
-import { foodIngredientAPI, foodNameAPI, foodLetterAPI } from '../service/apis';
+import { foodIngredientAPI, foodNameAPI, foodLetterAPI, drinkIngredientAPI, drinkNameAPI, drinkLetterAPI } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
+import ButtonSearch from './ButtonSearch';
 
-const Button = (searchButton, radio, search) => (
-  <div>
-    <button
-      data-testid="exec-search-btn"
-      type="button" onClick={() => searchButton(radio, search)}
-    >
-      Buscar
-    </button>
-  </div>
-);
+function validateClick(radio, search, setSearch) {
+  if (!radio || !search) {
+    alert('Necessário dois parâmetros para buscar uma Receita!');
+  }
+  if (radio === 'Primeira letra' && search.length > 1) {
+    alert('Sua busca deve conter somente 1 (um) caracter');
+    setSearch('');
+  }
+}
 
-const fetchAPI = (radio, search) => {
+const fetchMealsAPI = (radio, search) => {
   if (radio === 'Ingrediente') return foodIngredientAPI(search);
   if (radio === 'Nome') return foodNameAPI(search);
   if (radio === 'Primeira letra') return foodLetterAPI(search);
   return null;
 };
 
+const fetchDrinksAPI = (radio, search) => {
+  if (radio === 'Ingrediente') return drinkIngredientAPI(search);
+  if (radio === 'Nome') return drinkNameAPI(search);
+  if (radio === 'Primeira letra') return drinkLetterAPI(search);
+  return null;
+};
+
+function handleClick(page, search, setData, radio, setSearch) {
+  validateClick(radio, search, setSearch);
+  if (page === 'MainFood') {
+    fetchMealsAPI(radio, search).then((data) => setData(data.meals));
+  }
+  if (page === 'MainDrink') {
+    fetchDrinksAPI(radio, search).then((data) => setData(data.drinks));
+  }
+}
+
 function SearchBar() {
   const [radio, setRadio] = useState('');
   const [search, setSearch] = useState('');
-  const { setData } = useContext(RecipeContext);
-
-  function searchButton(selectRadio, typing) {
-    if (!selectRadio || !typing) alert('Necessário dois parâmetros para buscar uma Receita!');
-    else if (selectRadio === 'Primeira letra' && typing.length > 1) {
-      alert('Sua busca deve conter somente 1 (um) caracter');
-      setSearch('');
-    } else fetchAPI(selectRadio, typing).then((data) => setData(data.meals));
-  }
-
+  const { setData, page } = useContext(RecipeContext);
   return (
-    <div className="searchBar">
+    <div>
       <form>
         <SearchBoxInput
           handleChange={setSearch}
@@ -66,7 +74,7 @@ function SearchBar() {
             dataTestId="first-letter-search-radio"
           />
         </div>
-        {Button(searchButton, radio, search)}
+        <ButtonSearch onClick={() => handleClick(page, search, setData, radio, setSearch)} />
       </form>
     </div>
   );

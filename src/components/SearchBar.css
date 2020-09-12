@@ -6,16 +6,19 @@
 
 .radio-set {
   display: flex;
-  justify-content: space-between;
-  margin: 0.5em 0;
+  font-size: 0.85em;
+  justify-content: space-around;
+  margin: 0.5em;
+  width: 90%;
 }
 
 .searchBar {
   display: flex;
   flex-direction: column;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin: auto;
-  width: 80%;
+  height: 5vh;
+  margin: -1rem auto;
+  width: 90%;
 }
 
 .seachBox input {
@@ -23,6 +26,7 @@
   border-radius: 5px;
   color: black;
   font-size: 18px;
-  padding: 8px 10px;
-  width: 100%;
+  margin: auto;
+  padding: 5px 20px;
+  width: 97%;
 }

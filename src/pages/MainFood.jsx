@@ -1,26 +1,43 @@
 import React, { useEffect, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import { allMealsList } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Food from '../components/Food';
 
 function MainFood() {
-  const { data, setData, setFetching } = useContext(RecipeContext);
+  const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
+  let previous = false;
+  if (!data) previous = true;
   useEffect(() => {
-    setFetching(true);
-    allMealsList().then((response) => setData(response.meals));
+    allMealsList().then((response) => setData(response.meals))
+    .catch((error) => alert('Algo inesperado aconteceu:', error));
+    setPage('MainFood');
     setFetching(false);
-  }, []);
-  return (
+  }, [previous]);
+  if (fetching) return <div className="loading">Loading...</div>;
+  if (data === null) {
+    return (
+      <div>
+        <p>Redirecting...</p>
+        {alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')}
+      </div>
+    );
+  }
+  return (data.length === 1) ?
     <div>
-      <Header />
-      <p>MainFood Page</p>
-      {data.map((item) =>
-        <div>
-          <h2>{item.strMeal}</h2>
-          <img src={item.strMealThumb} alt="meal thumb" width="200px" />
-        </div>,
-      )}
+      <Redirect to={`/comidas/${data[0].idMeal}`} />
+    </div>
+  : (
+    <div>
+      <Header title="Comidas" />
+      <div className="list-of-cards">
+        {data.map((item) => (
+          <Food key={item.idMeal} food={item} />
+        ))
+        }
+      </div>
       <Footer />
     </div>
   );

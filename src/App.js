@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import MainFood from './pages/MainFood';
 import MainDrink from './pages/MainDrink';
 import FoodDetails from './pages/FoodDetails';
-import DrinkDetails from './pages/FoodDetails';
+import DrinkDetails from './pages/DrinkDetails';
 // import FoodProcess from './pages/FoodProcess';
 // import DrinkProcess from './pages/DrinkProcess';
 import Explore from './pages/Explore';
@@ -23,18 +23,18 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route exact path="/comidas" component={MainFood} />
-        <Route exact path="/bebidas" component={MainDrink} />
-        <Route
-          exact
-          path="/comidas/:idRecipe"
-          render={(props) => <FoodDetails {...props} />}
-        />
         <Route
           exact
           path="/bebidas/:idRecipe"
           render={(props) => <DrinkDetails {...props} />}
         />
+        <Route
+          exact
+          path="/comidas/:idRecipe"
+          render={(props) => <FoodDetails {...props} />}
+        />
+        <Route exact path="/comidas" component={MainFood} />
+        <Route exact path="/bebidas" component={MainDrink} />
         {/* <Route exact path="/comidas/:idRecipe/in-progress"
 render={(props) => <FoodProcess {...props} />} />
 <Route exact path="/bebidas/:idRecipe/in-progress"
