@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SearchBoxInput = ({ handleChange, name, value, dataTestId }) => (
-  <div className="seachBox">
+  <div className="searchBox">
     <label htmlFor={name}>
       <input
         data-testid={dataTestId}
