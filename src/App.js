@@ -45,7 +45,6 @@ render={(props) => <DrinkProcess {...props} />} /> */}
         <Route exact path="/explorar/comidas/ingredientes" component={ExploreFoodIngredient} />
         <Route exact path="/explorar/bebidas/ingredientes" component={ExploreDrinkIngredient} />
         <Route exact path="/explorar/comidas/area" component={ExploreFoodOrigin} />
-     
         <Route path="/perfil" component={Profile} />
         <Route path="/receitas-feitas" component={DoneRecipes} />
         <Route path="/receitas-favoritas" component={FavoriteRecipes} />

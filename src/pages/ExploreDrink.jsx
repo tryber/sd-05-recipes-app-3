@@ -5,11 +5,9 @@ import RecipeContext from '../context/RecipeContext';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-function ExploreDrink(props) {
+function ExploreDrink() {
   const { data, setData, setFetching, fetching } = useContext(RecipeContext);
   const [surprise, setSurprise] = useState(false);
-  const { idRecipe } = props.match.params;
-  // const randomIndex = Math.floor(Math.random() * data.length);
 
   const randomRecipeDetail = () => {
     randomDrinksApi()
@@ -18,6 +16,7 @@ function ExploreDrink(props) {
     setFetching(false);
     setSurprise(true);
   };
+
   return (
     <div>
       <Header title="Explorar bebidas" />
