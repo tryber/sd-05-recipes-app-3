@@ -20,7 +20,7 @@ function ExploreDrink() {
 
   return (
     <div>
-      <Header title="Explorar bebidas" />
+      <Header title="Explorar Bebidas" />
       <div className="explore-buttons">
         <Link className="buttons" to="/explorar/bebidas/ingredientes">
           <button type="button" data-testid="explore-by-ingredient">

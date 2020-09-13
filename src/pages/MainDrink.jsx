@@ -27,30 +27,40 @@ function MainDrink() {
       /* previous */
     ],
   );
-  if (fetching) return <div className="loading">Loading...</div>;
-  // if (data === null) {
-  //   return (
-  //     <div>
-  //       <p>Redirecting...</p>
-  //       {alert('Não foi possível encontrar uma receita para esse filtro.')}
-  //     </div>
-  //   );
-  // }
-  return data.length === 1 ? (
-    <div>
-      <Redirect to={`/bebidas/${data[0].idDrink}`} />
-    </div>
-  ) : (
-    <div>
-      <Header title="Bebidas" />
-      <div className="list-of-cards">
-        {data.map((item, idx) => (
-          (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
-          : false))}
+  if (fetching) {
+    return (
+      <div>
+        <Header title="Bebidas" />
+        <div className="loading">Loading...</div>;
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
+    );
+  }
+  if (data !== null) {
+    return (data.length === 1) ? (
+      <div>
+        <Redirect to={`/bebidas/${data[0].idDrink}`} />
+      </div>
+    ) : (
+      <div>
+        <Header title="Bebidas" />
+        <div className="list-of-cards">
+          {data.map((item, idx) => (
+            (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
+            : false))}
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default MainDrink;
+// if (data === null) {
+//   return (
+//     <div>
+//       <p>Redirecting...</p>
+//       {alert('Não foi possível encontrar uma receita para esse filtro.')}
+//     </div>
+//   );
+// }

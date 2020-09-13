@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import { lookUpIdDrink } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 // import '../css/';
@@ -18,9 +19,8 @@ function DrinkDetails(props) {
     setFetching(false);
   }, []);
 
-  return fetching ? (
-    <div>Loading...</div>
-  ) : (
+  if (fetching) return <div>Loading...</div>;
+  return (idRecipe) ? (
     <div>
       DrinkDetails Page
       <div className="card-recipe">
@@ -30,7 +30,11 @@ function DrinkDetails(props) {
         </div>
       </div>
     </div>
-  );
+  ) : (
+    <Redirect to="/bebidas/">
+      {alert('Não foi possível te surpreender desta vez!')}
+    </Redirect>
+    );
 }
 
 export default DrinkDetails;

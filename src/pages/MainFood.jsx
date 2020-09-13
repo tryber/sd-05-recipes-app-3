@@ -24,16 +24,17 @@ function MainFood() {
       /* previous */
     ],
     );
-  if (fetching) return <div className="loading">Loading...</div>;
-  //   return (
-  //     <div>
-  //       <p>Redirecting...{console.log(data)}</p>
-  //       {alert('Não foi possível encontrar uma receita para esse filtro.')}
-  //     </div>
-  //   );
-  // }
+  if (fetching) {
+    return (
+      <div>
+        <Header title="Comidas" />
+        <div className="loading">Loading...</div>;
+        <Footer />
+      </div>
+    );
+  }
   if (data !== null) {
-    return data.length === 1 ? (
+    return (data.length === 1) ? (
       <div>
         <Redirect to={`/comidas/${data[0].idMeal}`} />
       </div>
@@ -50,4 +51,13 @@ function MainFood() {
     );
   }
 }
+
 export default MainFood;
+
+//   return (
+//     <div>
+//       <p>Redirecting...{console.log(data)}</p>
+//       {alert('Não foi possível encontrar uma receita para esse filtro.')}
+//     </div>
+//   );
+// }

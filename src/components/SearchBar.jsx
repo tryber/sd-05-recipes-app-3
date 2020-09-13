@@ -21,7 +21,7 @@ function validateClick(radio, search, setSearch) {
     validated = false;
   }
   if (radio === 'Primeira letra' && search.length > 1) {
-    alert('Digite somente 1 (um) caracter para esta opção');
+    alert('Sua busca deve conter somente 1 (um) caracter');
     validated = false;
     setSearch('');
   }
@@ -47,7 +47,7 @@ function handleClick(page, search, setData, radio, setSearch) {
   if (validated && page === 'MainFood') {
     fetchMealsAPI(radio, search)
       .then((data) => {
-        if (!data.meals) alert('Sua pesquisa não teve resultado! Tente novamente.');
+        if (!data.meals) alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
         else setData(data.meals);
         console.log(data);
       })
@@ -59,7 +59,7 @@ function handleClick(page, search, setData, radio, setSearch) {
   if (validated && page === 'MainDrink') {
     fetchDrinksAPI(radio, search)
       .then((data) => {
-        if (!data.drinks) alert('Sua pesquisa não teve resultado! Tente novamente.');
+        if (!data.drinks) alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
         else setData(data.drinks);
         console.log(data);
       })

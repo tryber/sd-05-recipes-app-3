@@ -60,13 +60,3 @@
     transform: rotate(-10deg);
   }
 }
-
-body {
-  margin: 0;
-}
-
-#root {
-  width: 100%;
-  justify-content: center;
-  margin: auto;
-}

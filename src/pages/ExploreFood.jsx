@@ -20,7 +20,7 @@ function ExploreFood() {
 
   return (
     <div>
-      <Header title="Explorar comidas" />
+      <Header title="Explorar Comidas" />
       <div className="explore-buttons">
         <Link className="buttons" to="/explorar/comidas/ingredientes">
           <button type="button" data-testid="explore-by-ingredient">
@@ -33,7 +33,11 @@ function ExploreFood() {
           </button>
         </Link>
         <Link className="buttons surprise">
-          <button type="button" data-testid="explore-surprise" onClick={() => randomRecipeDetail()}>
+          <button
+            type="button"
+            data-testid="explore-surprise"
+            onClick={() => randomRecipeDetail()}
+          >
             Me Surpreenda!
           </button>
         </Link>
