@@ -11,17 +11,19 @@ function MainDrink() {
   let previous = false;
   if (!data) previous = true;
   useEffect(() => {
-    allDrinksList().then((response) => setData(response.drinks))
+    allDrinksList().then((response) => {
+      if (response !== null) setData(response.drinks);
+  })
     .catch((error) => alert('Algo inesperado aconteceu:', error));
     setPage('MainDrink');
     setFetching(false);
-  }, [previous]);
+  }, [/* previous */]);
   if (fetching) return <div className="loading">Loading...</div>;
   if (data === null) {
     return (
       <div>
         <p>Redirecting...</p>
-        {alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')}
+        {alert('Não foi possível encontrar uma receita para esse filtro.')}
       </div>
     );
   }

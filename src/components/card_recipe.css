@@ -1,21 +1,24 @@
 .card-recipe {
+  flex-flow: 1 1 auto;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   height: 200px;
-  margin: 5px;
-  max-width: 150px;
+  margin: 15px 10px;
+  max-width: 250px;
   overflow: hidden;
   position: relative;
   top: 100px;
-  width: 150px;
+  min-width: 200px;
+  height: fit-content;
 }
 
 .card-recipe a {
   color: black;
   text-decoration: none;
+  background-color: rgb(253, 253, 252);
 }
 
 .card-recipe-image {
@@ -48,7 +51,7 @@
 .list-of-cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   margin: auto;
   min-width: 150px;
   position: relative;

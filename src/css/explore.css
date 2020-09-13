@@ -1,0 +1,41 @@
+.explore-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  min-width: 250px;
+  /* margin: 200px auto; */
+  height: 50vh;
+  align-items: center;
+  background-color: lightgrey;
+  position: absolute;
+  top: 20vh;
+  flex-direction: row;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  /* align-items: flex-start; */
+  min-width: 300px;
+}
+
+.buttons button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  /* padding: 15px 0; */
+  min-width: 300px;
+  margin: 10px auto;
+  border-radius: 50px;
+  border:1px solid gray;
+}
+/* 
+button:disabled {
+  background-color: lightgray;
+  text-decoration: none;
+  border: black;
+} */
+
+.surprise button {
+  background-color: rgb(34, 245, 27);
+}

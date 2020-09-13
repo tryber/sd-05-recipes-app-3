@@ -4,6 +4,7 @@ import { randomMealsApi } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import '../css/explore.css';
 
 function ExploreFood() {
   const { data, setData, setFetching, fetching } = useContext(RecipeContext);
@@ -21,19 +22,21 @@ function ExploreFood() {
     <div>
       <Header title="Explorar comidas" />
       <div className="explore-buttons">
-        <Link to="/explorar/comidas/ingredientes">
-          <button type="button" data-testid="explore-by-ingredient">
+        <Link className="buttons" to="/explorar/comidas/ingredientes">
+          <button  type="button" data-testid="explore-by-ingredient">
             Por Ingredientes
           </button>
         </Link>
-        <Link to="/explorar/comidas/area">
+        <Link className="buttons" to="/explorar/comidas/area">
           <button type="button" data-testid="explore-by-area">
             Por Local de Origem
           </button>
         </Link>
-        <button type="button" data-testid="explore-surprise" onClick={() => randomRecipeDetail()}>
-          Me Surpreenda!
-        </button>
+        <Link className="buttons surprise">
+          <button type="button" data-testid="explore-surprise" onClick={() => randomRecipeDetail()}>
+            Me Surpreenda!
+          </button>
+        </Link>
       </div>
       {!fetching && surprise && data.length > 0 && <Redirect to={`/comidas/${data[0].idMeal}`} />}
       <Footer />

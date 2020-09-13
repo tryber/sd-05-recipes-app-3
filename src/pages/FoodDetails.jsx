@@ -7,13 +7,14 @@ function FoodDetails(props) {
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strMealThumb, strMeal } = details[0];
-
+  console.log(details[0]);
   useEffect(() => {
     setFetching(true);
-    lookUpIdMeal(idRecipe).then((food) => setDetails(food.meals));
+    lookUpIdMeal(idRecipe)
+      .then((food) => setDetails(food.meals));
     setFetching(false);
   }, []);
-  console.log(details[0], fetching);
+  
   return fetching ? (
     <div>Loading...</div>
   ) : (
@@ -22,7 +23,8 @@ function FoodDetails(props) {
       <div className="card-recipe">
         <img alt={strMeal} className="card-recipe-image" src={strMealThumb} />
         <div className="card-recipe-body">
-          <h3 className="card-recipe-name"> ID: {strMeal}</h3>
+          <h3 className="card-recipe-name">{strMeal}</h3>
+          <p></p>
         </div>
       </div>
     </div>

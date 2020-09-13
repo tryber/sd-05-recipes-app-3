@@ -7,13 +7,14 @@ function DrinkDetails(props) {
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strDrinkThumb, strDrink } = details[0];
-
+    console.log(details[0]);
   useEffect(() => {
     setFetching(true);
-    lookUpIdDrink(idRecipe).then((drink) => setDetails(drink.drinks));
+    lookUpIdDrink(idRecipe)
+      .then((drink) => setDetails(drink.drinks));
     setFetching(false);
   }, []);
-  console.log(details[0], fetching);
+  
   return fetching ? (
     <div>Loading...</div>
   ) : (
@@ -22,7 +23,7 @@ function DrinkDetails(props) {
       <div className="card-recipe">
         <img alt={strDrink} className="card-recipe-image" src={strDrinkThumb} />
         <div className="card-recipe-body">
-          <h3 className="card-recipe-name"> ID: {strDrink}</h3>
+          <p className="card-recipe-name">{strDrink}</p>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 .header {
-  max-height: 300px;
+  /* max-height: 300px; */
   position: fixed;
   top: 0;
   width: 100%;
@@ -23,6 +23,6 @@
 .titulo {
   align-content: center;
   display: flex;
-  font-size: 26px;
+  font-size: 36px;
   font-weight: 600;
 }

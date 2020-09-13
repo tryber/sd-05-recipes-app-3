@@ -1,0 +1,54 @@
+.title {
+  /* font-family: 'Montserrat', sans-serif; */
+  font-size: 40px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  width: 250px;
+}
+
+.login-page {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: auto;
+}
+.login-input {
+  display: flex;
+  width: 300px;
+  margin: 10px auto;
+}
+.login-input input {
+  border: 1px solid rgb(189, 199, 216);
+  border-radius: 50px;
+  color: black;
+  font-size: 20px;
+  padding: 15px 20px;
+  width: 100%;
+}
+
+.enter {
+  display: flex;
+  margin: 10px auto;
+}
+
+.enter button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 15px 0;
+  width: 300px;
+  border-radius: 50px;
+  border: 1px solid green;
+  background-color: lime;
+  color: black;
+}
+
+a[ disabled=true ] {
+  background-color: lightgray;
+ /* text-decoration: none; */
+} 
