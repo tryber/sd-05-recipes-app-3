@@ -94,16 +94,17 @@ export const randomMealsApi = () => (
     .then((response) => (
       response.json()
         // .then((data) => console.log(data))
-        .then((data) => ((response.ok && data !== null) ? Promise.resolve(data) : Promise.reject(console.log(data))))
+        .then((data) => ((response.ok && data !== null) ? Promise.resolve(data)
+        : Promise.reject(data)))
     ))
 );
 
 export const randomDrinksApi = () => (
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
     .then((response) => (
-      response
-        .json()
+      response.json()
         // .then((data) => console.log(data))
-        .then((data) => ((response.ok && data !== null) ? Promise.resolve(data) : Promise.reject(console.log(data))))
+        .then((data) => ((response.ok && data !== null) ? Promise.resolve(data) :
+        Promise.reject(data)))
     ))
 );

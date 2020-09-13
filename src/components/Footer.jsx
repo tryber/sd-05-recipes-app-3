@@ -4,7 +4,7 @@ import { drinkIcon } from '../images';
 import { exploreIcon } from '../images';
 import { mealIcon } from '../images';
 import '../css/Footer.css';
-
+//
 function Footer() {
   return (
     <footer className="footer" data-testid="footer">
