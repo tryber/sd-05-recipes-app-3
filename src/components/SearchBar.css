@@ -1,29 +1,29 @@
 /* SearchBar.css individual style by Elisângelo */
-.radioSearch,
+.radioSearch ,
 .radio-set {
   color: #1c1d1d;
-  font-weight: 500;
   display: flex;
   font-size: 1em;
+  font-weight: 500;
 }
 
 .radio-set {
   background: linear-gradient(to top, transparent, whitesmoke 55%);
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin: auto;
-  width: 100%;
-  z-index: 2;
   padding: 5px 0;
+  width: 90%;
+  z-index: 2;
 }
 
 .searchBar {
   background: linear-gradient(to top, transparent 5%, whitesmoke 53%);
-  top: 0;
   display: flex;
   flex-direction: column;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   height: 15vh;
   margin: auto;
+  top: 0;
   width: 100%;
   z-index: 2;
 }
@@ -32,34 +32,29 @@
   background: whitesmoke;
   border: 1px solid rgb(189, 199, 216);
   border-radius: 5px;
-  width: 90%;
   margin: auto;
+  width: 90%;
 }
 
 .searchBox input {
-  color: black;
-  font-size: 18px;
-  padding: 5px 15px;
-  margin: 0px;
   background-color: transparent;
   border: none;
+  color: black;
+  font-size: 18px;
+  margin: 2px;
+  padding: 5px 15px;
   width: 90%;
 }
 
-/* 
-input :active {
-  border: none;
-} */
-
 .searchBarButton button {
+  background-color: limegreen;
+  border: green;
+  border-radius: 50px;
   display: flex;
   font-size: 25px;
-  padding: 5px;
-  min-width: 300px;
-  border-radius: 50px;
-  background-color: limegreen;
   justify-content: center;
-  border: green;
+  min-width: 300px;
+  padding: 5px;
 }
 
 .searchBarButton {

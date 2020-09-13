@@ -25,7 +25,7 @@ function MainDrink() {
     },
     [
       /* previous */
-    ]
+    ],
   );
   if (fetching) return <div className="loading">Loading...</div>;
   // if (data === null) {

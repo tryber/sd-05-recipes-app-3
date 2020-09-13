@@ -1,27 +1,29 @@
 .title {
+  display: flex;
   font-size: 36px;
   font-weight: 700;
-  display: flex;
-  justify-content: space-around;
   height: 25vh;
+  justify-content: space-around;
   width: 100%;
 }
 
 .login-page {
   display: flex;
-  width: 100%;
   flex-wrap: wrap;
   margin: auto;
+  width: 100%;
 }
+
 .login-input {
-  position: relative;
-  top: 10vh;
   align-items: flex-end;
   display: flex;
-  width: 300px;
-  margin: 10px auto;
   height: 10vh;
+  margin: 10px auto;
+  position: relative;
+  top: 10vh;
+  width: 300px;
 }
+
 .login-input input {
   border: 1px solid rgb(189, 199, 216);
   border-radius: 50px;
@@ -37,17 +39,17 @@
 }
 
 .enter button {
-  font-family: 'Montserrat', sans-serif;
+  background-color: limegreen;
+  border: 1px solid green;
+  border-radius: 50px;
+  color: black;
+  font-family: Montserrat, sans-serif;
   font-size: 20px;
   font-weight: 600;
   padding: 15px 0;
-  width: 300px;
-  border-radius: 50px;
-  border: 1px solid green;
-  background-color: limegreen;
-  color: black;
   position: relative;
   top: 30vh;
+  width: 300px;
 }
 
 button:disabled {

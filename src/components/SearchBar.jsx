@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import RadioInput from './inputs/RadioInput';
 import SearchBoxInput from './inputs/SearchBoxInput';
@@ -14,7 +14,6 @@ import {
 import RecipeContext from '../context/RecipeContext';
 import ButtonSearch from './ButtonSearch';
 
-let teste = true;
 function validateClick(radio, search, setSearch) {
   let validated = true;
   if (!radio || !search) {

@@ -23,7 +23,6 @@ function FoodDetails(props) {
         <img alt={strMeal} className="card-recipe-image" src={strMealThumb} />
         <div className="card-recipe-body">
           <h3 className="card-recipe-name">{strMeal}</h3>
-          <p></p>
         </div>
       </div>
     </div>
