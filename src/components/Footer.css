@@ -15,9 +15,7 @@
   width: 90%;
 }
 
-.drink ,
-.explorer ,
-.food {
+.drink , .explorer , .food {
   display: flex;
   padding: 10px 0;
 }

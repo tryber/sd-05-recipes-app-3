@@ -1,6 +1,5 @@
 /* SearchBar.css individual style by Elisângelo */
-.radioSearch ,
-.radio-set {
+.radioSearch , .radio-set {
   color: #1c1d1d;
   display: flex;
   font-size: 1em;
