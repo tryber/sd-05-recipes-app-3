@@ -12,7 +12,7 @@ function ExploreFood() {
 
   const randomRecipeDetail = () => {
     randomMealsApi()
-      .then((response) => setData(response.meals))
+      .then((response) => (response.meals ? setData(response.meals) : console.log(response)))
       .catch((error) => alert('Algo inesperado aconteceu:', error));
     setFetching(false);
     setSurprise(true);
@@ -23,7 +23,7 @@ function ExploreFood() {
       <Header title="Explorar comidas" />
       <div className="explore-buttons">
         <Link className="buttons" to="/explorar/comidas/ingredientes">
-          <button  type="button" data-testid="explore-by-ingredient">
+          <button type="button" data-testid="explore-by-ingredient">
             Por Ingredientes
           </button>
         </Link>

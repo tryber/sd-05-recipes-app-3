@@ -25,10 +25,6 @@
   width: 100%;
 }
 
-.card-recipe-body {
-  flex: 1 1 auto;
-}
-
 .card-recipe-name {
   font-size: 20px;
   font-weight: 700;
@@ -51,8 +47,10 @@
 .list-of-cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin: auto;
+  justify-content: space-around;
+
+  padding: 2em 0 15pc 0;
+
   min-width: 150px;
   position: absolute;
   top: 0;

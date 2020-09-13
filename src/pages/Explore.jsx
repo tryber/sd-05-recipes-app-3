@@ -11,16 +11,16 @@ function Explore() {
       <div className="explore-buttons">
         <Link to="/explorar/comidas">
           <div className="buttons">
-          <button type="button" data-testid="explore-food">
-            Explorar Comidas
-          </button>
+            <button type="button" data-testid="explore-food">
+              Explorar Comidas
+            </button>
           </div>
         </Link>
         <Link to="/explorar/bebidas">
           <div className="buttons">
-          <button type="button" data-testid="explore-drinks">
-            Explorar Bebidas
-          </button>
+            <button type="button" data-testid="explore-drinks">
+              Explorar Bebidas
+            </button>
           </div>
         </Link>
       </div>

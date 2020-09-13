@@ -10,11 +10,10 @@ function FoodDetails(props) {
   console.log(details[0]);
   useEffect(() => {
     setFetching(true);
-    lookUpIdMeal(idRecipe)
-      .then((food) => setDetails(food.meals));
+    lookUpIdMeal(idRecipe).then((food) => setDetails(food.meals));
     setFetching(false);
   }, []);
-  
+
   return fetching ? (
     <div>Loading...</div>
   ) : (

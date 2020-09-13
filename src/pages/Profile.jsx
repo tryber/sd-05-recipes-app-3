@@ -16,7 +16,7 @@ function Profile() {
       </div>
       <div className="explore-buttons">
         <div className="buttons">
-          <Link  to="/receitas-feitas">
+          <Link to="/receitas-feitas">
             <button type="button" data-testid="profile-done-btn">
               Receitas Feitas
             </button>

@@ -1,21 +1,22 @@
 .footer {
   background-color: white;
   bottom: 0;
-  height: 10vh;
-  margin: 0;
+  height: 15vh;
+  margin: auto;
   position: fixed;
-  width: 95%;
+  width: 100%;
 }
 
 .footBar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: auto;
-  width: 100%;
+  width: 90%;
 }
 
-.drink , .explorer , .food {
+.drink,
+.explorer,
+.food {
   display: flex;
-  padding: 10px;
-
+  padding: 10px 0;
 }

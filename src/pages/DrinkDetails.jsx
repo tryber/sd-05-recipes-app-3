@@ -7,14 +7,13 @@ function DrinkDetails(props) {
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strDrinkThumb, strDrink } = details[0];
-    console.log(details[0]);
+  console.log(details[0]);
   useEffect(() => {
     setFetching(true);
-    lookUpIdDrink(idRecipe)
-      .then((drink) => setDetails(drink.drinks));
+    lookUpIdDrink(idRecipe).then((drink) => setDetails(drink.drinks));
     setFetching(false);
   }, []);
-  
+
   return fetching ? (
     <div>Loading...</div>
   ) : (

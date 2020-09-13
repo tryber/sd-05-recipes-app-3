@@ -1,22 +1,30 @@
 .explore-buttons {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   flex-wrap: wrap;
   min-width: 250px;
   /* margin: 200px auto; */
-  height: 50vh;
+  /* height: 30vh; */
   align-items: center;
   background-color: lightgrey;
   position: absolute;
-  top: 20vh;
+  top: 15pc;
   flex-direction: row;
+  text-decoration: none;
+
 }
 .buttons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   /* align-items: flex-start; */
   min-width: 300px;
+  /* height: 10px; */
+  text-decoration: none;
+}
+
+.buttons, a {
+  text-decoration: none;
 }
 
 .buttons button {
@@ -28,11 +36,12 @@
   margin: 10px auto;
   border-radius: 50px;
   border:1px solid gray;
-}
-/* 
-button:disabled {
-  background-color: lightgray;
   text-decoration: none;
+
+}
+
+/* button a {
+  background-color: lightgray;
   border: black;
 } */
 

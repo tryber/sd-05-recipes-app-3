@@ -1,26 +1,26 @@
 .title {
-  /* font-family: 'Montserrat', sans-serif; */
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 700;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30vh;
-  width: 250px;
+  justify-content: space-around;
+  height: 25vh;
+  width: 100%;
 }
 
 .login-page {
   display: flex;
   width: 100%;
-  justify-content: space-around;
   flex-wrap: wrap;
-  align-items: center;
   margin: auto;
 }
 .login-input {
+  position: relative;
+  top: 10vh;
+  align-items: flex-end;
   display: flex;
   width: 300px;
   margin: 10px auto;
+  height: 10vh;
 }
 .login-input input {
   border: 1px solid rgb(189, 199, 216);
@@ -44,11 +44,13 @@
   width: 300px;
   border-radius: 50px;
   border: 1px solid green;
-  background-color: lime;
+  background-color: limegreen;
   color: black;
+  position: relative;
+  top: 30vh;
 }
 
-a[ disabled=true ] {
+button:disabled {
   background-color: lightgray;
- /* text-decoration: none; */
-} 
+  border: 1px solid gray;
+}

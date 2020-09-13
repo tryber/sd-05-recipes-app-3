@@ -6,13 +6,13 @@ import '../css/Login.css';
 function inputEmail(handleEmailChange) {
   return (
     <div className="login-input">
-    <input
-      type="email"
-      placeholder="Email"
-      data-testid="email-input"
-      name="email"
-      onChange={(e) => handleEmailChange(e)}
-    />
+      <input
+        type="email"
+        placeholder="Email"
+        data-testid="email-input"
+        name="email"
+        onChange={(e) => handleEmailChange(e)}
+      />
     </div>
   );
 }
@@ -20,13 +20,13 @@ function inputEmail(handleEmailChange) {
 function inputPassword(handlePasswordChange) {
   return (
     <div className="login-input">
-    <input
-      type="password"
-      placeholder="Senha"
-      data-testid="password-input"
-      name="password"
-      onChange={(e) => handlePasswordChange(e)}
-    />
+      <input
+        type="password"
+        placeholder="Senha"
+        data-testid="password-input"
+        name="password"
+        onChange={(e) => handlePasswordChange(e)}
+      />
     </div>
   );
 }
@@ -62,11 +62,12 @@ function Login() {
 
   return (
     <div className="login-page" data-testid="">
-      <div className="title" ><h1>Login</h1></div>
+      <div className="title">
+        <h1>Login</h1>
+      </div>
       {inputEmail(handleEmailChange)}
       {inputPassword(handlePasswordChange)}
-      <div className="enter">
-      <Link to="/comidas">
+      <Link className="enter" to="/comidas">
         <button
           type="button"
           data-testid="login-submit-btn"
@@ -76,7 +77,6 @@ function Login() {
           Entrar
         </button>
       </Link>
-      </div>
     </div>
   );
 }

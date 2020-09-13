@@ -3,7 +3,14 @@ import { useState } from 'react';
 import RadioInput from './inputs/RadioInput';
 import SearchBoxInput from './inputs/SearchBoxInput';
 import '../components/SearchBar.css';
-import { foodIngredientAPI, foodNameAPI, foodLetterAPI, drinkIngredientAPI, drinkNameAPI, drinkLetterAPI } from '../service/apis';
+import {
+  foodIngredientAPI,
+  foodNameAPI,
+  foodLetterAPI,
+  drinkIngredientAPI,
+  drinkNameAPI,
+  drinkLetterAPI,
+} from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import ButtonSearch from './ButtonSearch';
 
@@ -11,7 +18,7 @@ let teste = true;
 function validateClick(radio, search, setSearch) {
   let validated = true;
   if (!radio || !search) {
-    alert('Todos os campos precisar estar preenchidos para buscar uma Receita!');
+    alert('Todos os campos devem estar  preenchidos!');
     validated = false;
   }
   if (radio === 'Primeira letra' && search.length > 1) {
@@ -36,25 +43,32 @@ const fetchDrinksAPI = (radio, search) => {
   return null;
 };
 
-async function handleClick(page, search, setData, radio, setSearch) {
+function handleClick(page, search, setData, radio, setSearch) {
   const validated = validateClick(radio, search, setSearch);
   if (validated && page === 'MainFood') {
     fetchMealsAPI(radio, search)
       .then((data) => {
-      if (data.meals) setData(data.meals);
-      console.log(data);
-    });
+        if (!data.meals) alert('Sua pesquisa não teve resultado! Tente novamente.');
+        else setData(data.meals);
+        console.log(data);
+      })
+      .catch((data) => {
+        console.log(data);
+        alert('Algo inesperado aconteceu! Tente novamente.');
+      });
   }
   if (validated && page === 'MainDrink') {
     fetchDrinksAPI(radio, search)
       .then((data) => {
-      if (data.drinks) setData(data.drinks);
+        if (!data.drinks) alert('Sua pesquisa não teve resultado! Tente novamente.');
+        else setData(data.drinks);
+        console.log(data);
       })
-    .catch(data => {
-    console.log(data);
-    alert('Algo inesperado aconteceu! Tente procurar por algo diferente.');
-  });
-    // para que uma funcao assincrona funcione propriamente, precisamos ter 
+      .catch((data) => {
+        console.log(data);
+        alert('Algo inesperado aconteceu! Tente novamente.');
+      });
+    // para que uma funcao assincrona funcione propriamente, precisamos ter
     // certeza que estamos lidando com os dois cenarios possiveis:
     // tanto exito, como falha na resposta da API
   }
@@ -65,7 +79,7 @@ function SearchBar() {
   const [search, setSearch] = useState('');
   const { setData, page } = useContext(RecipeContext);
   return (
-    <div>
+    <div className="searchBar">
       <form>
         <SearchBoxInput
           handleChange={setSearch}

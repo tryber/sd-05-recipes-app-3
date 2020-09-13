@@ -12,7 +12,7 @@ function ExploreDrink() {
 
   const randomRecipeDetail = () => {
     randomDrinksApi()
-      .then((response) => setData(response.drinks))
+      .then((response) => (response.drinks ? setData(response.drinks) : console.log(response)))
       .catch((error) => alert('Algo inesperado aconteceu:', error));
     setFetching(false);
     setSurprise(true);

@@ -2,7 +2,7 @@
   /* max-height: 300px; */
   position: fixed;
   top: 0;
-  height: fit-content;
+  height: 10vh;
   width: 100%;
   z-index: 0;
 }
@@ -17,16 +17,20 @@
   justify-content: space-around;
   margin: auto;
   width: 100%;
+  height: 10vh;
 }
 
 .explorer button {
+  display: flex;
   background-color: transparent;
   border: 0.5px transparent;
 }
 
 .titulo {
+  display: flex;
   background-color: transparent;
-  align-content: center;
+  /* align-content: center; */
+  justify-content: center;
   display: flex;
   font-size: 36px;
   font-weight: 600;

@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './SearchBar.css';
 
 function ButtonSearch(props) {
   const { onClick } = props;
   return (
-    <button
-      data-testid="exec-search-btn"
-      type="button"
-      onClick={onClick}
-    >
-    Buscar
-    </button>
+    <div className="searchBarButton">
+      <button data-testid="exec-search-btn" type="button" onClick={onClick}>
+        Buscar
+      </button>
+    </div>
   );
 }
 
