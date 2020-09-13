@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
-
-import '../components/card_recipe.css';
+import '../css/recipe-cards-list.css';
 
 class Food extends Component {
   render() {
-    const { strMealThumb, strMeal, idMeal } = this.props.food;
+    const { strMealThumb, strMeal, idMeal, idx } = this.props.food;
     return (
-      <div className="card-recipe">
+      <div className="card-recipe" data-testid={`${idx}-recipe-card`} >
         <Link to={`/comidas/${idMeal}`}>
-          <img alt={strMeal} className="card-recipe-image" src={strMealThumb} />
+          <img
+            alt={strMeal}
+            className="card-recipe-image"
+            src={strMealThumb}
+            data-testid={`${idx}-card-img`}
+          />
           <div className="card-recipe-body">
-            <h3 className="card-recipe-name">{strMeal}</h3>
+            <h3 className="card-recipe-name" data-testid={`${idx}-card-name`}>
+              {strMeal}
+            </h3>
           </div>
         </Link>
       </div>

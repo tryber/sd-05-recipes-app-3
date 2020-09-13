@@ -4,7 +4,7 @@ import Proptypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar.jsx';
-import './Header.css';
+import '../css/Header.css';
 
 function Header(props) {
   const [clicked, setClicked] = useState(false);
@@ -18,7 +18,7 @@ function Header(props) {
           </Link>
         </div>
         <div className="titulo">
-          <p>{title}</p>
+          <p data-testid="page-title" >{title}</p>
         </div>
         <div className="explorer">
           <button type="button" data-testid="search-top-btn" onClick={() => setClicked(!clicked)}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './SearchBar.css';
+// import '../css/SearchBar.css';
 
 function ButtonSearch(props) {
   const { onClick } = props;

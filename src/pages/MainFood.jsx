@@ -5,7 +5,7 @@ import RecipeContext from '../context/RecipeContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Food from '../components/Food';
-import '../components/card_recipe.css';
+import '../css/recipe-cards-list.css';
 
 function MainFood() {
   const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
@@ -23,9 +23,15 @@ function MainFood() {
     [
       /* previous */
     ],
-  );
-
+    );
   if (fetching) return <div className="loading">Loading...</div>;
+  //   return (
+  //     <div>
+  //       <p>Redirecting...{console.log(data)}</p>
+  //       {alert('Não foi possível encontrar uma receita para esse filtro.')}
+  //     </div>
+  //   );
+  // }
   if (data !== null) {
     return data.length === 1 ? (
       <div>
@@ -35,7 +41,9 @@ function MainFood() {
       <div>
         <Header title="Comidas" />
         <div className="list-of-cards">
-          {data.map((item, i) => (i < 12 ? <Food key={item.idMeal} food={item} /> : false))}
+          {data.map((item, idx) => (
+            (idx < 12) ? <Food key={item.idMeal} food={item} idx={idx} />
+            : false))}
         </div>
         <Footer />
       </div>
@@ -43,11 +51,3 @@ function MainFood() {
   }
 }
 export default MainFood;
-
-//   return (
-//     <div>
-//       <p>Redirecting...{console.log(data)}</p>
-//       {alert('Não foi possível encontrar uma receita para esse filtro.')}
-//     </div>
-//   );
-// }

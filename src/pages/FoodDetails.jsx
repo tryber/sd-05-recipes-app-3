@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
+// import '../css/';
 
 function FoodDetails(props) {
   const { idRecipe } = props.match.params;
@@ -10,7 +11,10 @@ function FoodDetails(props) {
   console.log(details[0]);
   useEffect(() => {
     setFetching(true);
-    lookUpIdMeal(idRecipe).then((food) => setDetails(food.meals));
+    lookUpIdMeal(idRecipe).then((food) => setDetails(food.meals))
+    // (food.meals) ?
+    // setDetails(food.meals) : alert('Erro no servidor! tente novamente.'))
+    .catch((error) => alert('Algo inesperado aconteceu:', error));
     setFetching(false);
   }, []);
 

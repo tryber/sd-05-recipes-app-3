@@ -12,7 +12,7 @@ function ExploreFood() {
 
   const randomRecipeDetail = () => {
     randomMealsApi()
-      .then((response) => (response.meals ? setData(response.meals) : console.log(response)))
+      .then((response) => ((!response.meals) ? console.log(response) : setData(response.meals)))
       .catch((error) => alert('Algo inesperado aconteceu:', error));
     setFetching(false);
     setSurprise(true);

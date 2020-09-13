@@ -5,7 +5,7 @@ import RecipeContext from '../context/RecipeContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Drink from '../components/Drink';
-import '../components/card_recipe.css';
+import '../css/recipe-cards-list.css';
 
 function MainDrink() {
   const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
@@ -44,7 +44,9 @@ function MainDrink() {
     <div>
       <Header title="Bebidas" />
       <div className="list-of-cards">
-        {data.map((item, i) => (i < 12 ? <Drink key={item.idDrink} drink={item} /> : false))}
+        {data.map((item, idx) => (
+          (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
+          : false))}
       </div>
       <Footer />
     </div>
