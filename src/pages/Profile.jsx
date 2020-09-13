@@ -11,21 +11,23 @@ function Profile() {
     <div>
       <Header title="Perfil" />
       <p data-testid="profile-email">{emailUser}</p>
-      <Link to="/receitas-feitas">
-        <button type="button" data-testid="profile-done-btn">
-          Receitas Feitas
-        </button>
-      </Link>
-      <Link to="/receitas-favoritas">
-        <button type="button" data-testid="profile-favorite-btn">
-          Receitas Favoritas
-        </button>
-      </Link>
-      <Link to="/">
-        <button type="button" data-testid="profile-logout-btn" onClick={() => logOut()}>
-          Sair
-        </button>
-      </Link>
+      <div className="explore-buttons">
+        <Link to="/receitas-feitas">
+          <button type="button" data-testid="profile-done-btn">
+            Receitas Feitas
+          </button>
+        </Link>
+        <Link to="/receitas-favoritas">
+          <button type="button" data-testid="profile-favorite-btn">
+            Receitas Favoritas
+          </button>
+        </Link>
+        <Link to="/">
+          <button type="button" data-testid="profile-logout-btn" onClick={() => logOut()}>
+            Sair
+          </button>
+        </Link>
+      </div>
       <Footer />
     </div>
   );

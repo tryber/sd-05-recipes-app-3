@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { randomDrinksApi } from '../service/apis';
+import RecipeContext from '../context/RecipeContext';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 function ExploreDrink() {
+  const { data, setData, setFetching, fetching } = useContext(RecipeContext);
+  const [surprise, setSurprise] = useState(false);
+
+  const randomRecipeDetail = () => {
+    randomDrinksApi()
+      .then((response) => setData(response.drinks))
+      .catch((error) => alert('Algo inesperado aconteceu:', error));
+    setFetching(false);
+    setSurprise(true);
+  };
+
   return (
     <div>
-      Explore Drink
+      <Header title="Explorar bebidas" />
+      <div className="explore-buttons">
+        <Link to="/explorar/bebidas/ingredientes">
+          <button type="button" data-testid="explore-by-ingredient">
+            Por Ingredientes
+          </button>
+        </Link>
+        <button type="button" data-testid="explore-surprise" onClick={() => randomRecipeDetail()}>
+          Me Surpreenda!
+        </button>
+      </div>
+      {!fetching && surprise && data.length > 0 && <Redirect to={`/bebidas/${data[0].idDrink}`} />}
       <Footer />
     </div>
   );
