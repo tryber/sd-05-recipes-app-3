@@ -44,8 +44,8 @@ function MainFood() {
         <Header title="Comidas" />
         {!fetching && <FoodCategories />}
         <div className="list-of-cards">
-          {data.map((item, index) => (
-            (index < 12) ? <Food key={item.idMeal} food={item} idx={index} />
+          {data.map((item, idx) => (
+            (idx < 12) ? <Food key={item.idMeal} food={item} idx={idx} />
             : false))}
         </div>
         <Footer />

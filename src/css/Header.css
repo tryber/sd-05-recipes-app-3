@@ -1,16 +1,21 @@
+/* Header.css individual style by Elisângelo */
 .header {
+  background: linear-gradient(to top, transparent 0%, whitesmoke 60%);
+  height: 15vh;
+  min-width: 360px;
   position: fixed;
   width: 100%;
-  z-index: 0;
+  z-index: 1;
 }
 
 .topbar {
   align-items: center;
-  background-color: whitesmoke;
+  background-color: transparent;
   display: flex;
   height: 10vh;
   justify-content: space-around;
   position: relative;
+  z-index: 2;
 }
 
 .explorer button {
