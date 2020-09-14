@@ -43,7 +43,11 @@ function DrinkCategories() {
           />
         ) : null
       ))}
-      <RadioInput data-testid="All-category-filter" value="All" onChange={handleChange} validation={radio} />
+      <RadioInput
+        data-testid="All-category-filter"
+        value="All"
+        onChange={handleChange}
+        validation={radio} />
     </div>
   );
 }
