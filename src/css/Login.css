@@ -35,7 +35,7 @@
 
 .enter {
   display: flex;
-  margin: 10px auto;
+  margin: 0 auto;
 }
 
 .enter button {
@@ -46,9 +46,9 @@
   font-family: Montserrat, sans-serif;
   font-size: 20px;
   font-weight: 600;
+  margin: 15vh auto;
   padding: 15px 0;
   position: relative;
-  top: 30vh;
   width: 300px;
 }
 
