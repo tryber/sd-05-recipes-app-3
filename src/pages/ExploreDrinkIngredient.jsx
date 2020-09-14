@@ -1,10 +1,13 @@
 import React from 'react';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
+import '../css/explore.css';
 
 function ExploreDrinkIngredient() {
   return (
     <div>
-      Explore Drink Indredient
+      <Header title="Explorar Ingredientes" />
+        Explore Drink Indredient
       <Footer />
     </div>
   );

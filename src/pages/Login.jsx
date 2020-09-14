@@ -1,28 +1,33 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
+import '../css/Login.css';
 
 function inputEmail(handleEmailChange) {
   return (
-    <input
-      type="email"
-      placeholder="Email"
-      data-testid="email-input"
-      name="email"
-      onChange={(e) => handleEmailChange(e)}
-    />
+    <div className="login-input">
+      <input
+        type="email"
+        placeholder="Email"
+        data-testid="email-input"
+        name="email"
+        onChange={(e) => handleEmailChange(e)}
+      />
+    </div>
   );
 }
 
 function inputPassword(handlePasswordChange) {
   return (
-    <input
-      type="password"
-      placeholder="Senha"
-      data-testid="password-input"
-      name="password"
-      onChange={(e) => handlePasswordChange(e)}
-    />
+    <div className="login-input">
+      <input
+        type="password"
+        placeholder="Senha"
+        data-testid="password-input"
+        name="password"
+        onChange={(e) => handlePasswordChange(e)}
+      />
+    </div>
   );
 }
 
@@ -56,11 +61,13 @@ function Login() {
   };
 
   return (
-    <div data-testid="">
-      <h1>Login</h1>
+    <div className="login-page" data-testid="">
+      <div className="title">
+        <h1>Login</h1>
+      </div>
       {inputEmail(handleEmailChange)}
       {inputPassword(handlePasswordChange)}
-      <Link to="/comidas">
+      <Link className="enter" to="/comidas">
         <button
           type="button"
           data-testid="login-submit-btn"

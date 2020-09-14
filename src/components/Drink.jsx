@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
-
-import '../components/card_recipe.css';
+import '../css/recipe-cards-list.css';
 
 class Drink extends Component {
   render() {
-    const { strDrinkThumb, strDrink, idDrink } = this.props.drink;
+    const { idx, drink } = this.props;
+    const { strDrinkThumb, strDrink, idDrink } = drink;
+    // console.log(idx)
     return (
-      <div className="card-recipe">
+      <div className="card-recipe" data-testid={`${idx}-recipe-card`} >
         <Link to={`/bebidas/${idDrink}`}>
-          <img alt={strDrink} className="card-recipe-image" src={strDrinkThumb} />
+          <img
+            alt={strDrink}
+            className="card-recipe-image"
+            src={strDrinkThumb}
+            data-testid={`${idx}-card-img`}
+          />
           <div className="card-recipe-body">
-            <h3 className="card-recipe-name">{strDrink}</h3>
+            <h3 className="card-recipe-name" data-testid={`${idx}-card-name`}>
+              {strDrink}
+            </h3>
           </div>
         </Link>
       </div>
@@ -23,8 +31,10 @@ class Drink extends Component {
 export default Drink;
 
 Drink.propTypes = {
-  drink: Proptypes.objectOf(Object).isRequired,
-  strDrinkThumb: Proptypes.string.isRequired,
-  strDrink: Proptypes.string.isRequired,
-  idDrink: Proptypes.string.isRequired,
+  idx: Proptypes.number.isRequired,
+  drink: Proptypes.shape({
+    strDrinkThumb: Proptypes.string.isRequired,
+    strDrink: Proptypes.string.isRequired,
+    idDrink: Proptypes.string.isRequired,
+  }).isRequired,
 };

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { drinkIcon } from '../images';
 import { exploreIcon } from '../images';
 import { mealIcon } from '../images';
-import '../components/Footer.css';
-
+import '../css/Footer.css';
+//
 function Footer() {
   return (
     <footer className="footer" data-testid="footer">
