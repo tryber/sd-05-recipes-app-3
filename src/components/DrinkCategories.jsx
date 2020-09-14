@@ -21,10 +21,9 @@ function DrinkCategories() {
 
   const handleChange = ({ target }) => {
     if (target.value !== radio && target.value !== 'All') {
-    setRadio(target.value);
-    handleFilter(target.value);
-    } 
-    else if (target.value === radio || target.value === 'All') {
+      setRadio(target.value);
+      handleFilter(target.value);
+    } else if (target.value === radio || target.value === 'All') {
       setRadio('All');
       allDrinksList()
         .then((response) => setData(response.drinks))
@@ -44,7 +43,7 @@ function DrinkCategories() {
           />
         ) : null
       ))}
-      <RadioInput data-testid={`All-category-filter`} value="All" onChange={handleChange} validation={radio} />
+      <RadioInput data-testid="All-category-filter" value="All" onChange={handleChange} validation={radio} />
     </div>
   );
 }
