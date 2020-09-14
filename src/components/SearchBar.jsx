@@ -88,19 +88,19 @@ function SearchBar() {
         />
         <div className="radio-set">
           <RadioInput
-            handleChange={setRadio}
+            onChange={({ target }) => setRadio(target.value)}
             value="Ingrediente"
             validation={radio}
             dataTestId="ingredient-search-radio"
           />
           <RadioInput
-            handleChange={setRadio}
+            onChange={({ target }) => setRadio(target.value)}
             value="Nome"
             validation={radio}
             dataTestId="name-search-radio"
           />
           <RadioInput
-            handleChange={setRadio}
+            onChange={({ target }) => setRadio(target.value)}
             value="Primeira letra"
             validation={radio}
             dataTestId="first-letter-search-radio"
