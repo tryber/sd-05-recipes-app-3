@@ -5,7 +5,7 @@ import RadioInput from './RadioInput';
 
 function DrinkCategories() {
   const { categories, setCategories, setData } = useContext(RecipeContext);
-  const [radio, setRadio] = useState('');
+  const [radio, setRadio] = useState('All');
 
   useEffect(() => {
     drinkCategories()
