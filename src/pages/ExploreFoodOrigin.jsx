@@ -4,6 +4,7 @@ import RecipeContext from '../context/RecipeContext';
 import Footer from '../components/Footer';
 import Food from '../components/Food';
 import Header from '../components/Header';
+import '../css/explore.css';
 
 function ExploreFoodOrigin() {
   const { data, setData, fetching, setFetching } = useContext(RecipeContext);
@@ -43,7 +44,7 @@ function ExploreFoodOrigin() {
   return (
     <div>
       <Header title="Explorar Origem" />
-      <select className="explore-buttons" data-testid="explore-by-area-dropdown" onClick={(e) => handleClick(e)}>
+      <select className="select-origin" data-testid="explore-by-area-dropdown" onClick={(e) => handleClick(e)}>
         <option data-testid="All-option">All</option>
         {!listLoading &&
           areaList.map(({ strArea }) => (
