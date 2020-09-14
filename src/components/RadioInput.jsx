@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const RadioInput = ({ onChange, value, validation, dataTestId }) => (
-  <div className="radioSearch">
+  <div className="radioSearch" data-testid={dataTestId}>
     <label htmlFor={value}>
       <input
-        data-testid={dataTestId}
         id={value}
         type="radio"
         name="select-radio"
