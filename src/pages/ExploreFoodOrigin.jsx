@@ -6,6 +6,24 @@ import Food from '../components/Food';
 import Header from '../components/Header';
 import '../css/explore.css';
 
+function selectArea(handleClick, listLoading, areaList) {
+  return (
+    <select
+      className="select-origin"
+      data-testid="explore-by-area-dropdown"
+      onClick={(e) => handleClick(e)}
+    >
+      <option data-testid="All-option">All</option>
+      {!listLoading &&
+        areaList.map(({ strArea }) => (
+          <option key={strArea} value={strArea} data-testid={`${strArea}-option`}>
+            {strArea}
+          </option>
+        ))}
+    </select>
+  );
+}
+
 function ExploreFoodOrigin() {
   const { data, setData, fetching, setFetching } = useContext(RecipeContext);
   const [areaList, setAreaList] = useState([]);
@@ -14,7 +32,7 @@ function ExploreFoodOrigin() {
 
   useEffect(() => {
     listAreasApi()
-      .then((data) => setAreaList(data.meals))
+      .then((resp) => setAreaList(resp.meals))
       .catch((error) => alert('Algo inesperado aconteceu:', error));
     setListLoading(false);
   }, []);
@@ -24,7 +42,7 @@ function ExploreFoodOrigin() {
       .then((response) => setData(response.meals.slice(0, 12)))
       .catch((error) => alert('Algo inesperado aconteceu:', error));
     setFetching(false);
-  }
+  };
 
   useEffect(() => {
     renderAll();
@@ -35,7 +53,7 @@ function ExploreFoodOrigin() {
       renderAll();
     } else {
       filterByAreasApi(e.target.value)
-        .then((data) => setData(data.meals.slice(0, 12)))
+        .then((resp) => setData(resp.meals.slice(0, 12)))
         .catch((error) => alert('Algo inesperado aconteceu:', error));
       setFetching(false);
     }
@@ -44,15 +62,7 @@ function ExploreFoodOrigin() {
   return (
     <div>
       <Header title="Explorar Origem" />
-      <select className="select-origin" data-testid="explore-by-area-dropdown" onClick={(e) => handleClick(e)}>
-        <option data-testid="All-option">All</option>
-        {!listLoading &&
-          areaList.map(({ strArea }) => (
-            <option key={strArea} value={strArea} data-testid={`${strArea}-option`}>
-              {strArea}
-            </option>
-          ))}
-      </select>
+      {selectArea(handleClick, listLoading, areaList)}
       {!fetching && (
         <section className="list-of-cards">
           {data.map((item, index) => (
@@ -64,6 +74,5 @@ function ExploreFoodOrigin() {
     </div>
   );
 }
-// com certeza vai ter que refatorar esse return enorme
 
 export default ExploreFoodOrigin;
