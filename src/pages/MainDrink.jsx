@@ -44,8 +44,8 @@ function MainDrink() {
       </div>
     ) : (
       <div>
-        <Header title="Bebidas" />
         {!fetching && <DrinkCategories />}
+        <Header title="Bebidas" />
         <div className="list-of-cards">
           {data.map((item, idx) => (
             (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
