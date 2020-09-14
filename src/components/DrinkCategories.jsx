@@ -13,7 +13,7 @@ function DrinkCategories() {
 
   return (
     <div>
-      {categories.map((category, i) => { return i <= 4 ? <p>{category.strCategory}</p> : null; })}
+      {categories.map((category, i) => (i <= 4 ? <p>{category.strCategory}</p> : null))}
     </div>
   );
 }
