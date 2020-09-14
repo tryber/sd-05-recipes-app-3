@@ -36,7 +36,7 @@ function DrinkCategories() {
       {categories.map((category, i) =>
         (i <= 4 ? (
           <RadioInput
-            data-testid={`${category}-category-filter`}
+            dataTestId={`${category.strCategory}-category-filter`}
             value={category.strCategory}
             onChange={handleChange}
             validation={radio}
