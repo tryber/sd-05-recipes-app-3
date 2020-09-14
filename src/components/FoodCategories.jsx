@@ -47,7 +47,8 @@ function FoodCategories() {
         data-testid="All-category-filter"
         value="All"
         onChange={handleChange}
-        validation={radio} />
+        validation={radio}
+      />
     </div>
   );
 }
