@@ -5,8 +5,7 @@ import RadioInput from './RadioInput';
 
 function FoodCategories() {
   const { categories, setCategories, setData } = useContext(RecipeContext);
-  const [radio, setRadio] = useState('');
-  const [clicked, setClicked] = useState(false);
+  const [radio, setRadio] = useState('All');
 
   useEffect(() => {
     mealsCategories()
@@ -21,17 +20,15 @@ function FoodCategories() {
   };
 
   const handleChange = ({ target }) => {
-    if (!clicked) {
+    if (target.value !== radio && target.value !== 'All') {
     setRadio(target.value);
     handleFilter(target.value);
-    setClicked(true);
     } 
-    else if (clicked) {
-      setRadio('');
+    else if (target.value === radio || target.value === 'All') {
+      setRadio('All');
       allMealsList()
         .then((response) => setData(response.meals))
         .catch((error) => alert('Algo inesperado aconteceu:', error));
-      setClicked(false);
     }
   };
 
@@ -47,6 +44,7 @@ function FoodCategories() {
           />
         ) : null
       ))}
+      <RadioInput data-testid={`All-category-filter`} value="All" onChange={handleChange} validation={radio} />
     </div>
   );
 }
