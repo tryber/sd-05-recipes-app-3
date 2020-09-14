@@ -128,3 +128,21 @@ export const drinkCategories = () => (
         Promise.reject(data)))
     ))
 );
+
+export const mealCategoryFilter = (categoria) => (
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoria}`)
+    .then((response) => (
+      response.json()
+        .then((data) => ((response.ok && data !== null) ? Promise.resolve(data) :
+        Promise.reject(data)))
+    ))
+);
+
+export const drinkCategoryFilter = (categoria) => (
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${categoria}`)
+    .then((response) => (
+      response.json()
+        .then((data) => ((response.ok && data !== null) ? Promise.resolve(data) :
+        Promise.reject(data)))
+    ))
+);
