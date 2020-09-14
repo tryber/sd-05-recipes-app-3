@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const RadioInput = ({ handleChange, value, validation, dataTestId }) => (
+const RadioInput = ({ onChange, value, validation, dataTestId }) => (
   <div className="radioSearch">
     <label htmlFor={value}>
       <input
@@ -10,7 +10,7 @@ const RadioInput = ({ handleChange, value, validation, dataTestId }) => (
         type="radio"
         name="select-radio"
         value={value}
-        onChange={({ target }) => handleChange(target.value)}
+        onChange={onChange}
         checked={(validation === value) ? 1 : 0}
       />
       {value}
@@ -21,7 +21,7 @@ const RadioInput = ({ handleChange, value, validation, dataTestId }) => (
 export default RadioInput;
 
 RadioInput.propTypes = {
-  handleChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   validation: PropTypes.string.isRequired,
   dataTestId: PropTypes.string,

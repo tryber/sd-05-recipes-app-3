@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { mealsCategories } from '../service/apis';
+import { mealsCategories, mealCategoryFilter } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import RadioInput from './RadioInput';
 
 function FoodCategories() {
-  const { categories, setCategories } = useContext(RecipeContext);
+  const { categories, setCategories, setData } = useContext(RecipeContext);
   const [radio, setRadio] = useState('');
 
   useEffect(() => {
@@ -13,6 +13,17 @@ function FoodCategories() {
       .catch((error) => alert('Atualize a página', error));
   }, []);
 
+  const handleFilter = (filter) => {
+    mealCategoryFilter(filter)
+    .then((response) => setData(response.meals))
+    .catch((error) => alert('Atualize a página', error));
+  }
+
+  const handleChange = ({target}) => {
+    setRadio(target.value);
+    handleFilter(target.value);
+  }
+
   return (
     <div>
       {categories.map((category, i) =>
@@ -20,7 +31,7 @@ function FoodCategories() {
           <RadioInput
             data-testid={`${category}-category-filter`}
             value={category.strCategory}
-            handleChange={setRadio}
+            onChange={handleChange}
             validation={radio}
           />
         ) : null

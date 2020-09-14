@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { drinkCategories } from '../service/apis';
+import { drinkCategories, drinkCategoryFilter } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import RadioInput from './RadioInput';
 
 function DrinkCategories() {
-  const { categories, setCategories } = useContext(RecipeContext);
+  const { categories, setCategories, setData } = useContext(RecipeContext);
   const [radio, setRadio] = useState('');
 
   useEffect(() => {
@@ -13,6 +13,17 @@ function DrinkCategories() {
       .catch((error) => alert('Atualize a página', error));
   }, []);
 
+  const handleFilter = (filter) => {
+    drinkCategoryFilter(filter)
+    .then((response) => setData(response.drinks))
+    .catch((error) => alert('Atualize a página', error));
+  }
+
+  const handleChange = ({target}) => {
+    setRadio(target.value);
+    handleFilter(target.value);
+  }
+
   return (
     <div>
       {categories.map((category, i) =>
@@ -20,7 +31,7 @@ function DrinkCategories() {
           <RadioInput
             data-testid={`${category}-category-filter`}
             value={category.strCategory}
-            handleChange={setRadio}
+            onChange={handleChange}
             validation={radio}
           />
         ) : null
