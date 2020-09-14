@@ -44,7 +44,7 @@ function MainDrink() {
       </div>
     ) : (
       <div>
-         {!fetching && <DrinkCategories />}
+        {!fetching && <DrinkCategories />}
         <Header title="Bebidas" />
         <div className="list-of-cards">
           {data.map((item, idx) => (
