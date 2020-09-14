@@ -1,11 +1,12 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { mealsCategories, mealCategoryFilter } from '../service/apis';
+import { mealsCategories, mealCategoryFilter, allMealsList } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import RadioInput from './RadioInput';
 
 function FoodCategories() {
   const { categories, setCategories, setData } = useContext(RecipeContext);
   const [radio, setRadio] = useState('');
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     mealsCategories()
@@ -15,13 +16,23 @@ function FoodCategories() {
 
   const handleFilter = (filter) => {
     mealCategoryFilter(filter)
-    .then((response) => setData(response.meals))
-    .catch((error) => alert('Atualize a página', error));
+      .then((response) => setData(response.meals))
+      .catch((error) => alert('Atualize a página', error));
   };
 
   const handleChange = ({ target }) => {
+    if (!clicked) {
     setRadio(target.value);
     handleFilter(target.value);
+    setClicked(true);
+    } 
+    else if (clicked) {
+      setRadio('');
+      allMealsList()
+        .then((response) => setData(response.meals))
+        .catch((error) => alert('Algo inesperado aconteceu:', error));
+      setClicked(false);
+    }
   };
 
   return (

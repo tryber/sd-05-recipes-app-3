@@ -1,11 +1,12 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { drinkCategories, drinkCategoryFilter } from '../service/apis';
+import { drinkCategories, drinkCategoryFilter, allDrinksList } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import RadioInput from './RadioInput';
 
 function DrinkCategories() {
   const { categories, setCategories, setData } = useContext(RecipeContext);
   const [radio, setRadio] = useState('');
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     drinkCategories()
@@ -20,8 +21,18 @@ function DrinkCategories() {
   };
 
   const handleChange = ({ target }) => {
+    if (!clicked) {
     setRadio(target.value);
     handleFilter(target.value);
+    setClicked(true);
+    } 
+    else if (clicked) {
+      setRadio('');
+      allDrinksList()
+        .then((response) => setData(response.drinks))
+        .catch((error) => alert('Algo inesperado aconteceu:', error));
+      setClicked(false);
+    }
   };
 
   return (
