@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Food from '../components/Food';
 import '../css/recipe-cards-list.css';
+import Categories from '../components/Categories';
 
 function MainFood() {
   const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
@@ -14,10 +15,10 @@ function MainFood() {
   // if (!data) previous = true;
   useEffect(
     () => {
-      allMealsList()
-        .then((response) => setData(response.meals))
-        .catch((error) => alert('Algo inesperado aconteceu:', error));
       setPage('MainFood');
+      allMealsList()
+      .then((response) => setData(response.meals))
+      .catch((error) => alert('Algo inesperado aconteceu:', error));
       setFetching(false);
     },
     [
@@ -40,7 +41,10 @@ function MainFood() {
       </div>
     ) : (
       <div>
+        {!fetching && <Categories />}
         <Header title="Comidas" />
+        <br></br>
+        <br></br>        
         <div className="list-of-cards">
           {data.map((item, index) => (
             (index < 12) ? <Food key={item.idMeal} food={item} idx={index} />

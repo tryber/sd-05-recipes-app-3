@@ -108,3 +108,23 @@ export const randomDrinksApi = () => (
         Promise.reject(data)))
     ))
 );
+
+export const mealsCategories = () => (
+  fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')
+    .then((response) => (
+      response.json()
+        // .then((data) => console.log(data))
+        .then((data) => ((response.ok && data !== null) ? Promise.resolve(data) :
+        Promise.reject(data)))
+    ))
+);
+
+export const drinkCategories = () => (
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+    .then((response) => (
+      response.json()
+        // .then((data) => console.log(data))
+        .then((data) => ((response.ok && data !== null) ? Promise.resolve(data) :
+        Promise.reject(data)))
+    ))
+);
