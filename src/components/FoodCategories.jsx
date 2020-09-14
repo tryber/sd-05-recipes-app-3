@@ -17,17 +17,17 @@ function FoodCategories() {
     mealCategoryFilter(filter)
     .then((response) => setData(response.meals))
     .catch((error) => alert('Atualize a página', error));
-  }
+  };
 
-  const handleChange = ({target}) => {
+  const handleChange = ({ target }) => {
     setRadio(target.value);
     handleFilter(target.value);
-  }
+  };
 
   return (
     <div>
       {categories.map((category, i) =>
-        i <= 4 ? (
+        (i <= 4 ? (
           <RadioInput
             data-testid={`${category}-category-filter`}
             value={category.strCategory}
@@ -35,7 +35,7 @@ function FoodCategories() {
             validation={radio}
           />
         ) : null
-      )}
+      ))}
     </div>
   );
 }
