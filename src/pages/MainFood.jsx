@@ -41,7 +41,7 @@ function MainFood() {
       </div>
     ) : (
       <div>
-        <Header title="Comidas" />   
+        <Header title="Comidas" />
         {!fetching && <FoodCategories />}
         <div className="list-of-cards">
           {data.map((item, index) => (

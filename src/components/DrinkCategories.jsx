@@ -8,14 +8,12 @@ function DrinkCategories() {
   useEffect(() => {
     drinkCategories()
       .then((response) => setCategories(response.drinks))
-      .catch((error) => alert("Atualize a página", error));
+      .catch((error) => alert('Atualize a página', error));
   }, []);
 
   return (
     <div>
-      {categories.map((category, index) => {
-        return index <= 4 ? <p>{category.strCategory}</p> : null
-      })}
+      {categories.map((category, i) => { return i <= 4 ? <p>{category.strCategory}</p> : null; })}
     </div>
   );
 }
