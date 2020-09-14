@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Food from '../components/Food';
 import '../css/recipe-cards-list.css';
-import Categories from '../components/Categories';
+import FoodCategories from '../components/FoodCategories';
 
 function MainFood() {
   const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
@@ -41,7 +41,7 @@ function MainFood() {
       </div>
     ) : (
       <div>
-        {!fetching && <Categories />}
+        {!fetching && <FoodCategories />}
         <Header title="Comidas" />
         <br></br>
         <br></br>        
