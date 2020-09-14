@@ -5,7 +5,9 @@ import '../css/recipe-cards-list.css';
 
 class Food extends Component {
   render() {
-    const { strMealThumb, strMeal, idMeal, idx } = this.props.food;
+    const { idx, food } = this.props;
+    const { strMealThumb, strMeal, idMeal } = food;
+    // console.log(idx)
     return (
       <div className="card-recipe" data-testid={`${idx}-recipe-card`} >
         <Link to={`/comidas/${idMeal}`}>
@@ -29,8 +31,10 @@ class Food extends Component {
 export default Food;
 
 Food.propTypes = {
-  food: Proptypes.objectOf(Object).isRequired,
-  strMealThumb: Proptypes.string.isRequired,
-  strMeal: Proptypes.string.isRequired,
-  idMeal: Proptypes.string.isRequired,
+  idx: Proptypes.number.isRequired,
+  food: Proptypes.shape({
+    strMealThumb: Proptypes.string.isRequired,
+    strMeal: Proptypes.string.isRequired,
+    idMeal: Proptypes.string.isRequired,
+  }).isRequired,
 };

@@ -42,8 +42,8 @@ function MainFood() {
       <div>
         <Header title="Comidas" />
         <div className="list-of-cards">
-          {data.map((item, idx) => (
-            (idx < 12) ? <Food key={item.idMeal} food={item} idx={idx} />
+          {data.map((item, index) => (
+            (index < 12) ? <Food key={item.idMeal} food={item} idx={index} />
             : false))}
         </div>
         <Footer />
