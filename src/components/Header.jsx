@@ -14,8 +14,8 @@ function Header(props) {
     <div className="header">
       <div className="topbar">
         <div className="perfil">
-          <Link to="/perfil" data-testid="profile-top-btn">
-            <img src={profileIcon} alt="profile icon" />
+          <Link to="/perfil">
+            <img data-testid="profile-top-btn" src={profileIcon} alt="profile icon" />
           </Link>
         </div>
         <div className="titulo">
