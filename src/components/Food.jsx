@@ -7,7 +7,7 @@ class Food extends Component {
   render() {
     const { idx, food } = this.props;
     const { strMealThumb, strMeal, idMeal } = food;
-    // console.log(idx)
+    console.log(strMeal);
     return (
       <div className="card-recipe" data-testid={`${idx}-recipe-card`} >
         <Link to={`/comidas/${idMeal}`}>

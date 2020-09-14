@@ -1,0 +1,19 @@
+/* Categories.css individual style by Elisângelo */
+.categories {
+  align-self: flex-start;
+  color: black;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  position: relative;
+  top: 10vh;
+  width: 100%;
+  z-index: 0;
+}
+
+.categories p {
+  height: 1pt;
+  line-height: 1pc;
+  padding: 0 20px;
+  text-align: center;
+}

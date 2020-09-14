@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Drink from '../components/Drink';
 import '../css/recipe-cards-list.css';
+import DrinkCategories from '../components/DrinkCategories';
 
 function MainDrink() {
   const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
@@ -14,13 +15,13 @@ function MainDrink() {
   // if (!data) previous = true;
   useEffect(
     () => {
-      allDrinksList()
-        .then((response) => {
-          if (response !== null) setData(response.drinks);
-          // console.log(response)
-        })
-        .catch((error) => alert('Algo inesperado aconteceu:', error));
       setPage('MainDrink');
+      allDrinksList()
+      .then((response) => {
+        if (response !== null) setData(response.drinks);
+        // console.log(response)
+      })
+      .catch((error) => alert('Algo inesperado aconteceu:', error));
       setFetching(false);
     },
     [
@@ -44,6 +45,7 @@ function MainDrink() {
     ) : (
       <div>
         <Header title="Bebidas" />
+        {!fetching && <DrinkCategories />}
         <div className="list-of-cards">
           {data.map((item, idx) => (
             (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
