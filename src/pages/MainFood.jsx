@@ -9,8 +9,9 @@ import '../css/recipe-cards-list.css';
 import FoodCategories from '../components/FoodCategories';
 
 function MainFood() {
-  const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
-  console.log(data);
+  const {
+    data, setData, setFetching, fetching, setPage, category, search,
+  } = useContext(RecipeContext);
   // let previous = false;
   // if (!data) previous = true;
   useEffect(
@@ -24,7 +25,8 @@ function MainFood() {
     [
       /* previous */
     ],
-    );
+  );
+
   if (fetching) {
     return (
       <div>
@@ -34,24 +36,23 @@ function MainFood() {
       </div>
     );
   }
-  if (data !== null) {
-    return (data.length === 1) ? (
-      <div>
-        <Redirect to={`/comidas/${data[0].idMeal}`} />
+
+  return (data.length === 1 && category === '' && search !== '') ? (
+    <div>
+      <Redirect to={`/comidas/${data[0].idMeal}`} />
+    </div>
+  ) : (
+    <div>
+      {!fetching && <FoodCategories />}
+      <Header title="Comidas" />
+      <div className="list-of-cards">
+        {data.map((item, index) => (
+          (index < 12) ? <Food key={item.idMeal} food={item} idx={index} />
+          : false))}
       </div>
-    ) : (
-      <div>
-        {!fetching && <FoodCategories />}
-        <Header title="Comidas" />
-        <div className="list-of-cards">
-          {data.map((item, index) => (
-            (index < 12) ? <Food key={item.idMeal} food={item} idx={index} />
-            : false))}
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+      <Footer />
+    </div>
+  );
 }
 
 export default MainFood;

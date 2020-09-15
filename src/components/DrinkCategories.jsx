@@ -1,11 +1,9 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { drinkCategories, drinkCategoryFilter } from '../service/apis';
+import React, { useEffect, useContext } from 'react';
+import { drinkCategories, drinkCategoryFilter, allDrinksList } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-import RadioInput from './RadioInput';
 
 function DrinkCategories() {
-  const { categories, setCategories, setData } = useContext(RecipeContext);
-  const [radio, setRadio] = useState('');
+  const { categories, setCategories, setData, category, setCategory } = useContext(RecipeContext);
 
   useEffect(() => {
     drinkCategories()
@@ -19,23 +17,37 @@ function DrinkCategories() {
     .catch((error) => alert('Atualize a página', error));
   };
 
-  const handleChange = ({ target }) => {
-    setRadio(target.value);
-    handleFilter(target.value);
+  const handleClick = ({ target }) => {
+    if (target.value !== category && target.value !== 'All') {
+      setCategory(target.value);
+      handleFilter(target.value);
+    } else if (target.value === category || target.value === 'All') {
+      setCategory('All');
+      allDrinksList()
+        .then((response) => setData(response.drinks))
+        .catch((error) => alert('Algo inesperado aconteceu:', error));
+    }
   };
 
   return (
     <div>
-      {categories.map((category, i) =>
+      {categories.map((categ, i) =>
         (i <= 4 ? (
-          <RadioInput
-            data-testid={`${category}-category-filter`}
-            value={category.strCategory}
-            onChange={handleChange}
-            validation={radio}
-          />
+          <button
+            type="button"
+            key={categ.strCategory}
+            data-testid={`${categ.strCategory}-category-filter`}
+            onClick={handleClick}
+            value={categ.strCategory}
+          >{categ.strCategory}</button>
         ) : null
       ))}
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        value="All"
+        onClick={handleClick}
+      >All</button>
     </div>
   );
 }
