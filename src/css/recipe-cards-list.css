@@ -9,7 +9,7 @@
   max-width: 20vw;
   min-width: 10pc;
   overflow: hidden;
-  position: relative;
+  position: static;
   top: 13vw;
 }
 
@@ -42,7 +42,7 @@
   justify-content: space-around;
   margin-bottom: 35%;
   position: relative;
-  top: 1pc;
+  top: 14vh;
   z-index: 0;
 }
 

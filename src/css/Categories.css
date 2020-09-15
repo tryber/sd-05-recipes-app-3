@@ -1,19 +1,24 @@
 /* Categories.css individual style by Elisângelo */
 .categories {
-  align-self: flex-start;
   color: black;
   display: flex;
-  flex-flow: wrap;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
   position: relative;
-  top: 10vh;
+  top: 12vh;
   width: 100%;
   z-index: 0;
 }
 
-.categories p {
-  height: 1pt;
-  line-height: 1pc;
-  padding: 0 20px;
-  text-align: center;
+.radioCategorie {
+  background-color: transparent;
+  color: #1c1d1d;
+  font-size: 1em;
+  font-weight: 500;
+  height: 3vh;
+  line-height: 2pc;
+  margin: auto;
+  min-width: fit-content;
+  padding: 0 10px;
+  text-align: left;
 }

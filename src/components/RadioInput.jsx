@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const RadioInput = ({ onChange, value, validation, dataTestId }) => (
-  <div className="radioSearch">
+const RadioInput = ({ onChange, value, validation, dataTestId, classname }) => (
+  <div className={classname}>
     <label htmlFor={value}>
       <input
         data-testid={dataTestId}
@@ -25,9 +25,11 @@ RadioInput.propTypes = {
   value: PropTypes.string.isRequired,
   validation: PropTypes.string.isRequired,
   dataTestId: PropTypes.string,
+  classname: PropTypes.string,
 };
 
 RadioInput.defaultProps = {
   dataTestId: '',
+  classname: '',
 };
 

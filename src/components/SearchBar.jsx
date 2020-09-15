@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useState } from 'react';
 import RadioInput from './RadioInput';
 import SearchBoxInput from './SearchBoxInput';
-import '../css/SearchBar.css';
+import '../css/searchBar.css';
 import {
   foodIngredientAPI,
   foodNameAPI,
@@ -85,6 +85,7 @@ function SearchBar() {
           name="search"
           value={search}
           dataTestId="search-input"
+          classname="radioSearch"
         />
         <div className="radio-set">
           <RadioInput
@@ -98,12 +99,14 @@ function SearchBar() {
             value="Nome"
             validation={radio}
             dataTestId="name-search-radio"
+            classname="radioSearch"
           />
           <RadioInput
             onChange={({ target }) => setRadio(target.value)}
             value="Primeira letra"
             validation={radio}
             dataTestId="first-letter-search-radio"
+            classname="radioSearch"
           />
         </div>
         <ButtonSearch onClick={() => handleClick(page, search, setData, radio, setSearch)} />

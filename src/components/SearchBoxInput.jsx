@@ -10,7 +10,7 @@ const SearchBoxInput = ({ handleChange, name, value, dataTestId }) => (
         name={name}
         value={value}
         onChange={({ target }) => handleChange(target.value)}
-        placeholder="Digite algo"
+        placeholder="Digite algo para pesquisar"
       />
     </label>
   </div>
@@ -18,14 +18,12 @@ const SearchBoxInput = ({ handleChange, name, value, dataTestId }) => (
 
 export default SearchBoxInput;
 
-
 SearchBoxInput.propTypes = {
   handleChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   dataTestId: PropTypes.string,
 };
-
 
 SearchBoxInput.defaultProps = {
   dataTestId: '',

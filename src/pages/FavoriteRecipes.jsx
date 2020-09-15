@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import '../css/Header.css';
+import '../css/header.css';
 
 function FavoriteRecipes() {
   return (

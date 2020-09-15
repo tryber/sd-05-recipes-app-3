@@ -3,7 +3,7 @@ import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { lookUpIdDrink } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-// import '../css/';
+import '../css/details.css';
 
 function DrinkDetails(props) {
   const { idRecipe } = props.match.params;
@@ -13,9 +13,7 @@ function DrinkDetails(props) {
   useEffect(() => {
     setFetching(true);
     lookUpIdDrink(idRecipe).then((drink) => setDetails(drink.drinks))
-    // drink.drinks ?
-    // setDetails(drink.drinks) : alert('Erro no servidor! tente novamente.'))
-    .catch((error) => alert('Algo inesperado aconteceu:', error));
+      .catch((error) => alert('Algo inesperado aconteceu:', error));
     setFetching(false);
   }, []);
 

@@ -5,8 +5,8 @@ import RecipeContext from '../context/RecipeContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Drink from '../components/Drink';
-import '../css/recipe-cards-list.css';
 import DrinkCategories from '../components/DrinkCategories';
+import '../css/recipe-cards-list.css';
 
 function MainDrink() {
   const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
@@ -44,8 +44,8 @@ function MainDrink() {
       </div>
     ) : (
       <div>
-        {!fetching && <DrinkCategories />}
         <Header title="Bebidas" />
+        {!fetching && <DrinkCategories />}
         <div className="list-of-cards">
           {data.map((item, idx) => (
             (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
