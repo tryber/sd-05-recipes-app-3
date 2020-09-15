@@ -9,8 +9,9 @@ import '../css/recipe-cards-list.css';
 import FoodCategories from '../components/FoodCategories';
 
 function MainFood() {
-  const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
-  console.log(data);
+  const {
+    data,setData, setFetching, fetching, setPage, category, search
+  } = useContext(RecipeContext);
   // let previous = false;
   // if (!data) previous = true;
   useEffect(
@@ -35,7 +36,7 @@ function MainFood() {
     );
   }
   if (data !== null) {
-    return (data.length === 1) ? (
+    return (data.length === 1 && category === '' && search !== '') ? (
       <div>
         <Redirect to={`/comidas/${data[0].idMeal}`} />
       </div>

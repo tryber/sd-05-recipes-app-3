@@ -1,11 +1,9 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { mealsCategories, mealCategoryFilter, allMealsList } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-import RadioInput from './RadioInput';
 
 function FoodCategories() {
-  const { categories, setCategories, setData } = useContext(RecipeContext);
-  const [radio, setRadio] = useState('All');
+  const { categories, setCategories, setData, category, setCategory } = useContext(RecipeContext);
 
   useEffect(() => {
     mealsCategories()
@@ -19,12 +17,12 @@ function FoodCategories() {
       .catch((error) => alert('Atualize a página', error));
   };
 
-  const handleChange = ({ target }) => {
-    if (target.value !== radio && target.value !== 'All') {
-      setRadio(target.value);
+  const handleClick = ({ target }) => {
+    if (target.value !== category && target.value !== 'All') {
+      setCategory(target.value);
       handleFilter(target.value);
-    } else if (target.value === radio || target.value === 'All') {
-      setRadio('All');
+    } else if (target.value === category || target.value === 'All') {
+      setCategory('All');
       allMealsList()
         .then((response) => setData(response.meals))
         .catch((error) => alert('Algo inesperado aconteceu:', error));
@@ -35,20 +33,20 @@ function FoodCategories() {
     <div>
       {categories.map((category, i) =>
         (i <= 4 ? (
-          <RadioInput
-            dataTestId={`${category.strCategory}-category-filter`}
+          <button
+            type="button"
+            data-testid={`${category.strCategory}-category-filter`}
             value={category.strCategory}
-            onChange={handleChange}
-            validation={radio}
-          />
+            onClick={handleClick}
+          >{category.strCategory}</button>
         ) : null
       ))}
-      <RadioInput
+      <button
+        type="button"
         data-testid="All-category-filter"
         value="All"
-        onChange={handleChange}
-        validation={radio}
-      />
+        onClick={handleClick}
+      >All</button>
     </div>
   );
 }
