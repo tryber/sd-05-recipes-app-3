@@ -146,3 +146,22 @@ export const drinkCategoryFilter = (categoria) => (
         Promise.reject(data)))
     ))
 );
+
+export const listAreasApi = () => (
+  fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list')
+    .then((response) => (
+      response
+        .json()
+        .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
+    ))
+);
+
+export const filterByAreasApi = (area) => (
+  // exemplo de url: https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
+    .then((response) => (
+      response
+        .json()
+        .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
+    ))
+);
