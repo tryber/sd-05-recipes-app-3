@@ -9,8 +9,7 @@ import DrinkCategories from '../components/DrinkCategories';
 import '../css/recipe-cards-list.css';
 
 function MainDrink() {
-  const {
-    data, setData, setFetching, fetching, setPage, category, search,
+  const { data, setData, setFetching, fetching, setPage, category, search,
   } = useContext(RecipeContext);
   // let previous = false;
   // if (!data) previous = true;
@@ -18,8 +17,8 @@ function MainDrink() {
     () => {
       setPage('MainDrink');
       allDrinksList()
-      .then((response) => setData(response.drinks))
-      .catch((error) => alert('Algo inesperado aconteceu:', error));
+        .then((response) => setData(response.drinks))
+        .catch((error) => alert('Algo inesperado aconteceu:', error));
       setFetching(false);
     },
     [
@@ -36,8 +35,8 @@ function MainDrink() {
       </div>
     );
   }
- return (data.length === 1 && category === '' && search !== '') ? (
-   <div>
+  return data.length === 1 && category === '' && search !== '' ? (
+    <div>
       <Redirect to={`/bebidas/${data[0].idDrink}`} />
     </div>
   ) : (
@@ -47,7 +46,8 @@ function MainDrink() {
       <div className="list-of-cards">
         {data.map((item, idx) => (
           (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
-          : false))}
+          : false),
+        )}
       </div>
       <Footer />
     </div>
@@ -57,13 +57,13 @@ function MainDrink() {
 export default MainDrink;
 
 // if (data === null) {
-  //   return (
-    //     <div>
-    //       <p>Redirecting...</p>
-    //       {alert('Não foi possível encontrar uma receita para esse filtro.')}
-    //     </div>
-    //   );
-    // }
+//   return (
+//     <div>
+//       <p>Redirecting...</p>
+//       {alert('Não foi possível encontrar uma receita para esse filtro.')}
+//     </div>
+//   );
+// }
 
 /* if (data !== null) {
   return (data.length === 1) ? (

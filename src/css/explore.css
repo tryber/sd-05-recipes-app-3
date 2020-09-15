@@ -15,7 +15,7 @@
 }
 
 .buttons button {
-  font-family: Montserrat , sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 20px;
   font-weight: 600;
   margin: 10px auto;
@@ -26,24 +26,20 @@
 }
 
 .select-origin {
-
-  /* align-items: flex-start; */
   display: flex;
-  /* flex-wrap: wrap; */
+  height: 2pc;
   justify-content: center;
   margin: auto;
   position: absolute;
   top: 10%;
   width: 100%;
-  height: 2pc;
-  z-index:0;
+  z-index: 0;
 }
 
-.select-origin select, option {
+.select-origin select , option {
   background-color: rgb(14, 130, 134);
   border-radius: 5px;
   color: white;
-  width: 85vw;
   font-size: 16px;
-
+  width: 85vw;
 }

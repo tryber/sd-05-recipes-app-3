@@ -30,9 +30,11 @@
 }
 
 .searchBox {
+  align-self: center;
   background-color: transparent;
   display: flex;
   justify-content: center;
+  line-height: 8vh;
   width: 100%;
 }
 
@@ -62,9 +64,4 @@
   display: flex;
   justify-content: space-around;
   margin: auto;
-}
-
-.searchBox {
-  align-self: center;
-  line-height: 8vh;
 }

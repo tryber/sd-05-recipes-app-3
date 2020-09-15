@@ -2,30 +2,28 @@
 .categories {
   color: black;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  position: relative;
+  flex-flow: wrap;
+  justify-content: space-around;
   margin: auto;
-  top: 10vh;
   max-width: 100%;
-  /* width: 360px; */
+  position: relative;
+  top: 10vh;
   z-index: 0;
 }
 
 .categorie {
-  display: flex;
   background-color: transparent;
+  display: flex;
   height: fit-content;
-  margin: 5px 10px;;
+  margin: 5px;
 }
 
 .categorie button {
   color: #1c1d1d;
   font-size: 15px;
   font-weight: 300;
-  width: 25vw;
   max-width: 20vh;
-  padding: 5px auto;
+  padding: 5px 0;
   text-align: center;
+  width: 45vw;
 }
