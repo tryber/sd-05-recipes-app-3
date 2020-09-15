@@ -36,6 +36,7 @@ function MainFood() {
       </div>
     );
   }
+
   return (data.length === 1 && category === '' && search !== '') ? (
     <div>
       <Redirect to={`/comidas/${data[0].idMeal}`} />
@@ -51,7 +52,7 @@ function MainFood() {
       </div>
       <Footer />
     </div>
-  ); 
+  );
 }
 
 export default MainFood;

@@ -26,7 +26,7 @@ function MainDrink() {
       /* previous */
     ],
   );
-  
+
   if (fetching) {
     return (
       <div>
@@ -36,7 +36,7 @@ function MainDrink() {
       </div>
     );
   }
-  
+
   return (data.length === 1 && category === '' && search !== '') ? (
     <div>
       <Redirect to={`/bebidas/${data[0].idDrink}`} />
