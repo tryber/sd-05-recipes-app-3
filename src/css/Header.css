@@ -12,8 +12,9 @@
   align-items: center;
   background-color: transparent;
   display: flex;
-  height: 10vh;
+  height: 8vh;
   justify-content: space-around;
+  margin-top: 15px;
   position: relative;
   z-index: 2;
 }

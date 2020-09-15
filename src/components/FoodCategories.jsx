@@ -1,12 +1,11 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { mealsCategories, mealCategoryFilter } from '../service/apis';
+import React, { useEffect, useContext } from 'react';
+import { mealsCategories, mealCategoryFilter, allMealsList } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import RadioInput from './RadioInput';
 import '../css/categories.css';
 
 function FoodCategories() {
-  const { categories, setCategories, setData } = useContext(RecipeContext);
-  const [radio, setRadio] = useState('');
+  const { categories, setCategories, setData, category, setCategory } = useContext(RecipeContext);
 
   useEffect(() => {
     mealsCategories()
@@ -20,23 +19,41 @@ function FoodCategories() {
       .catch((error) => alert('Atualize a página', error));
   };
 
-  const handleChange = ({ target }) => {
-    setRadio(target.value);
-    handleFilter(target.value);
+  const handleClick = ({ target }) => {
+    if (target.value !== category && target.value !== 'All') {
+      setCategory(target.value);
+      handleFilter(target.value);
+    } else if (target.value === category || target.value === 'All') {
+      setCategory('All');
+      allMealsList()
+        .then((response) => setData(response.meals))
+        .catch((error) => alert('Algo inesperado aconteceu:', error));
+    }
   };
   return (
     <div className="categories">
-      {categories.map((category, i) => (
-        (i <= 4) ? (
-          <RadioInput
-            data-testid={`${category}-category-filter`}
-            value={category.strCategory}
-            onChange={handleChange}
-            validation={radio}
-            classname="radioCategorie"
-          />
+      {categories.map((categ, i) =>
+        (i <= 4 ? (
+          <div className="categorie">
+          <button
+            type="button"
+            key={categ.strCategory}
+            data-testid={`${categ.strCategory}-category-filter`}
+            onClick={handleClick}
+            value={categ.strCategory}
+          >
+            {categ.strCategory}
+          </button>
+          </div>
         ) : null
       ))}
+      <div className="categorie">
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        value="All"
+        onClick={handleClick}
+      >All</button></div>
     </div>
   );
 }

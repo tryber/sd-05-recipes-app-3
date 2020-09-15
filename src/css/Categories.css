@@ -3,21 +3,29 @@
   color: black;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
   position: relative;
-  top: 12vh;
-  width: 100%;
+  margin: auto;
+  top: 10vh;
+  max-width: 100%;
+  /* width: 360px; */
   z-index: 0;
 }
 
-.radioCategorie {
+.categorie {
+  display: flex;
   background-color: transparent;
+  height: fit-content;
+  margin: 5px 10px;;
+}
+
+.categorie button {
   color: #1c1d1d;
-  font-size: 20px;
-  font-weight: 500;
-  height: 4vh;
-  margin: auto;
-  min-width: 150px;
-  padding: 0 5px;
-  text-align: left;
+  font-size: 15px;
+  font-weight: 300;
+  width: 25vw;
+  max-width: 20vh;
+  padding: 5px auto;
+  text-align: center;
 }

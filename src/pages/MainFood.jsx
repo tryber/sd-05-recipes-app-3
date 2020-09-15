@@ -9,8 +9,9 @@ import FoodCategories from '../components/FoodCategories';
 import '../css/recipe-cards-list.css';
 
 function MainFood() {
-  const { data, setData, setFetching, fetching, setPage } = useContext(RecipeContext);
-  console.log(data);
+  const {
+    data, setData, setFetching, fetching, setPage, category, search,
+  } = useContext(RecipeContext);
   // let previous = false;
   // if (!data) previous = true;
   useEffect(
@@ -24,7 +25,8 @@ function MainFood() {
     [
       /* previous */
     ],
-    );
+  );
+
   if (fetching) {
     return (
       <div>
@@ -34,7 +36,35 @@ function MainFood() {
       </div>
     );
   }
-  if (data !== null) {
+  return (data.length === 1 && category === '' && search !== '') ? (
+    <div>
+      <Redirect to={`/comidas/${data[0].idMeal}`} />
+    </div>
+  ) : (
+    <div>
+      <Header title="Comidas" />
+      {!fetching && <FoodCategories />}
+      <div className="list-of-cards">
+        {data.map((item, index) => (
+          (index < 12) ? <Food key={item.idMeal} food={item} idx={index} />
+          : false))}
+      </div>
+      <Footer />
+    </div>
+  );
+}
+
+export default MainFood;
+
+//   return (
+  //     <div>
+  //       <p>Redirecting...{console.log(data)}</p>
+  //       {alert('Não foi possível encontrar uma receita para esse filtro.')}
+  //     </div>
+  //   );
+  // }
+
+/*  if (data !== null) {
     return (data.length === 1) ? (
       <div>
         <Redirect to={`/comidas/${data[0].idMeal}`} />
@@ -49,17 +79,4 @@ function MainFood() {
             : false))}
         </div>
         <Footer />
-      </div>
-    );
-  }
-}
-
-export default MainFood;
-
-//   return (
-//     <div>
-//       <p>Redirecting...{console.log(data)}</p>
-//       {alert('Não foi possível encontrar uma receita para esse filtro.')}
-//     </div>
-//   );
-// }
+*/

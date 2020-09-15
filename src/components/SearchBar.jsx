@@ -75,8 +75,7 @@ function handleClick(page, search, setData, radio, setSearch) {
 
 function SearchBar() {
   const [radio, setRadio] = useState('');
-  const [search, setSearch] = useState('');
-  const { setData, page } = useContext(RecipeContext);
+  const { setData, page, search, setSearch } = useContext(RecipeContext);
   return (
     <div className="searchBar">
       <form>

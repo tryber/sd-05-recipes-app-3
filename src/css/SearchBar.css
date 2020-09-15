@@ -12,7 +12,7 @@
   background-color: transparent;
   display: flex;
   justify-content: space-around;
-  margin: 5px auto;
+  margin: 2px auto;
   width: 100%;
 }
 
@@ -64,7 +64,7 @@
   margin: auto;
 }
 
-.searchBox , .searchBarButton , .radio-set {
+.searchBox {
   align-self: center;
-  line-height: 5vh;
+  line-height: 8vh;
 }

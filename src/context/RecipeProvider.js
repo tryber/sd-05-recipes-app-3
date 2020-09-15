@@ -7,9 +7,11 @@ const RecipeProvider = ({ children }) => {
   const [password, setPassword] = useState('');
   const [fetching, setFetching] = useState(false);
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState([]);
   const [page, setPage] = useState('MainFood');
   const [details, setDetails] = useState(['data']);
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState('');
   const context = {
     email,
     setEmail,
@@ -19,12 +21,16 @@ const RecipeProvider = ({ children }) => {
     setFetching,
     data,
     setData,
+    search,
+    setSearch,
     page,
     setPage,
     details,
     setDetails,
     categories,
     setCategories,
+    category,
+    setCategory,
   };
 
   return <RecipeContext.Provider value={context}>{children}</RecipeContext.Provider>;

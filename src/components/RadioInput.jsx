@@ -5,7 +5,6 @@ const RadioInput = ({ onChange, value, validation, dataTestId, classname }) => (
   <div className={classname}>
     <label htmlFor={value}>
       <input
-        data-testid={dataTestId}
         id={value}
         type="radio"
         name="select-radio"
