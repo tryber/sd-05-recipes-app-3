@@ -10,7 +10,7 @@ import DrinkCategories from '../components/DrinkCategories';
 
 function MainDrink() {
   const {
-    data, setData, setFetching, fetching, setPage, category, search
+    data, setData, setFetching, fetching, setPage, category, search,
   } = useContext(RecipeContext);
   // let previous = false;
   // if (!data) previous = true;
@@ -26,6 +26,7 @@ function MainDrink() {
       /* previous */
     ],
   );
+  
   if (fetching) {
     return (
       <div>
@@ -35,24 +36,23 @@ function MainDrink() {
       </div>
     );
   }
-  if (data !== null) {
-    return (data.length === 1 && category === '' && search !== '') ? (
-      <div>
-        <Redirect to={`/bebidas/${data[0].idDrink}`} />
+  
+  return (data.length === 1 && category === '' && search !== '') ? (
+    <div>
+      <Redirect to={`/bebidas/${data[0].idDrink}`} />
+    </div>
+  ) : (
+    <div>
+      {!fetching && <DrinkCategories />}
+      <Header title="Bebidas" />
+      <div className="list-of-cards">
+        {data.map((item, idx) => (
+          (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
+          : false))}
       </div>
-    ) : (
-      <div>
-        {!fetching && <DrinkCategories />}
-        <Header title="Bebidas" />
-        <div className="list-of-cards">
-          {data.map((item, idx) => (
-            (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
-            : false))}
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+      <Footer />
+    </div>
+  );
 }
 
 export default MainDrink;

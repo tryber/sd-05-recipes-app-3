@@ -31,15 +31,15 @@ function DrinkCategories() {
 
   return (
     <div>
-      {categories.map((category, i) =>
+      {categories.map((categ, i) =>
         (i <= 4 ? (
           <button
             type="button"
-            key={category.strCategory}
-            data-testid={`${category.strCategory}-category-filter`}
+            key={categ.strCategory}
+            data-testid={`${categ.strCategory}-category-filter`}
             onClick={handleClick}
-            value={category.strCategory}
-          >{category.strCategory}</button>
+            value={categ.strCategory}
+          >{categ.strCategory}</button>
         ) : null
       ))}
       <button

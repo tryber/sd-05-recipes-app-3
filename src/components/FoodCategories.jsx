@@ -31,14 +31,14 @@ function FoodCategories() {
 
   return (
     <div>
-      {categories.map((category, i) =>
+      {categories.map((categ, i) =>
         (i <= 4 ? (
           <button
             type="button"
-            data-testid={`${category.strCategory}-category-filter`}
-            value={category.strCategory}
+            data-testid={`${categ.strCategory}-category-filter`}
+            value={categ.strCategory}
             onClick={handleClick}
-          >{category.strCategory}</button>
+          >{categ.strCategory}</button>
         ) : null
       ))}
       <button
