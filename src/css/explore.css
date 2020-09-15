@@ -24,3 +24,15 @@
 .surprise button {
   background-color: rgb(34, 245, 27);
 }
+
+.select-origin {
+  align-items: center;
+  background-color: rgb(14, 130, 134);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 250px;
+  position: absolute;
+  top: 15%;
+  width: 100%;
+}
