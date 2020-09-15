@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useState } from 'react';
 import RadioInput from './RadioInput';
 import SearchBoxInput from './SearchBoxInput';
-import '../css/SearchBar.css';
+import '../css/searchBar.css';
 import {
   foodIngredientAPI,
   foodNameAPI,

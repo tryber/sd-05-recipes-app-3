@@ -30,7 +30,7 @@ function FoodCategories() {
   };
 
   return (
-    <div>
+    <div className="categories">
       {categories.map((categ, i) =>
         (i <= 4 ? (
           <button

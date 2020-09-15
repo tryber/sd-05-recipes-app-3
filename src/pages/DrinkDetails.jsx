@@ -3,7 +3,7 @@ import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { lookUpIdDrink } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-// import '../css/';
+import '../css/details.css';
 
 function DrinkDetails(props) {
   const { idRecipe } = props.match.params;

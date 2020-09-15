@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
-import '../css/Login.css';
+import '../css/login.css';
 
 function inputEmail(handleEmailChange) {
   return (

@@ -4,7 +4,7 @@ import Proptypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar.jsx';
-import '../css/Header.css';
+import '../css/header.css';
 
 function Header(props) {
   const [clicked, setClicked] = useState(false);

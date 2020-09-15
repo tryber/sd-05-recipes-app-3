@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-// import '../css/';
+import '../css/details.css';
 
 function FoodDetails(props) {
   const { idRecipe } = props.match.params;
