@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { mealsCategories, mealCategoryFilter, allMealsList } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
+import '../css/Categories.css';
 
 function FoodCategories() {
   const { categories, setCategories, setData, category, setCategory } = useContext(RecipeContext);
@@ -30,23 +31,27 @@ function FoodCategories() {
   };
 
   return (
-    <div>
+    <div className="categories">
       {categories.map((categ, i) =>
         (i <= 4 ? (
-          <button
-            type="button"
-            data-testid={`${categ.strCategory}-category-filter`}
-            value={categ.strCategory}
-            onClick={handleClick}
-          >{categ.strCategory}</button>
-        ) : null
-      ))}
-      <button
-        type="button"
-        data-testid="All-category-filter"
-        value="All"
-        onClick={handleClick}
-      >All</button>
+          <div className="categorie">
+            <button
+              type="button"
+              data-testid={`${categ.strCategory}-category-filter`}
+              value={categ.strCategory}
+              onClick={handleClick}
+            >{categ.strCategory}</button>
+          </div>
+          ) : null
+          ))}
+      <div className="categorie">
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          value="All"
+          onClick={handleClick}
+        >All</button>
+      </div>
     </div>
   );
 }

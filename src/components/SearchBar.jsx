@@ -71,6 +71,7 @@ function handleClick(page, search, setData, radio, setSearch) {
     // certeza que estamos lidando com os dois cenarios possiveis:
     // tanto exito, como falha na resposta da API
   }
+  setSearch('');
 }
 
 function SearchBar() {

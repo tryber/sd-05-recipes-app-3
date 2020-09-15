@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
-import '../css/recipe-cards-list.css';
+import '../css/Recipe-cards-list.css';
 
 class Food extends Component {
   render() {

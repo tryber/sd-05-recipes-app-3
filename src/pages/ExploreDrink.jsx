@@ -4,7 +4,7 @@ import { randomDrinksApi } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import '../css/explore.css';
+import '../css/Explore.css';
 
 function ExploreDrink() {
   const { data, setData, setFetching, fetching } = useContext(RecipeContext);
