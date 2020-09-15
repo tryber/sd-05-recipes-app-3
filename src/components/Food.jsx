@@ -9,7 +9,7 @@ class Food extends Component {
     const { strMealThumb, strMeal, idMeal } = food;
     // console.log(idx)
     return (
-      <div className="card-recipe" data-testid={`${idx}-recipe-card`} >
+      <div className="card-recipe" data-testid={`${idx}-recipe-card`}>
         <Link to={`/comidas/${idMeal}`}>
           <img
             alt={strMeal}
