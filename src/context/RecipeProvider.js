@@ -9,6 +9,7 @@ const RecipeProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState('MainFood');
   const [details, setDetails] = useState(['data']);
+  const [categories, setCategories] = useState([]);
   const context = {
     email,
     setEmail,
@@ -22,6 +23,8 @@ const RecipeProvider = ({ children }) => {
     setPage,
     details,
     setDetails,
+    categories,
+    setCategories,
   };
 
   return <RecipeContext.Provider value={context}>{children}</RecipeContext.Provider>;

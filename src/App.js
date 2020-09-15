@@ -14,6 +14,7 @@ import ExploreDrinkIngredient from './pages/ExploreDrinkIngredient';
 import ExploreFood from './pages/ExploreFood';
 import ExploreFoodIngredient from './pages/ExploreFoodIngredient';
 import ExploreFoodOrigin from './pages/ExploreFoodOrigin';
+import NotFound from './pages/NotFound';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Profile from './pages/Profile';
@@ -45,6 +46,7 @@ render={(props) => <DrinkProcess {...props} />} /> */}
         <Route exact path="/explorar/comidas/ingredientes" component={ExploreFoodIngredient} />
         <Route exact path="/explorar/bebidas/ingredientes" component={ExploreDrinkIngredient} />
         <Route exact path="/explorar/comidas/area" component={ExploreFoodOrigin} />
+        <Route exact path="/explorar/bebidas/area" component={NotFound} />
         <Route path="/perfil" component={Profile} />
         <Route path="/receitas-feitas" component={DoneRecipes} />
         <Route path="/receitas-favoritas" component={FavoriteRecipes} />
