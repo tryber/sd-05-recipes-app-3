@@ -36,8 +36,8 @@ function Profile() {
             </button>
           </Link>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }

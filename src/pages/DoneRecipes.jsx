@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import Header from '../components/Header';
 import '../css/header.css';
 
@@ -8,7 +8,7 @@ function DoneRecipes() {
     <div className="header">
       <Header title="Receitas Feitas" />
       <p>Tela de Receitas Favoritas</p>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
