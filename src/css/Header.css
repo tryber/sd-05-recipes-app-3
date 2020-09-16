@@ -1,7 +1,7 @@
 /* Header.css individual style by Elisângelo */
 .header {
-  background: whitesmoke;
-  height: 10vh;
+  background: linear-gradient(to top, transparent 0%, whitesmoke 13%);
+  height: 11vh;
   min-width: 280px;
   position: fixed;
   top: 0;
@@ -29,7 +29,6 @@
 .titulo {
   align-items: center;
   background-color: transparent;
-  border: 1px solid green;
   display: flex;
   font-size: 30px;
   font-weight: 500;
