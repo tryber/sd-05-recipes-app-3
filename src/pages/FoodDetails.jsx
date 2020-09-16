@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
@@ -35,7 +35,7 @@ function FoodDetails(props) {
       .then((food) => setDetails(food.meals))
       // (food.meals) ?
       // setDetails(food.meals) : alert('Erro no servidor! tente novamente.'))
-      .catch((error) => alert('Algo inesperado aconteceingredients;u:', error));
+      .catch((error) => alert('Algo inesperado aconteceu', error));
     setFetching(false);
   }, []);
 
@@ -55,7 +55,7 @@ function FoodDetails(props) {
             {strMeal}
           </h3>
           <p data-testid="recipe-category">Categoria</p>
-         <Favorite />
+          <Favorite />
           <button>
             <img data-testid="share-btn" src={shareIcon} alt="share" />
           </button>
