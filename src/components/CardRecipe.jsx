@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+/* import React, { useContext } from 'react';
 import RecipeContext from '../context/RecipeContext';
 
 function CardRecipe() {
@@ -53,3 +53,4 @@ function CardRecipe() {
     }
 
     export default CardRecipe;
+*/
