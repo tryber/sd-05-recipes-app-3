@@ -30,8 +30,8 @@
   height: 2pc;
   justify-content: center;
   margin: auto;
-  position: absolute;
-  top: 11%;
+  position: relative;
+  top: 11vh;
   width: 100%;
   z-index: 0;
 }
