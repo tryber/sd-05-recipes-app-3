@@ -20,5 +20,5 @@ function OngoingRecipe({ img, nome, categoria, ingredientes }) {
   );
 }
 
-export default OngoingRecipe; 
+export default OngoingRecipe;
 */

@@ -4,19 +4,11 @@ import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import '../css/Details.css';
-import { whiteHeartIcon } from '../images';
-import { blackHeartIcon } from '../images';
+import Favorite from '../components/Favorite';
 import { shareIcon } from '../images';
 // import { add } from 'lodash';
 
 function FoodDetails(props) {
-  const [favorite, setFavorite] = useState(false);
-  const handleFavorite = () => {
-    setFavorite(!favorite);
-  };
-  /* const receitaFavoritada =
-      { id, type, area, category, alcoholicOrNot, name, image }
-    localStorage.setItem('favoriteRecipes', JSON.stringify({ receitaFavoritada })); */
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strMealThumb, strMeal, strInstructions, strYoutube } = details[0];
@@ -63,13 +55,7 @@ function FoodDetails(props) {
             {strMeal}
           </h3>
           <p data-testid="recipe-category">Categoria</p>
-          <button onClick={() => handleFavorite()}>
-            <img
-              data-testid="favorite-btn"
-              src={favorite ? blackHeartIcon : whiteHeartIcon}
-              alt="whiteHeart"
-            />
-          </button>
+         <Favorite />
           <button>
             <img data-testid="share-btn" src={shareIcon} alt="share" />
           </button>
