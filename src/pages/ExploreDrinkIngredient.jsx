@@ -31,7 +31,7 @@ function ExploreDrinkIngredient() {
       <Header title="Explorar Ingredientes" />
       <section className="list-of-cards">
         {drinkIngrList.map((ingr, index) => (
-          <div
+          <button
             key={ingr.strDrink}
             data-testid={`${index}-ingredient-card`}
             onClick={(ingr) => handleClick(ingr.strIngredient1)}
@@ -43,7 +43,7 @@ function ExploreDrinkIngredient() {
               alt=""
             />
             <p data-testid={`${index}-card-name`}>{ingr.strIngredient1}</p>
-          </div>
+          </button>
         ))}
       </section>
       {redirect && <Redirect to="/bebidas" />}
