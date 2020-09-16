@@ -1,1 +1,88 @@
-/* coloque aqui o css para a pagina de details */
+/*
+details.css Contribuiter: Elisangelo,
+
+para acessar elementos filhos de uma classe faca:
+classeDoElementPai elementoDesejado {
+  regras css
+}
+ex: image-details img {
+}
+*/
+
+.body-details {
+  border: 5px solid rgb(5, 5, 5);
+  display: block;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+
+.card-details {
+  border: 1px solid red;
+  display: block;
+  width: 50%;
+}
+
+.image-details {
+  height: 20vh;
+  width: 50vw;
+}
+
+.image-details img {
+  background-color: whitesmoke;
+  border: 1px solid rgb(243, 32, 225);
+  display: block;
+
+  /*
+  border-radius: 5px;
+  justify-content: right;
+  min-width: 10vw;
+  width: 100%;
+   flex-direction: column;
+  margin: 2vh 1vw;
+  overflow: hidden;
+  position: static;
+  top: 12vw;
+  */
+
+}
+
+.icon img {
+  width: 5vh;
+}
+
+.ingredients-details {
+  border: 1px solid rgb(110, 52, 52);
+  display: block;
+
+  /* width: 100%;
+  justify-content: left;
+  background-color: white; */
+}
+
+.instructions-details {
+  border: 1px solid rgb(227, 243, 5);
+  display: block;
+
+  /* width: 90%;
+  height: fit-content;
+  background-color: rgb(201, 235, 245); */
+
+}
+
+.video-details video {
+  border: 1px solid red;
+
+  /*
+aqui vai as configuracoes de video
+*/
+
+}
+
+.recomendations-details {
+  border: 1px solid blue;
+
+  /*
+  aqui vai as configuracoes de video
+  */
+
+}
