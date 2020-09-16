@@ -8,7 +8,6 @@ function DoneRecipes() {
     <div className="header">
       <Header title="Receitas Feitas" />
       <p>Tela de Receitas Favoritas</p>
-      <Footer />
     </div>
   );
 }

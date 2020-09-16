@@ -9,18 +9,15 @@ import '../css/explore.css';
 function selectArea(handleChange, listLoading, areaList) {
   return (
     <div className="select-origin">
-    <select
-      data-testid="explore-by-area-dropdown"
-      onChange={(e) => handleChange(e)}
-    >
-      <option data-testid="All-option">All</option>
-      {!listLoading &&
-        areaList.map(({ strArea }) => (
-          <option key={strArea} value={strArea} data-testid={`${strArea}-option`}>
-            {strArea}
-          </option>
-        ))}
-    </select>
+      <select data-testid="explore-by-area-dropdown" onChange={(e) => handleChange(e)}>
+        <option data-testid="All-option">All</option>
+        {!listLoading &&
+          areaList.map(({ strArea }) => (
+            <option key={strArea} value={strArea} data-testid={`${strArea}-option`}>
+              {strArea}
+            </option>
+          ))}
+      </select>
     </div>
   );
 }

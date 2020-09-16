@@ -13,8 +13,7 @@ function DrinkCategories() {
   }, []);
 
   const handleFilter = (filter) => {
-    drinkCategoryFilter(filter)
-    .then((response) => setData(response.drinks))
+    drinkCategoryFilter(filter).then((response) => setData(response.drinks))
     .catch((error) => alert('Atualize a página', error));
   };
 
@@ -24,26 +23,23 @@ function DrinkCategories() {
       handleFilter(target.value);
     } else if (target.value === category || target.value === 'All') {
       setCategory('All');
-      allDrinksList()
-        .then((response) => setData(response.drinks))
+      allDrinksList().then((response) => setData(response.drinks))
         .catch((error) => alert('Algo inesperado aconteceu:', error));
     }
   };
-
   return (
     <div className="categories">
-      {categories.map((categ, i) =>
-        (i <= 4 ? (
-          <div className="categorie">
-            <button
-              type="button"
-              key={categ.strCategory}
-              data-testid={`${categ.strCategory}-category-filter`}
-              onClick={handleClick}
-              value={categ.strCategory}
-            >{categ.strCategory}</button>
-          </div>
-        ) : null
+      {categories.map((categ, i) => (i <= 4 ? (
+        <div className="categorie">
+          <button
+            type="button"
+            key={categ.strCategory}
+            data-testid={`${categ.strCategory}-category-filter`}
+            onClick={handleClick}
+            value={categ.strCategory}
+          >{categ.strCategory}</button>
+        </div>
+      ) : null
       ))}
       <div className="categorie">
         <button

@@ -23,8 +23,8 @@ function Header(props) {
         </div>
         {(titleToBeRendered.every((toBeRendered) => toBeRendered !== title)) ? (
           <div className="explorer">
-            <button type="button" data-testid="search-top-btn" onClick={() => setClicked(!clicked)}>
-              <img src={searchIcon} alt="profile icon" />
+            <button type="button" onClick={() => setClicked(!clicked)}>
+              <img data-testid="search-top-btn" src={searchIcon} alt="profile icon" />
             </button>
           </div>
           ) : false

@@ -22,13 +22,8 @@
   flex-direction: column;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   min-width: 280px;
-  /* padding-top: 8vh; */
-  /* position: absolute; */
-  /* top: 10vh; */
   width: 100%;
   z-index: 2;
-  border: 1px solid green;
-
 }
 
 .searchBox {
@@ -37,10 +32,8 @@
   display: flex;
   justify-content: center;
   line-height: 5vh;
-  width: 100%;
   position: relative;
-
-
+  width: 100%;
 }
 
 .searchBox input {
@@ -61,7 +54,7 @@
   display: flex;
   font-size: 25px;
   justify-content: center;
-  min-width: 300px;
+  min-width: 200px;
   padding: 5px;
 }
 
@@ -70,3 +63,9 @@
   justify-content: space-around;
   margin: auto;
 }
+
+/*
+padding-top: 8vh;
+ position: absolute;
+top: 10vh;
+*/

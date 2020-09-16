@@ -61,7 +61,7 @@ function Login() {
   };
 
   return (
-    <div className="login-page" data-testid="">
+    <div className="login-page" data-testid="email-input">
       <div className="title">
         <h1>Login</h1>
       </div>

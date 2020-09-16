@@ -8,7 +8,6 @@ function FavoriteRecipes() {
     <div className="header">
       <Header title="Receitas Favoritas" />
       <p>Tela de Receitas Favoritas</p>
-      <Footer />
     </div>
   );
 }
