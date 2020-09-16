@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdDrink } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-import '../css/Details.css';
+import '../css/detailsPage.css';
 import { whiteHeartIcon } from '../images';
 import { blackHeartIcon } from '../images';
 import { shareIcon } from '../images';
