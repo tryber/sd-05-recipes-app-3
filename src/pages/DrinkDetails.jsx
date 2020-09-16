@@ -3,13 +3,13 @@ import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { lookUpIdDrink } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-// import '../css/';
+import '../css/details.css';
 
 function DrinkDetails(props) {
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strDrinkThumb, strDrink } = details[0];
-  console.log(details[0]);
+  // console.log(details[0]);
   useEffect(() => {
     setFetching(true);
     lookUpIdDrink(idRecipe).then((drink) => setDetails(drink.drinks))

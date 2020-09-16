@@ -1,6 +1,6 @@
 .explore-buttons {
   align-items: center;
-  background-color: rgb(14, 130, 134);
+  background-color: rgb(193, 193, 212);
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -15,7 +15,7 @@
 }
 
 .buttons button {
-  font-family: Montserrat , sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 20px;
   font-weight: 600;
   margin: 10px auto;
@@ -26,13 +26,22 @@
 }
 
 .select-origin {
-  align-items: center;
-  background-color: rgb(14, 130, 134);
+  border: 1px solid red;
+
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  min-width: 250px;
+  height: 2pc;
+  justify-content: center;
+  margin: auto;
   position: absolute;
-  top: 15%;
+  top: 10%;
   width: 100%;
+  z-index: 0;
+}
+
+.select-origin select , option {
+  background-color: rgb(14, 130, 134);
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  width: 85vw;
 }

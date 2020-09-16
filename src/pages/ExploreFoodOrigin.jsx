@@ -6,12 +6,12 @@ import Food from '../components/Food';
 import Header from '../components/Header';
 import '../css/explore.css';
 
-function selectArea(handleClick, listLoading, areaList) {
+function selectArea(handleChange, listLoading, areaList) {
   return (
+    <div className="select-origin">
     <select
-      className="select-origin"
       data-testid="explore-by-area-dropdown"
-      onClick={(e) => handleClick(e)}
+      onChange={(e) => handleChange(e)}
     >
       <option data-testid="All-option">All</option>
       {!listLoading &&
@@ -21,6 +21,7 @@ function selectArea(handleClick, listLoading, areaList) {
           </option>
         ))}
     </select>
+    </div>
   );
 }
 
@@ -48,7 +49,7 @@ function ExploreFoodOrigin() {
     renderAll();
   }, []);
 
-  const handleClick = (e) => {
+  const handleChange = (e) => {
     if (e.target.value === 'All') {
       renderAll();
     } else {
@@ -61,8 +62,8 @@ function ExploreFoodOrigin() {
 
   return (
     <div>
+      {selectArea(handleChange, listLoading, areaList)}
       <Header title="Explorar Origem" />
-      {selectArea(handleClick, listLoading, areaList)}
       {!fetching && (
         <section className="list-of-cards">
           {data.map((item, index) => (

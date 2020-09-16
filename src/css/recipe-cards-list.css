@@ -1,15 +1,16 @@
+/* Recipe-cards-list.css individual style by Elisângelo */
 .card-recipe {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  margin: 15px 10px;
-  max-width: 250px;
+  margin: 2vh 1vw;
+  max-width: 20vw;
+  min-width: 10pc;
   overflow: hidden;
-  position: relative;
-  top: 100px;
-  width: 150px;
+  position: static;
+  top: 12vw;
 }
 
 .card-recipe a {
@@ -39,12 +40,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-bottom: 13pc;
-  min-width: 150px;
-  position: absolute;
-  top: 2pc;
-  width: 100%;
-  z-index: -1;
+  margin-bottom: 35%;
+  min-width: 260px;
+  position: relative;
+  top: 14vh;
+  z-index: 0;
 }
 
 .sharing {
