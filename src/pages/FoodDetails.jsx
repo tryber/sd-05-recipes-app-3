@@ -1,14 +1,22 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import '../css/Details.css';
-import Favorite from '../components/Favorite';
+import { whiteHeartIcon } from '../images';
+import { blackHeartIcon } from '../images';
 import { shareIcon } from '../images';
 // import { add } from 'lodash';
 
 function FoodDetails(props) {
+  const [favorite, setFavorite] = useState(false);
+  const handleFavorite = () => {
+    setFavorite(!favorite);
+  };
+  /* const receitaFavoritada =
+      { id, type, area, category, alcoholicOrNot, name, image }
+    localStorage.setItem('favoriteRecipes', JSON.stringify({ receitaFavoritada })); */
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strMealThumb, strMeal, strInstructions, strYoutube } = details[0];
@@ -35,7 +43,7 @@ function FoodDetails(props) {
       .then((food) => setDetails(food.meals))
       // (food.meals) ?
       // setDetails(food.meals) : alert('Erro no servidor! tente novamente.'))
-      .catch((error) => alert('Algo inesperado aconteceu', error));
+      .catch((error) => alert('Algo inesperado aconteceingredients;u:', error));
     setFetching(false);
   }, []);
 
@@ -54,8 +62,14 @@ function FoodDetails(props) {
           <h3 className="card-recipe-name" data-testid="recipe-title">
             {strMeal}
           </h3>
-          <p data-testid="recipe-category">Categoria</p>
-          <Favorite />
+          <p data-testid="recipe-category"></p>
+          <button onClick={() => handleFavorite()}>
+            <img
+              data-testid="favorite-btn"
+              src={favorite ? blackHeartIcon : whiteHeartIcon}
+              alt="whiteHeart"
+            />
+          </button>
           <button>
             <img data-testid="share-btn" src={shareIcon} alt="share" />
           </button>
