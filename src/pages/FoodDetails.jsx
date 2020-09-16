@@ -7,7 +7,7 @@ import '../css/Details.css';
 import { whiteHeartIcon } from '../images';
 import { blackHeartIcon } from '../images';
 import { shareIcon } from '../images';
-import { add } from 'lodash';
+// import { add } from 'lodash';
 
 function FoodDetails(props) {
   const [favorite, setFavorite] = useState(false);
@@ -20,10 +20,6 @@ function FoodDetails(props) {
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strMealThumb, strMeal, strInstructions, strYoutube } = details[0];
-  /* const instructions = details[0];
-  const instructionKey = Object.keys(instructions).filter((instructions) => instruction.includes('strInstruction'));
-  const ingredientValue = (ingredients);
-  console.log(ingredientValue); */
   const recipeGetter = (ingredient) => {
     const items = Object.keys(ingredient)
       .filter((keysIngridients) => keysIngridients.includes('strIngredient'))
@@ -67,18 +63,18 @@ function FoodDetails(props) {
             {strMeal}
           </h3>
           <p data-testid="recipe-category"></p>
-          <button data-testid="favorite-btn">
-          <img
-            src={favorite ? blackHeartIcon : whiteHeartIcon}
-            alt="whiteHeart"
-            onClick={() => handleFavorite()}
-          />
+          <button onClick={() => handleFavorite()}>
+            <img
+              data-testid="favorite-btn"
+              src={favorite ? blackHeartIcon : whiteHeartIcon}
+              alt="whiteHeart"
+            />
           </button>
-          <button data-testid="share-btn">
-          <img src={shareIcon} alt="share" />
+          <button>
+            <img data-testid="share-btn" src={shareIcon} alt="share" />
           </button>
           <h4>Ingredients</h4>
-          <p data-testid="-ingredient-name-and-measure">
+          <p data-testid="0-ingredient-name-and-measure">
             {allIngredients.map((ingredient, i) => (
               <p>
                 {ingredient} : {allMeasures[i]}
@@ -91,6 +87,7 @@ function FoodDetails(props) {
             <source src={strYoutube} type="video/mp4" data-testid="video" />
           </video>
           <h4>Recomendadas</h4>
+          <p data-testid="0-recomendation-card"></p>
         </div>
         <Link to={`/comidas/${idRecipe}/in-progress`}>
           <button data-testid="start-recipe-btn">Iniciar Receita</button>
