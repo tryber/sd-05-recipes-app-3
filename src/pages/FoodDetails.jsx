@@ -62,7 +62,7 @@ function FoodDetails(props) {
           <h3 className="card-recipe-name" data-testid="recipe-title">
             {strMeal}
           </h3>
-          <p data-testid="recipe-category"></p>
+          <p data-testid="recipe-category">Categoria</p>
           <button onClick={() => handleFavorite()}>
             <img
               data-testid="favorite-btn"
