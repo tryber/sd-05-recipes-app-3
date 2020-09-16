@@ -30,7 +30,7 @@ test('A página deve conter um button Entrar', () => {
 
 test('Ao clickar no Entrar, redireciona para MainFood', () => {
   const { getByText } = render(<Login />);
-  const buttonEntrar = getByText('Entrar')
+  const buttonEntrar = getByText('Entrar');
   fireEvent.click(buttonEntrar);
   expect(getByText('Comidas')).toBeInTheDocument();
   // will fail until fixing our header title depending on food or drink

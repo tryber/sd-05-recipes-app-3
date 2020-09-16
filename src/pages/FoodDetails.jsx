@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-// import '../css/';
+import '../css/details.css';
 
 function FoodDetails(props) {
   const { idRecipe } = props.match.params;
@@ -26,7 +26,7 @@ function FoodDetails(props) {
       <div className="card-recipe">
         <img alt={strMeal} className="card-recipe-image" src={strMealThumb} />
         <div className="card-recipe-body">
-          <h3 className="card-recipe-name">{strMeal}</h3>
+          <p className="card-recipe-name">{strMeal}</p>
         </div>
       </div>
     </div>

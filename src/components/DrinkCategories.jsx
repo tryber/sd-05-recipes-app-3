@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { drinkCategories, drinkCategoryFilter, allDrinksList } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
+import '../css/Categories.css';
 
 function DrinkCategories() {
   const { categories, setCategories, setData, category, setCategory } = useContext(RecipeContext);
@@ -12,8 +13,7 @@ function DrinkCategories() {
   }, []);
 
   const handleFilter = (filter) => {
-    drinkCategoryFilter(filter)
-    .then((response) => setData(response.drinks))
+    drinkCategoryFilter(filter).then((response) => setData(response.drinks))
     .catch((error) => alert('Atualize a página', error));
   };
 
@@ -23,16 +23,14 @@ function DrinkCategories() {
       handleFilter(target.value);
     } else if (target.value === category || target.value === 'All') {
       setCategory('All');
-      allDrinksList()
-        .then((response) => setData(response.drinks))
+      allDrinksList().then((response) => setData(response.drinks))
         .catch((error) => alert('Algo inesperado aconteceu:', error));
     }
   };
-
   return (
-    <div>
-      {categories.map((categ, i) =>
-        (i <= 4 ? (
+    <div className="categories">
+      {categories.map((categ, i) => (i <= 4 ? (
+        <div className="categorie">
           <button
             type="button"
             key={categ.strCategory}
@@ -40,14 +38,17 @@ function DrinkCategories() {
             onClick={handleClick}
             value={categ.strCategory}
           >{categ.strCategory}</button>
-        ) : null
+        </div>
+      ) : null
       ))}
-      <button
-        type="button"
-        data-testid="All-category-filter"
-        value="All"
-        onClick={handleClick}
-      >All</button>
+      <div className="categorie">
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          value="All"
+          onClick={handleClick}
+        >All</button>
+      </div>
     </div>
   );
 }
