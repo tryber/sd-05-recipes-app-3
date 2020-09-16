@@ -14,7 +14,7 @@ function FoodDetails(props) {
   const handleFavorite = () => {
     setFavorite(!favorite);
   };
-  /* const receitaFavoritada = 
+  /* const receitaFavoritada =
       { id, type, area, category, alcoholicOrNot, name, image }
     localStorage.setItem('favoriteRecipes', JSON.stringify({ receitaFavoritada })); */
   const { idRecipe } = props.match.params;
@@ -87,7 +87,7 @@ function FoodDetails(props) {
             <source src={strYoutube} type="video/mp4" data-testid="video" />
           </video>
           <h4>Recomendadas</h4>
-          <p data-testid="0-recomendation-card"></p>
+          <p data-testid="0-recomendation-card">Aqui estarão os 6 cards</p>
         </div>
         <Link to={`/comidas/${idRecipe}/in-progress`}>
           <button data-testid="start-recipe-btn">Iniciar Receita</button>
