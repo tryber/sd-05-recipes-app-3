@@ -1,47 +1,57 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { drinkIngredientsList, filterByDrinkIngredients } from '../service/apis';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipeContext from '../context/RecipeContext';
-import { drinkIngredientsList } from '../service/apis';
+// import '../css/explore.css';
 
 function ExploreDrinkIngredient() {
-  const { data, setData, fetching, setFetching } = useContext(RecipeContext);
+  const { setData, setFetching } = useContext(RecipeContext);
   const [drinkIngrList, setDrinkIngrList] = useState([]);
-  const [listLoading, setListLoading] = useState(true);
+  const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     drinkIngredientsList()
-      .then((resp) => setDrinkIngrList(resp.drinks.slice(0,12)))
+      .then((resp) => setDrinkIngrList(resp.drinks.slice(0, 12)))
       .catch((error) => alert('Algo inesperado aconteceu:', error));
-    setListLoading(false);
   }, []);
-  // objeto retornado pela api: pegar drinkIngrList.strIngredient1
+  // objeto retornado pela api: pegar .strIngredient1
+
+  const handleClick = (chosenIngredient) => {
+    filterByDrinkIngredients(chosenIngredient)
+      .then((resp) => setData(resp.drinks))
+      .catch((error) => alert('Algo inesperado aconteceu:', error));
+    setFetching(false);
+    setRedirect(true);
+  };
 
   return (
     <div>
       <Header title="Explorar Ingredientes" />
-      {!listLoading &&
-        drinkIngrList.map((ingr, index) => (
+      <section className="list-of-cards">
+        {drinkIngrList.map((ingr, index) => (
           <div
-            className=""
             key={ingr.strDrink}
             data-testid={`${index}-ingredient-card`}
-            // onClick={(ingr)=> functionToRedirectToFilteredMainDrinks(ingr)}
+            onClick={(ingr) => handleClick(ingr.strIngredient1)}
           >
             <img
-              className="thumbnail"
+              className=""
               data-testid={`${index}-card-img`}
               src={`https://www.thecocktaildb.com/images/ingredients/${ingr.strIngredient1}-Small.png`}
-              alt="thumbnail do ingrediente"
+              alt=""
             />
             <p data-testid={`${index}-card-name`}>{ingr.strIngredient1}</p>
           </div>
         ))}
-      ;
+      </section>
+      {redirect && <Redirect to="/bebidas" />}
+      {/* ainda tem o problema que MainDrinks pega outros dados no didmount */}
       <Footer />
     </div>
   );
 }
 
 export default ExploreDrinkIngredient;
+// [ HA ] - Consultation of PR https://github.com/tryber/sd-05-recipes-app-4/pull/46/files

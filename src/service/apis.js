@@ -174,3 +174,30 @@ export const drinkIngredientsList = () => (
         .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
     ))
 );
+
+export const filterByDrinkIngredients = (ingredient) => (
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+    .then((response) => (
+      response
+        .json()
+        .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
+    ))
+);
+
+export const mealIngredientsList = () => (
+  fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+    .then((response) => (
+      response
+        .json()
+        .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
+    ))
+);
+
+export const filterByMealIngredients = (ingredient) => (
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+    .then((response) => (
+      response
+        .json()
+        .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
+    ))
+);
