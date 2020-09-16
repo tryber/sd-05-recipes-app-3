@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
@@ -7,92 +7,63 @@ import '../css/Details.css';
 import { whiteHeartIcon } from '../images';
 import { blackHeartIcon } from '../images';
 import { shareIcon } from '../images';
-// import { add } from 'lodash';
+import recipeConstructor from '../components/details/recipeconstructor.js';
+
+// import {
+//   ImageDetail,
+//   CardDetail,
+//   IngredientDetail,
+//   InstructionsDetail,
+//   VideoDetail,
+//   CarrouselDetails,
+// } from '../components/details/details_index';
+
+import ImageDetail from '../components/details/ImageDetail';
+import CardDetail from '../components/details/CardDetail';
+import IngredientDetail from '../components/details/IngredientDetail';
+import InstructionsDetail from '../components/details/InstructionsDetail';
+import VideoDetails from '../components/details/VideoDetails';
+import CarroselDetails from '../components/details/CarroselDetails';
+import StartRecipe from '../components/details/StartRecipe';
+
 
 function FoodDetails(props) {
   const [favorite, setFavorite] = useState(false);
   const handleFavorite = () => {
     setFavorite(!favorite);
   };
-  /* const receitaFavoritada =
-      { id, type, area, category, alcoholicOrNot, name, image }
-    localStorage.setItem('favoriteRecipes', JSON.stringify({ receitaFavoritada })); */
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strMealThumb, strMeal, strInstructions, strYoutube } = details[0];
-  const recipeGetter = (ingredient) => {
-    const items = Object.keys(ingredient)
-      .filter((keysIngridients) => keysIngridients.includes('strIngredient'))
-      .filter((value) => ingredient[value] !== '');
-    const quantities = Object.keys(ingredient)
-      .filter((qtIngridients) => qtIngridients.includes('strMeasure'))
-      .filter((value) => ingredient[value] !== '');
-    // construindo um array de ingredientes
-    const allIngredients = items.map((value) => ingredient[value]);
-    // construindo um array de medidas dos ingredientes
-    const allMeasures = quantities.map((value) => ingredient[value]);
-    return { allIngredients, allMeasures };
-  };
-  const { allIngredients, allMeasures } = recipeGetter(details[0]);
+  const { allIngredients, allMeasures } = recipeConstructor(details[0]);
   // uma saida no console pra vc saber o que esta manipulado
-  console.log(allIngredients, allMeasures);
-
+  // console.log(allIngredients, allMeasures);
   useEffect(() => {
     setFetching(true);
     lookUpIdMeal(idRecipe)
       .then((food) => setDetails(food.meals))
-      // (food.meals) ?
-      // setDetails(food.meals) : alert('Erro no servidor! tente novamente.'))
       .catch((error) => alert('Algo inesperado aconteceingredients;u:', error));
     setFetching(false);
   }, []);
 
   if (fetching) return <div>Loading...</div>;
   return idRecipe ? (
-    <div>
-      FoodDetails Page
-      <div className="card-recipe">
-        <img
-          alt={strMeal}
-          className="card-recipe-image"
-          src={strMealThumb}
-          data-testid="recipe-photo"
-        />
-        <div className="card-recipe-body">
-          <h3 className="card-recipe-name" data-testid="recipe-title">
-            {strMeal}
-          </h3>
-          <p data-testid="recipe-category">Categoria Drink or Food</p>
-          <button onClick={() => handleFavorite()}>
-            <img
-              data-testid="favorite-btn"
-              src={favorite ? blackHeartIcon : whiteHeartIcon}
-              alt="whiteHeart"
-            />
-          </button>
-          <button>
-            <img data-testid="share-btn" src={shareIcon} alt="share" />
-          </button>
-          <h4>Ingredients</h4>
-          <p data-testid="0-ingredient-name-and-measure">
-            {allIngredients.map((ingredient, i) => (
-              <p>
-                {ingredient} : {allMeasures[i]}
-              </p>
-            ))}
-          </p>
-          <h4>Instructions</h4>
-          <p data-testid="instructions">{strInstructions}</p>
-          <video width="320" height="240" controls>
-            <source src={strYoutube} type="video/mp4" data-testid="video" />
-          </video>
-          <h4>Recomendadas</h4>
-          <p data-testid="0-recomendation-card">Aqui estarão os 6 cards</p>
-        </div>
-        <Link to={`/comidas/${idRecipe}/in-progress`}>
-          <button data-testid="start-recipe-btn">Iniciar Receita</button>
-        </Link>
-      </div>
+    <div className="body-details">
+      <p style={{ textAlign: 'center' }}>FoodDetails Page</p>
+      <ImageDetail strOption={strMeal} thumb={strMealThumb} />
+      <CardDetail
+        strOption={strMeal}
+        favorite={favorite}
+        blackHeartIcon={blackHeartIcon}
+        whiteHeartIcon={whiteHeartIcon}
+        shareIcon={shareIcon}
+        handleFavorite={handleFavorite}
+      />
+      <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
+      <InstructionsDetail instructions={strInstructions} />
+      <VideoDetails youtube={strYoutube} />
+      <CarroselDetails recomendations="props" />
+      <StartRecipe literals={`/comidas/${idRecipe}/in-progress`} />
     </div>
   ) : (
     <Redirect to="/comidas/">{alert('Não foi possível te surpreender desta vez!')}</Redirect>
@@ -106,3 +77,7 @@ FoodDetails.propTypes = {
 };
 
 export default FoodDetails;
+
+/* const receitaFavoritada =
+  { id, type, area, category, alcoholicOrNot, name, image }
+  localStorage.setItem('favoriteRecipes', JSON.stringify({ receitaFavoritada })); */
