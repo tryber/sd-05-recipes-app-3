@@ -11,7 +11,13 @@ function copiar(texto) {
 function ShareButton(props) {
   const { endereco } = props.url.location;
   return (
-    <input type="image" src={shareIcon} alt="share" data-testid="share-btn" onClick={() => copiar(endereco)} />
+    <input
+      type="image"
+      src={shareIcon}
+      alt="share"
+      data-testid="share-btn"
+      onClick={() => copiar(endereco)}
+    />
   );
 }
 
