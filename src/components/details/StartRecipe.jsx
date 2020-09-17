@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class StartRecipe extends Component {
-  // constructor(props){
-  //   super(props);
-  // }
   render() {
     const { literals } = this.props;
     return (

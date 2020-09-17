@@ -6,7 +6,7 @@ import MainFood from './pages/MainFood';
 import MainDrink from './pages/MainDrink';
 import FoodDetails from './pages/FoodDetails';
 import DrinkDetails from './pages/DrinkDetails';
-import FoodProcess from './pages/FoodProcess';
+import OngoingRecipe from './pages/OngoingRecipe';
 // import DrinkProcess from './pages/DrinkProcess';
 import Explore from './pages/Explore';
 import ExploreDrink from './pages/ExploreDrink';
@@ -31,7 +31,7 @@ function App() {
         <Route
           exact
           path="/comidas/:idRecipe/in-progress"
-          render={(props) => <FoodProcess {...props} />}
+          render={(props) => <OngoingRecipe {...props} />}
         />
         {/* <Route exact path="/bebidas/:idRecipe/in-progress"
 render={(props) => <DrinkProcess {...props} />} /> */}

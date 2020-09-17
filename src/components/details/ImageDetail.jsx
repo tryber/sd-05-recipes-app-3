@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class ImageDetail extends Component {
-  // constructor(props){
-  //   super(props);
-  // }
   render() {
     const { strOption, thumb } = this.props;
     return (

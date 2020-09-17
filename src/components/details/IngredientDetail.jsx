@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class IngredientDetail extends Component {
-  // constructor(props){
-  //   super(props);
-  // }
   render() {
     const { ingredient, measure } = this.props;
     return (

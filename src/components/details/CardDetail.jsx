@@ -8,6 +8,7 @@ class CardDetail extends Component {
   render() {
     const {
       strOption,
+      strCategory,
       favorite,
       blackHeartIcon,
       whiteHeartIcon,
@@ -17,7 +18,7 @@ class CardDetail extends Component {
     return (
       <div className="card-details">
         <h3 data-testid="recipe-title">{strOption}</h3>
-        <p data-testid="recipe-category">Categoria Drink or Food</p>
+        <p data-testid="recipe-category">{strCategory}</p>
         <div className="icon">
           <button onClick={() => handleFavorite()}>
             <img
