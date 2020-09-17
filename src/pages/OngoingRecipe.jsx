@@ -48,7 +48,10 @@ function OngoingRecipe(props) {
       />
       <IngredientOngoing ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
-      {done && <Link to="/receitas-feitas"><button data-testid="finish-recipe-btn" type="button">Finalizar Receita</button></Link>}
+      {done &&
+        <Link to="/receitas-feitas">
+          <button data-testid="finish-recipe-btn" type="button">Finalizar Receita</button>
+        </Link>}
     </div>
   ) : (
     <Redirect to="/comidas/">{alert('Não foi possível te surpreender desta vez!')}</Redirect>

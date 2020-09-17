@@ -42,6 +42,7 @@ export default CardDetail;
 
 CardDetail.propTypes = {
   strOption: PropTypes.string.isRequired,
+  strCategory: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
   handleFavorite: PropTypes.func.isRequired,
   blackHeartIcon: PropTypes.string.isRequired,
