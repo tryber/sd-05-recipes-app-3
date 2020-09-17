@@ -1,3 +1,3 @@
-input[ type = "checkbox" ]:checked + .strikethrough {
+input[ type = 'checkbox' ]:checked + .strikethrough {
   text-decoration: line-through;
 }

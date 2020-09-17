@@ -10,7 +10,7 @@ const verifyChecked = (setState) => {
   } else {
     setState(false);
   }
-}
+};
 
 function IngredientOngoing(props) {
   const { ingredient, measure } = props;
