@@ -12,12 +12,12 @@ function MainFood() {
   const {
     data,
     setData,
+    isIngrFilter,
     setFetching,
     fetching,
     setPage,
     category,
     search,
-    isIngrFilter,
   } = useContext(RecipeContext);
   // let previous = false;
   // if (!data) previous = true;
