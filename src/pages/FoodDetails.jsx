@@ -62,7 +62,7 @@ function FoodDetails(props) {
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
       <VideoDetails youtube={strYoutube} />
-      <CarroselDetails recomendations="props" />
+      <CarroselDetails />
       <StartRecipe literals={`/comidas/${idRecipe}/in-progress`} />
     </div>
   ) : (

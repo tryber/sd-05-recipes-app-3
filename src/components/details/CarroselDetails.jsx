@@ -1,25 +1,37 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { allDrinksList } from '../../service/apis';
 
-class CarroselDetails extends Component {
-  // constructor(props){
-  //   super(props);
-  // }
-  render() {
-    return (
-      <div className="recomendations-details">
-        <h4>Recomendadas</h4>
-        <div data-testid="0-recomendation-card">
-          Aqui estarão os 6 cards
-          {this.props.recomendations}
-        </div>
+function CarroselDetails() {
+  const [recomendado, setRecomendado] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    allDrinksList()
+      .then((resp) => setRecomendado(resp.drinks.slice(0, 6)))
+      .catch((error) => alert('Algo inesperado aconteceu:', error));
+    setIsLoading(false);
+  }, []);
+  return (
+    <div>
+      <h3>Recomendadas</h3>
+      <div className="list-of-cards carroussel">
+        {!isLoading &&
+          recomendado.map((recomendations, index) => (
+            <div data-testid={`${index}-recomendation-card`}>
+              <img alt="drink" src={recomendations.strDrinkThumb} />
+              <div>
+                <h4 data-testid="recipe-category">{recomendations.strAlcoholic}</h4>
+                <h4 data-testid={`${index}-recomendation-title`}>{recomendations.strDrink}</h4>
+              </div>
+            </div>
+          ))}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default CarroselDetails;
 
 CarroselDetails.propTypes = {
-  recomendations: PropTypes.objectOf(Object).isRequired,
+  recomendations: PropTypes.arrayOf.isRequired,
 };
