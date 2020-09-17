@@ -18,7 +18,10 @@ class CardDetail extends Component {
     return (
       <div className="card-details">
         <h1 data-testid="recipe-title">{strOption}</h1>
-    <h3 data-testid="recipe-category">{strCategory}{strAlcoholic}</h3>
+        <h3 data-testid="recipe-category">
+          {strCategory}
+          {strAlcoholic}
+        </h3>
         <div className="icon">
           <button onClick={() => handleFavorite()}>
             <img
