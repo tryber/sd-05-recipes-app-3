@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { allDrinksList } from '../../service/apis';
+import '../../css/details.css';
 
 function CarroselDetails() {
   const [recomendado, setRecomendado] = useState([]);
@@ -14,7 +15,7 @@ function CarroselDetails() {
   return (
     <div>
       <h3>Recomendadas</h3>
-      <div className="list-of-cards carroussel">
+      <div className="carroussel">
         {!isLoading &&
           recomendado.map((recomendations, index) => (
             <div data-testid={`${index}-recomendation-card`}>

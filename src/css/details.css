@@ -84,5 +84,9 @@ aqui vai as configuracoes de video
   /*
   aqui vai as configuracoes de video
   */
+}
 
+.carroussel {
+  overflow-x: auto;
+  display: flex;
 }
