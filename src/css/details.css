@@ -22,6 +22,11 @@ ex: image-details img {
   width: 50%;
 }
 
+.carroussel {
+  overflow-x: auto;
+  display: flex;
+}
+
 .image-details {
   height: 20vh;
   width: 50vw;
@@ -84,9 +89,4 @@ aqui vai as configuracoes de video
   /*
   aqui vai as configuracoes de video
   */
-}
-
-.carroussel {
-  overflow-x: auto;
-  display: flex;
 }

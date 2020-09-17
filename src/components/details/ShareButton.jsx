@@ -21,7 +21,7 @@ function ShareButton(props) {
   );
 }
 
-export default shareButton;
+export default ShareButton;
 
 ShareButton.propTypes = {
   url: PropTypes.shape({

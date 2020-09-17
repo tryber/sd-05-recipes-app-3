@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { allDrinksList } from '../../service/apis';
 import '../../css/details.css';
 
@@ -32,7 +31,3 @@ function CarroselDetails() {
 }
 
 export default CarroselDetails;
-
-CarroselDetails.propTypes = {
-  recomendations: PropTypes.arrayOf.isRequired,
-};
