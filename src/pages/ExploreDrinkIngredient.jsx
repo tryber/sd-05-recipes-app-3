@@ -14,7 +14,7 @@ function ExploreDrinkIngredient() {
 
   useEffect(() => {
     drinkIngredientsList()
-      .then((resp) => setDrinkIngrList(resp.drinks.slice(0,12)))
+      .then((resp) => setDrinkIngrList(resp.drinks.slice(0, 12)))
       .catch((error) => alert('Algo inesperado no drink ingr list', error));
     setFetching(false);
   }, []);
@@ -27,8 +27,8 @@ function ExploreDrinkIngredient() {
         // console.log(resp.drinks);
       })
       .catch((error) => alert('Algo inesperado no drink ingredients', error));
-      setRedirect(true);
-      setIsIngrFilter(true);
+    setRedirect(true);
+    setIsIngrFilter(true);
   };
 
   return (

@@ -10,7 +10,14 @@ import '../css/recipe-cards-list.css';
 
 function MainDrink() {
   const {
-    data, setData, setFetching, fetching, setPage, category, search, isIngrFilter,
+    data,
+    setData,
+    setFetching,
+    fetching,
+    setPage,
+    category,
+    search,
+    isIngrFilter,
   } = useContext(RecipeContext);
   // let previous = false;
   // if (!data) previous = true;
@@ -18,15 +25,15 @@ function MainDrink() {
     () => {
       setPage('MainDrink');
       if (!isIngrFilter) {
-      allDrinksList()
-      .then((response) => setData(response.drinks))
-      .catch((error) => alert('Algo inesperado aconteceu:', error));
-      setFetching(false);
+        allDrinksList()
+          .then((response) => setData(response.drinks))
+          .catch((error) => alert('Algo inesperado aconteceu:', error));
+        setFetching(false);
       }
     },
     [
       /* previous */
-    ],
+    ]
   );
 
   if (fetching) {
@@ -39,7 +46,7 @@ function MainDrink() {
     );
   }
 
-  return (data.length === 1 && category === '' && search !== '') ? (
+  return data.length === 1 && category === '' && search !== '' ? (
     <div>
       <Redirect to={`/bebidas/${data[0].idDrink}`} />
     </div>
@@ -48,9 +55,9 @@ function MainDrink() {
       {!fetching && <DrinkCategories />}
       <Header title="Bebidas" />
       <div className="list-of-cards">
-        {data.map((item, idx) => (
-          (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
-          : false))}
+        {data.map((item, idx) =>
+          idx < 12 ? <Drink key={item.idDrink} drink={item} idx={idx} /> : false
+        )}
       </div>
       <Footer />
     </div>
