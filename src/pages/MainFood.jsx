@@ -22,21 +22,16 @@ function MainFood() {
   // let previous = false;
   // if (!data) previous = true;
 
-  useEffect(
-    () => {
-      setPage('MainFood');
-      if (!isIngrFilter) {
-        allMealsList()
-          .then((response) => setData(response.meals))
-          .catch((error) => alert('Algo inesperado aconteceu:', error));
-        setFetching(false);
-      }
-    },
-    [
-      /* previous */
-    ]
-  );
-
+  useEffect(() => {
+    setPage('MainFood');
+    if (!isIngrFilter) {
+      allMealsList()
+        .then((response) => setData(response.meals.slice(0, 12)))
+        .catch((error) => alert('Algo inesperado aconteceu:', error));
+      setFetching(false);
+    }
+  }, []);
+  // previous dentro do []
   if (fetching) {
     return (
       <div>
@@ -56,9 +51,9 @@ function MainFood() {
       {!fetching && <FoodCategories />}
       <Header title="Comidas" />
       <div className="list-of-cards">
-        {data.map((item, index) =>
-          index < 12 ? <Food key={item.idMeal} food={item} idx={index} /> : false
-        )}
+        {data.map((item, index) => (
+          <Food key={item.idMeal} food={item} idx={index} />
+        ))}
       </div>
       <Footer />
     </div>

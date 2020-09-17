@@ -194,13 +194,11 @@ export const mealIngredientsList = () => (
     ))
 );
 
-export const filterByMealIngredients = (ingredient) => {
-  console.log(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
-  return fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
-  // fetch('https://www.themealdb.com/api/json/v1/1/filter.php?i=Chicken')
+export const filterByMealIngredients = (ingredient) => (
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
     .then((response) => (
       response
         .json()
         .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
     ))
-};
+);

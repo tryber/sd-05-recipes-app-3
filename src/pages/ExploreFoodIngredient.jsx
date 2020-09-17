@@ -7,7 +7,7 @@ import RecipeContext from '../context/RecipeContext';
 // import '../css/explore.css';
 
 function ExploreFoodIngredient() {
-  const { data, setData, fetching, setFetching, setIsIngrFilter } = useContext(RecipeContext);
+  const { setData, fetching, setFetching, setIsIngrFilter } = useContext(RecipeContext);
   const [mealIngrList, setMealIngrList] = useState([]);
   const [redirect, setRedirect] = useState(false);
   // const [dataIngrFood, setDataIngrFood] = useState([]);
