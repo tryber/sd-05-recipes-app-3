@@ -26,10 +26,8 @@ function ExploreFoodIngredient() {
         // console.log(resp);
       })
       .catch((error) => alert('Algo inesperado no food ingredients', error));
-      if (data.length !== 0) {
-        setRedirect(true);
-        setIsIngrFilter(true);
-      }
+      setRedirect(true);
+      setIsIngrFilter(true);
     };
 
   return (

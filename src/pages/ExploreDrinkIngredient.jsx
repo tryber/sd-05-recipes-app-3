@@ -27,10 +27,8 @@ function ExploreDrinkIngredient() {
         // console.log(resp.drinks);
       })
       .catch((error) => alert('Algo inesperado no drink ingredients', error));
-    if (data.length !== 0) {
       setRedirect(true);
       setIsIngrFilter(true);
-    }
   };
 
   return (
