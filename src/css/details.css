@@ -23,8 +23,8 @@ ex: image-details img {
 }
 
 .carroussel {
-  overflow-x: auto;
   display: flex;
+  overflow-x: auto;
 }
 
 .image-details {
