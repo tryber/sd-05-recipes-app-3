@@ -10,17 +10,19 @@ import '../css/recipe-cards-list.css';
 
 function MainDrink() {
   const {
-    data, setData, setFetching, fetching, setPage, category, search,
+    data, setData, setFetching, fetching, setPage, category, search, isIngrFilter,
   } = useContext(RecipeContext);
   // let previous = false;
   // if (!data) previous = true;
   useEffect(
     () => {
       setPage('MainDrink');
+      if (!isIngrFilter) {
       allDrinksList()
       .then((response) => setData(response.drinks))
       .catch((error) => alert('Algo inesperado aconteceu:', error));
       setFetching(false);
+      }
     },
     [
       /* previous */

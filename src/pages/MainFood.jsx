@@ -10,21 +10,31 @@ import FoodCategories from '../components/FoodCategories';
 
 function MainFood() {
   const {
-    data, setData, setFetching, fetching, setPage, category, search,
+    data,
+    setData,
+    setFetching,
+    fetching,
+    setPage,
+    category,
+    search,
+    isIngrFilter,
   } = useContext(RecipeContext);
   // let previous = false;
   // if (!data) previous = true;
+
   useEffect(
     () => {
       setPage('MainFood');
-      allMealsList()
-      .then((response) => setData(response.meals))
-      .catch((error) => alert('Algo inesperado aconteceu:', error));
-      setFetching(false);
+      if (!isIngrFilter) {
+        allMealsList()
+          .then((response) => setData(response.meals))
+          .catch((error) => alert('Algo inesperado aconteceu:', error));
+        setFetching(false);
+      }
     },
     [
       /* previous */
-    ],
+    ]
   );
 
   if (fetching) {
@@ -37,7 +47,7 @@ function MainFood() {
     );
   }
 
-  return (data.length === 1 && category === '' && search !== '') ? (
+  return data.length === 1 && category === '' && search !== '' ? (
     <div>
       <Redirect to={`/comidas/${data[0].idMeal}`} />
     </div>
@@ -46,9 +56,9 @@ function MainFood() {
       {!fetching && <FoodCategories />}
       <Header title="Comidas" />
       <div className="list-of-cards">
-        {data.map((item, index) => (
-          (index < 12) ? <Food key={item.idMeal} food={item} idx={index} />
-          : false))}
+        {data.map((item, index) =>
+          index < 12 ? <Food key={item.idMeal} food={item} idx={index} /> : false
+        )}
       </div>
       <Footer />
     </div>
