@@ -7,7 +7,7 @@ import RecipeContext from '../context/RecipeContext';
 // import '../css/explore.css';
 
 function ExploreFoodIngredient() {
-  const { data, setData, fetching, setFetching,  } = useContext(RecipeContext);
+  const { setData, fetching, setFetching, setIsIngrFilter } = useContext(RecipeContext);
   const [mealIngrList, setMealIngrList] = useState([]);
   const [redirect, setRedirect] = useState(false);
   // const [dataIngrFood, setDataIngrFood] = useState([]);
@@ -16,7 +16,7 @@ function ExploreFoodIngredient() {
     mealIngredientsList()
       .then((resp) => setMealIngrList(resp.meals.slice(0, 12)))
       .catch((error) => alert('Algo inesperado no food ingr list', error));
-      setFetching(false);
+    setFetching(false);
   }, []);
 
   const handleClick = (chosenIngredient) => {
@@ -26,29 +26,30 @@ function ExploreFoodIngredient() {
         // console.log(resp);
       })
       .catch((error) => alert('Algo inesperado no food ingredients', error));
-
-      if (data.length !== 0) setRedirect(true);
-    };
+    setRedirect(true);
+    setIsIngrFilter(true);
+  };
 
   return (
     <div>
       <Header title="Explorar Ingredientes" />
       <section className="list-of-cards">
         {fetching && <p>Loading...</p>}
-        {!fetching && mealIngrList.map((ingr, index) => (
-          <button
-            key={ingr.strIngredient}
-            data-testid={`${index}-ingredient-card`}
-            onClick={() => handleClick(ingr.strIngredient)}
-          >
-            <img
-              data-testid={`${index}-card-img`}
-              src={`https://www.themealdb.com/images/ingredients/${ingr.strIngredient}-Small.png`}
-              alt=""
-            />
-            <p data-testid={`${index}-card-name`}>{ingr.strIngredient}</p>
-          </button>
-        ))}
+        {!fetching &&
+          mealIngrList.map((ingr, index) => (
+            <button
+              key={ingr.strIngredient}
+              data-testid={`${index}-ingredient-card`}
+              onClick={() => handleClick(ingr.strIngredient)}
+            >
+              <img
+                data-testid={`${index}-card-img`}
+                src={`https://www.themealdb.com/images/ingredients/${ingr.strIngredient}-Small.png`}
+                alt=""
+              />
+              <p data-testid={`${index}-card-name`}>{ingr.strIngredient}</p>
+            </button>
+          ))}
       </section>
       {redirect && <Redirect to="/comidas" />}
       <Footer />
