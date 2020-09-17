@@ -1,22 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { copy } from 'clipboard';
-import { shareIcon } from '../../index';
+import { copy } from 'clipboard-copy';
 
-function copiar(texto) {
-  if (!texto) copy(texto);
-  return alert('Link copiado');
+import shareIcon from '../../images/shareIcon.svg';
+
+function copyToClipboard(text) {
+  if (!text) copy(text);
+  return alert('Link copiado!');
 }
 
 function ShareButton(props) {
-  const { endereco } = props.url.location;
+  const { pathname } = props.url.location;
+
   return (
     <input
       type="image"
       src={shareIcon}
-      alt="share"
+      alt="Share Button"
       data-testid="share-btn"
-      onClick={() => copiar(endereco)}
+      onClick={() => copyToClipboard(pathname)}
     />
   );
 }

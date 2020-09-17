@@ -17,13 +17,10 @@ function CarroselDetails() {
       <div className="carroussel">
         {!isLoading &&
           recomendado.map((recomendations, index) => (
-            <div data-testid={`${index}-recomendation-card`}>
-              <img alt="drink" src={recomendations.strDrinkThumb} />
-              <div>
-                <h4 data-testid="recipe-category">{recomendations.strAlcoholic}</h4>
-                <h4 data-testid={`${index}-recomendation-title`}>{recomendations.strDrink}</h4>
+            <div key={recomendations.idDrink} data-testid={`${index}-recomendation-card`}>
+              <h3 data-testid={`${index}-recomendation-title`}>{recomendations.strDrink}</h3>
+              <img data-testid={`${index}-card-img`} alt="drink" src={recomendations.strDrinkThumb} />
               </div>
-            </div>
           ))}
       </div>
     </div>

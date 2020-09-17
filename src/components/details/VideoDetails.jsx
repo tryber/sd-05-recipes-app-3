@@ -8,8 +8,8 @@ class VideoDetails extends Component {
   render() {
     return (
       <div className="video-details">
-        <video width="320" height="240" controls>
-          <source src={this.props.youtube} type="video/mp4" data-testid="video" />
+        <video data-testid="video" width="320" height="240" controls>
+          <source src={this.props.youtube} type="video/mp4" />
         </video>
       </div>
     );

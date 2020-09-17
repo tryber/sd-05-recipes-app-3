@@ -6,7 +6,7 @@ import RecipeContext from '../context/RecipeContext';
 import '../css/Details.css';
 import { whiteHeartIcon } from '../images';
 import { blackHeartIcon } from '../images';
-import { shareIcon } from '../images';
+import ShareButton from '../components/details/ShareButton';
 import recipeConstructor from '../components/details/recipeconstructor.js';
 
 // import {
@@ -52,12 +52,12 @@ function FoodDetails(props) {
     <div className="body-details">
       <p style={{ textAlign: 'center' }}>FoodDetails Page</p>
       <ImageDetail strOption={strMeal} thumb={strMealThumb} />
+      <ShareButton url={props} />
       <CardDetail
         strOption={strMeal}
         favorite={favorite}
         blackHeartIcon={blackHeartIcon}
         whiteHeartIcon={whiteHeartIcon}
-        shareIcon={shareIcon}
         handleFavorite={handleFavorite}
       />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />

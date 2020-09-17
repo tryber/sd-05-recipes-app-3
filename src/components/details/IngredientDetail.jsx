@@ -11,9 +11,9 @@ class IngredientDetail extends Component {
       <div className="ingredients-details">
         <h4>Ingredients</h4>
         <div data-testid="0-ingredient-name-and-measure">
-          {ingredient.map((item, i) => (
+          {ingredient.map((item, index) => (
             <p>
-              {item} : {measure[i]}
+              {item} : {measure[index]}
             </p>
           ))}
         </div>

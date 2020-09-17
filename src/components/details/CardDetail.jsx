@@ -11,13 +11,14 @@ class CardDetail extends Component {
       favorite,
       blackHeartIcon,
       whiteHeartIcon,
-      shareIcon,
       handleFavorite,
+      strCategory,
+      strAlcoholic,
     } = this.props;
     return (
       <div className="card-details">
-        <h3 data-testid="recipe-title">{strOption}</h3>
-        <p data-testid="recipe-category">Categoria Drink or Food</p>
+        <h1 data-testid="recipe-title">{strOption}</h1>
+    <h3 data-testid="recipe-category">{strCategory}{strAlcoholic}</h3>
         <div className="icon">
           <button onClick={() => handleFavorite()}>
             <img
@@ -25,11 +26,6 @@ class CardDetail extends Component {
               src={favorite ? blackHeartIcon : whiteHeartIcon}
               alt="whiteHeart"
             />
-          </button>
-        </div>
-        <div className="icon">
-          <button>
-            <img data-testid="share-btn" src={shareIcon} alt="share" />
           </button>
         </div>
       </div>
@@ -45,5 +41,6 @@ CardDetail.propTypes = {
   handleFavorite: PropTypes.func.isRequired,
   blackHeartIcon: PropTypes.string.isRequired,
   whiteHeartIcon: PropTypes.string.isRequired,
-  shareIcon: PropTypes.string.isRequired,
+  strAlcoholic: PropTypes.string.isRequired,
+  strCategory: PropTypes.string.isRequired,
 };
