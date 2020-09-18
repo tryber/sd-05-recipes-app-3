@@ -1,22 +1,14 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-import '../css/Details.css';
-import { whiteHeartIcon } from '../images';
-import { blackHeartIcon } from '../images';
-import { shareIcon } from '../images';
+import '../css/details.css';
+// import { whiteHeartIcon } from '../images';
+// import { blackHeartIcon } from '../images';
+// import { shareIcon } from '../images';
 import recipeConstructor from '../components/details/recipeconstructor.js';
-
-// import {
-//   ImageDetail,
-//   CardDetail,
-//   IngredientDetail,
-//   InstructionsDetail,
-//   VideoDetail,
-//   CarrouselDetails,
-// } from '../components/details/details_index';
+// import FavoriteContext from '../context/FavoriteContext';
 
 import ImageDetail from '../components/details/ImageDetail';
 import CardDetail from '../components/details/CardDetail';
@@ -26,23 +18,25 @@ import VideoDetails from '../components/details/VideoDetails';
 import CarroselDetails from '../components/details/CarroselDetails';
 import StartRecipe from '../components/details/StartRecipe';
 
-
 function FoodDetails(props) {
-  const [favorite, setFavorite] = useState(false);
-  const handleFavorite = () => {
-    setFavorite(!favorite);
-  };
   const { idRecipe } = props.match.params;
+  // const { favorite, isFavorite, loadFromStorage, recipes } = useContext(FavoriteContext);
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
-  const { strMealThumb, strMeal, strInstructions, strYoutube } = details[0];
+  const {
+    strMealThumb,
+    strMeal,
+    strInstructions,
+    strYoutube,
+    strArea,
+    strCategory,
+  } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
-  // uma saida no console pra vc saber o que esta manipulado
-  // console.log(allIngredients, allMeasures);
   useEffect(() => {
     setFetching(true);
     lookUpIdMeal(idRecipe)
       .then((food) => setDetails(food.meals))
       .catch((error) => alert('Algo inesperado aconteceingredients;u:', error));
+    // loadFromStorage();
     setFetching(false);
   }, []);
 
@@ -52,12 +46,13 @@ function FoodDetails(props) {
       <p style={{ textAlign: 'center' }}>FoodDetails Page</p>
       <ImageDetail strOption={strMeal} thumb={strMealThumb} />
       <CardDetail
-        strOption={strMeal}
-        favorite={favorite}
-        blackHeartIcon={blackHeartIcon}
-        whiteHeartIcon={whiteHeartIcon}
-        shareIcon={shareIcon}
-        handleFavorite={handleFavorite}
+        id={idRecipe}
+        type="comidas"
+        image={strMealThumb}
+        category={strCategory}
+        area={strArea}
+        alcoholicOrNot=""
+        name={strMeal}
       />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
@@ -81,3 +76,16 @@ export default FoodDetails;
 /* const receitaFavoritada =
   { id, type, area, category, alcoholicOrNot, name, image }
   localStorage.setItem('favoriteRecipes', JSON.stringify({ receitaFavoritada })); */
+
+// import {
+//   ImageDetail,
+//   CardDetail,
+//   IngredientDetail,
+//   InstructionsDetail,
+//   VideoDetail,
+//   CarrouselDetails,
+// } from '../components/details/details_index';
+
+// const [favorite, setFavorite] = useState(false);
+// const handleFavorite = () => {
+//   setFavorite(!favorite);
