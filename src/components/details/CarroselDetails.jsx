@@ -20,9 +20,9 @@ function CarroselDetails() {
             <div key={recomendations.idDrink} data-testid={`${index}-recomendation-card`}>
               <h3 data-testid={`${index}-recomendation-title`}>{recomendations.strDrink}</h3>
               <img
-              data-testid={`${index}-card-img`}
-              alt="drink"
-              src={recomendations.strDrinkThumb}
+                data-testid={`${index}-card-img`}
+                alt="drink"
+                src={recomendations.strDrinkThumb}
               />
             </div>
           ))}

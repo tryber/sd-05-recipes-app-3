@@ -16,15 +16,14 @@ import recipeConstructor from '../components/details/recipeconstructor.js';
   //   VideoDetail,
   //   CarrouselDetails,
   // } from '../components/details/details_index';
-  
-  import ImageDetail from '../components/details/ImageDetail';
-  import CardDetail from '../components/details/CardDetail';
-  import IngredientDetail from '../components/details/IngredientDetail';
-  import InstructionsDetail from '../components/details/InstructionsDetail';
-  import VideoDetails from '../components/details/VideoDetails';
-  import CarroselDetails from '../components/details/CarroselDetails';
-  import StartRecipe from '../components/details/StartRecipe';
-  import ShareButton from '../components/details/ShareButton';
+
+import ImageDetail from '../components/details/ImageDetail';
+import CardDetail from '../components/details/CardDetail';
+import IngredientDetail from '../components/details/IngredientDetail';
+import InstructionsDetail from '../components/details/InstructionsDetail';
+import VideoDetails from '../components/details/VideoDetails';
+import CarroselDetails from '../components/details/CarroselDetails';
+import StartRecipe from '../components/details/StartRecipe';  import ShareButton from '../components/details/ShareButton';
 
 
 function FoodDetails(props) {
