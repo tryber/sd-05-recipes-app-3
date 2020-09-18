@@ -10,9 +10,9 @@ class IngredientDetail extends Component {
     return (
       <div className="ingredients-details">
         <h4>Ingredients</h4>
-        <div data-testid="0-ingredient-name-and-measure">
+        <div>
           {ingredient.map((item, index) => (
-            <p>
+            <p data-testid={`${index}-ingredient-name-and-measure`}>
               {item} : {measure[index]}
             </p>
           ))}
