@@ -23,7 +23,8 @@ import IngredientDetail from '../components/details/IngredientDetail';
 import InstructionsDetail from '../components/details/InstructionsDetail';
 import VideoDetails from '../components/details/VideoDetails';
 import CarroselDetails from '../components/details/CarroselDetails';
-import StartRecipe from '../components/details/StartRecipe';  import ShareButton from '../components/details/ShareButton';
+import StartRecipe from '../components/details/StartRecipe';
+import ShareButton from '../components/details/ShareButton';
 
 
 function FoodDetails(props) {
