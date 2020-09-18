@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 class IngredientDetail extends Component {
   // constructor(props){
@@ -23,3 +23,8 @@ class IngredientDetail extends Component {
 }
 
 export default IngredientDetail;
+
+IngredientDetail.propTypes = {
+  ingredient: PropTypes.string.isRequired,
+  measure: PropTypes.string.isRequired,
+};
