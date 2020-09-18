@@ -1,20 +1,20 @@
-export const lookUpIdMeal = (id) => {
-  return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+export const lookUpIdMeal = (id) => (
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then((response) => (
       response
         .json()
         .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
     ))
-};
+);
 
-export const lookUpIdDrink = (id) => {
-  return fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+export const lookUpIdDrink = (id) => (
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then((response) => (
       response
         .json()
         .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
     ))
-};
+);
 
 export const foodIngredientAPI = (ingrediente) => (
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingrediente}`)
