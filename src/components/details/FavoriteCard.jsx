@@ -1,63 +1,89 @@
 import { Link } from 'react-router-dom';
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import FavoriteContext from '../../context/FavoriteContext';
 import { whiteHeartIcon } from '../../images';
 import { blackHeartIcon } from '../../images';
 import { shareIcon } from '../../images';
 
+const SharingButton = (func, share, name) => (
+  <div>
+    <button type="button" className="icon" value="share" onClick={() => func()}>
+      <img data-testid="share" src={share} alt={`sharing ${name} recipe`} />
+    </button>
+  </div>
+);
+
+const FavoriteButton = (id, handle, index, favorite, blackHeart, whiteHeart) => (
+  <div>
+    <button type="button" className="icon" value={id} onClick={() => handle(id)}>
+      <img
+        data-testid={`${index}-horizontal-favorite-btn`}
+        src={favorite ? blackHeart : whiteHeart}
+        alt="favorited recipe"
+      />
+    </button>
+  </div>
+);
+
 function FavoriteCard(props) {
   const { id, index, image, name, category, area, alcoholicOrNot, type, recipes } = props;
-  const { loadFromStorage, isFavorite, deleteFromStorage } = useContext(FavoriteContext);
+  const { loadFromStorage, isFavorite } = useContext(FavoriteContext);
   const fromStore = loadFromStorage();
-  const isItFavorite = fromStore.some(itIs => itIs.id === id)
+  const isItFavorite = fromStore.some((itIs) => itIs.id === id);
   const [favorite, setFavorite] = useState(isItFavorite);
-  console.log(id, index, image, name, category, area, alcoholicOrNot, type, recipes );
-  
-  
-  const handleFavorite = (id) => {
-    console.log(id)
-    const disFavorite = recipes.filter((curValue) => (curValue.id === id));
-    console.log('Favorite Page:', disFavorite);
+  //
+  const handleFavorite = (ide) => {
+    const disFavorite = recipes.filter((curValue) => curValue.id === ide);
+    // console.log('Receita a ser deletada:', disFavorite);
+    //
     if (disFavorite) {
-      console.log(favorite);
+      // console.log(favorite);
       document.querySelector(`.body-card-${id}`).remove();
       isFavorite(...disFavorite, favorite);
+      setFavorite(!favorite);
     }
-  }
-
-  const handleSharing = () => {
-  }
-
+  };
+  //
+  const handleSharing = () => console.log('sharingButton');
+  //
   return (
-    <div id={name}  className={`body-card-${id}`}>
+    <div id={name} className={`body-card-${id}`}>
       <Link to={`${type}/${id}`}>
         <div className="image-card">
-          <img data-testid="image" src={image} alt={name}></img>
+          <img data-testid="image" src={image} alt={name} />
         </div>
       </Link>
       <div className="info-card">
         <h4>
-          {type === 'comidas' ? <span>{area}-{category}</span>
-           : <span>{alcoholicOrNot}</span>}
+          {type === 'comidas' ? (
+            <span>
+              {area}-{category}
+            </span>
+          ) : (
+            <span>{alcoholicOrNot}</span>
+          )}
         </h4>
         <Link to={`${type}/${id}`}>
           <h3>{name}</h3>
         </Link>
-        <div>
-          <button type="button" className="icon" value="share" onClick={handleSharing}>
-            <img data-testid="share" src={shareIcon} alt={`sharing ${name} recipe`}/>
-          </button>
-          <button type="button" className="icon" value={id} onClick={() => handleFavorite(id)}>
-            <img
-              data-testid={`${index}-horizontal-favorite-btn`}
-              src={favorite ? blackHeartIcon : whiteHeartIcon}
-              alt="favorited recipe"
-            />
-          </button>
-        </div>
+        {SharingButton(handleSharing, shareIcon, name)}
+        {FavoriteButton(id, handleFavorite, index, favorite, blackHeartIcon, whiteHeartIcon)}
       </div>
     </div>
   );
 }
 
 export default FavoriteCard;
+
+FavoriteCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  area: PropTypes.string.isRequired,
+  alcoholicOrNot: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  recipes: PropTypes.arrayOf(Object).isRequired,
+};
