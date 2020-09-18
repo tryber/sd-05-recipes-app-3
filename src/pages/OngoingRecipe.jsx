@@ -26,12 +26,14 @@ function OngoingRecipe(props) {
   // console.log(allIngredients, allMeasures);
   useEffect(() => {
     setFetching(true);
-    if (page === 'MainFood') {
+    if (props.type === 'comida') {
+      console.log('food', idRecipe)
       lookUpIdMeal(idRecipe)
       .then((food) => setOngoing(food.meals))
       .catch((error) => console.log('comida', error));
     }
-    else {
+    else if (props.type === 'bebida') {
+      console.log('drink', idRecipe)
       lookUpIdDrink(idRecipe)
       .then((drink) => setOngoing(drink.drinks))
       .catch((error) => console.log('bebida', error));
