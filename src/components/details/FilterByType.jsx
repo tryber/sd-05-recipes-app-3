@@ -1,22 +1,42 @@
 import React from 'react';
+import '../../css/Categories.css';
 
 function FilterByType(handleClick) {
-  const byType = ['All', 'Food', 'Drink'];
   return (
-    <div className="type-set">
-      {byType.map((type) => (
-        <div className="filter-type">
-          <button
-            type="button"
-            key={type}
-            data-testid={`${type}-category-filter`}
-            onClick={handleClick}
-            value={type}
-          >
-            {type}
-          </button>
-        </div>
-      ))}
+    <div className="categories">
+      <div className="favorite">
+        <button
+          type="button"
+          key="All"
+          data-testid="filter-by-all-btn"
+          onClick={handleClick}
+          // value={type}
+        >
+          All
+        </button>
+      </div>
+      <div className="favorite">
+        <button
+          type="button"
+          key="Food"
+          data-testid="filter-by-food-btn"
+          onClick={handleClick}
+          // value={type}
+        >
+          Food
+        </button>
+      </div>
+      <div className="favorite">
+        <button
+          type="button"
+          key="Drink"
+          data-testid="filter-by-drink-btn"
+          onClick={handleClick}
+          // value={type}
+        >
+          Drink
+        </button>
+      </div>
     </div>
   );
 }

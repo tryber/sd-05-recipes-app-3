@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import Header from '../components/Header';
 import FilterByType from '../components/details/FilterByType';
 import FavoriteCard from '../components/details/FavoriteCard';
-
-import '../css/Header.css';
 import FavoriteContext from '../context/FavoriteContext';
 // import RecipeContext from '../context/RecipeContext';
 

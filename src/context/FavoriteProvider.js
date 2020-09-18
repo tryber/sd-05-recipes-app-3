@@ -25,15 +25,14 @@ function deleteFromStorage(toBeDeleted) {
 }
 
 function FavoriteProvider({ children }) {
-  const loadFromStorage = (usuario) => {
+  const loadFromStorage = () => {
     // const { email } = JSON.parse(localStorage.getItem('user'));
-    const user = JSON.parse(localStorage.getItem('user'));
-
+    // const user = JSON.parse(localStorage.getItem('user'));
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    // console.log('user: ', user.email, 'login: ', usuario, 'receitas salva:', favoriteRecipes);
-    if (user.email === usuario && localStorage.getItem('favoriteRecipes')) {
-      // console.log('voce de novo?', user.email, usuario);
-    }
+    // console.log('user: ', user.email, 'receitas salva:', favoriteRecipes);
+    // if (user.email  && localStorage.getItem('favoriteRecipes')) {
+      // }
+    // console.log('voce de novo?', user.email );
     return favoriteRecipes;
   };
 

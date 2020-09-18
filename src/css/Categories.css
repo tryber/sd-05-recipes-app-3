@@ -11,7 +11,7 @@
   z-index: 0;
 }
 
-.categorie {
+.categorie , .favorite {
   background-color: transparent;
   display: flex;
   height: fit-content;
@@ -27,4 +27,14 @@
   padding: 5px 0;
   text-align: center;
   width: 45vw;
+}
+
+.favorite button {
+  background-color: gray;
+  color: #1c1d1d;
+  font-size: 15px;
+  font-weight: 300;
+  max-width: 20vh;
+  min-width: 25vw;
+  width: 30vw;
 }

@@ -5,11 +5,16 @@ import FavoriteContext from '../../context/FavoriteContext';
 import { whiteHeartIcon } from '../../images';
 import { blackHeartIcon } from '../../images';
 import { shareIcon } from '../../images';
+import '../../css/details.css';
 
-const SharingButton = (func, share, name) => (
+const SharingButton = (func, share, name, index) => (
   <div>
     <button type="button" className="icon" value="share" onClick={() => func()}>
-      <img data-testid="share" src={share} alt={`sharing ${name} recipe`} />
+      <img
+        data-testid={`${index}-horizontal-share-btn`}
+        src={share}
+        alt={`sharing ${name} recipe`}
+      />
     </button>
   </div>
 );
@@ -46,28 +51,28 @@ function FavoriteCard(props) {
   };
   //
   const handleSharing = () => console.log('sharingButton');
-  //
+  console.log('origem:', area, 'categoria:', category, 'tipo:', type);
   return (
     <div id={name} className={`body-card-${id}`}>
       <Link to={`${type}/${id}`}>
-        <div className="image-card">
-          <img data-testid="image" src={image} alt={name} />
+        <div className="image-details">
+          <img data-testid={`${index}-horizontal-image`} src={image} alt={name} />
         </div>
       </Link>
       <div className="info-card">
         <h4>
           {type === 'comidas' ? (
-            <span>
+            <span data-testid={`${index}-horizontal-top-text`}>
               {area}-{category}
             </span>
           ) : (
-            <span>{alcoholicOrNot}</span>
+            <span data-testid={`${index}-horizontal-top-text`}>{alcoholicOrNot}</span>
           )}
         </h4>
         <Link to={`${type}/${id}`}>
-          <h3>{name}</h3>
+          <h3 data-testid={`${index}-horizontal-name`}>{name}</h3>
         </Link>
-        {SharingButton(handleSharing, shareIcon, name)}
+        {SharingButton(handleSharing, shareIcon, name, index)}
         {FavoriteButton(id, handleFavorite, index, favorite, blackHeartIcon, whiteHeartIcon)}
       </div>
     </div>
