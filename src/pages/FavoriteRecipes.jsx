@@ -13,7 +13,7 @@ function FavoriteRecipes() {
   const { email } = useContext(RecipeContext);
   const recipes = loadFromStorage();
   console.log(recipes, email);
-  return (!recipes) ? (
+  return (!recipes || recipes.length === 0) ? (
   <div>
     <p>Você não tem nenhuma recipa favoritada!</p>
   </div>
