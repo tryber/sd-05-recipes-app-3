@@ -19,7 +19,7 @@ function OngoingRecipe(props) {
   const handleFavorite = () => {
     setFavorite(!favorite);
   };
-  const { setFetching, ongoing, setOngoing, page } = useContext(RecipeContext);
+  const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
   const { strMealThumb, strMeal, strDrinkThumb, strDrink, strInstructions, strCategory } = ongoing[0];
   const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
   // uma saida no console pra vc saber o que esta manipulado
@@ -27,13 +27,12 @@ function OngoingRecipe(props) {
   useEffect(() => {
     setFetching(true);
     if (props.type === 'comida') {
-      console.log('food', idRecipe)
       lookUpIdMeal(idRecipe)
       .then((food) => setOngoing(food.meals))
+      .then(localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]: [] }})))
       .catch((error) => console.log('comida', error));
     }
     else if (props.type === 'bebida') {
-      console.log('drink', idRecipe)
       lookUpIdDrink(idRecipe)
       .then((drink) => setOngoing(drink.drinks))
       .catch((error) => console.log('bebida', error));
@@ -55,7 +54,7 @@ function OngoingRecipe(props) {
         shareIcon={shareIcon}
         handleFavorite={handleFavorite}
       />
-      <IngredientOngoing ingredient={allIngredients} measure={allMeasures} />
+      <IngredientOngoing ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
       <InstructionsDetail instructions={strInstructions} />
       <Link to="/receitas-feitas">
         <button data-testid="finish-recipe-btn" type="button" id="btn" disabled>Finalizar Receita</button>

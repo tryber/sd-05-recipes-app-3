@@ -1,5 +1,4 @@
 export const lookUpIdMeal = (id) => {
-  console.log('comida')
   return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then((response) => (
       response
@@ -9,7 +8,6 @@ export const lookUpIdMeal = (id) => {
 };
 
 export const lookUpIdDrink = (id) => {
-  console.log(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
   return fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then((response) => (
       response
