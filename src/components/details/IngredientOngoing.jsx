@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import '../../css/Linet.css';
 import RecipeContext from '../../context/RecipeContext';
 
-const verifyChecked = (setState) => {
+const verifyChecked = (setState, element) => {
   // fonte https://qastack.com.br/programming/5541387/check-if-all-checkboxes-are-selected
+  if (document.querySelector(`label[for="${element}"]`).style.textDecoration === 'line-through') {
+    document.querySelector(`label[for="${element}"]`).style.textDecoration = null;
+  } else {
+    document.querySelector(`label[for="${element}"]`).style.textDecoration = 'line-through';
+  }
   if (document.querySelectorAll('input[name="cname"]:checked').length === document.querySelectorAll('input[name="cname"]').length) {
     setState(true);
   } else {
@@ -21,9 +25,9 @@ function IngredientOngoing(props) {
       <div>
         {ingredient.map((item, i) => (
           <div>
-            <input type="checkbox" id={item} name="cname" value={`${item} : ${measure[i]}`} onChange={() => verifyChecked(setDone)} />
+            <input type="checkbox" id={item} name="cname" value={`${item} : ${measure[i]}`} onChange={() => verifyChecked(setDone, item)} />
             {/* ideia de checar o check https://stackoverflow.com/questions/30975459/add-strikethrough-to-checked-checkbox */}
-            <label data-testid={`${i}-ingredient-step`} className="strikethrough" htmlFor={item}>{`${item} : ${measure[i]}`}</label>
+            <label data-testid={`${i}-ingredient-step`} htmlFor={item}>{`${item} : ${measure[i]}`}</label>
           </div>
           ))}
       </div>
