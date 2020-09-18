@@ -16,6 +16,10 @@ ex: image-details img {
   width: fit-content;
 }
 
+.button-iniciar {
+  position: fixed;
+}
+
 .card-details {
   border: 1px solid red;
   display: block;
