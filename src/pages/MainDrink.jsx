@@ -10,23 +10,26 @@ import '../css/recipe-cards-list.css';
 
 function MainDrink() {
   const {
-    data, setData, setFetching, fetching, setPage, category, search,
+    data,
+    setData,
+    isIngrFilter,
+    setFetching,
+    fetching,
+    setPage,
+    category,
+    search,
   } = useContext(RecipeContext);
-  // let previous = false;
-  // if (!data) previous = true;
-  useEffect(
-    () => {
-      setPage('MainDrink');
+  // let previous = false; if (!data) previous = true;
+  useEffect(() => {
+    setPage('MainDrink');
+    if (!isIngrFilter) {
       allDrinksList()
-      .then((response) => setData(response.drinks))
-      .catch((error) => alert('Algo inesperado aconteceu:', error));
+        .then((response) => setData(response.drinks))
+        .catch((error) => alert('Algo inesperado aconteceu:', error));
       setFetching(false);
-    },
-    [
-      /* previous */
-    ],
-  );
-
+    }
+  }, []);
+  // previous dentro do [] deixado comentado pelo Elis
   if (fetching) {
     return (
       <div>
@@ -37,7 +40,7 @@ function MainDrink() {
     );
   }
 
-  return (data.length === 1 && category === '' && search !== '') ? (
+  return data.length === 1 && category === '' && search !== '' ? (
     <div>
       <Redirect to={`/bebidas/${data[0].idDrink}`} />
     </div>

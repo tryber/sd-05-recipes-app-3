@@ -11,9 +11,9 @@ class IngredientDetail extends Component {
       <div className="ingredients-details">
         <h4>Ingredients</h4>
         <div>
-          {ingredient.map((item, index) => (
-            <p data-testid={`${index}-ingredient-name-and-measure`}>
-              {item} : {measure[index]}
+          {ingredient.map((item, i) => (
+            <p data-testid={`${i}-ingredient-name-and-measure`}>
+              {item} : {measure[i]}
             </p>
           ))}
         </div>
@@ -23,9 +23,3 @@ class IngredientDetail extends Component {
 }
 
 export default IngredientDetail;
-
-
-IngredientDetail.propTypes = {
-  ingredient: PropTypes.string.isRequired,
-  measure: PropTypes.string.isRequired,
-};
