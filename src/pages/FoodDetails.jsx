@@ -2,11 +2,13 @@ import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
-import '../css/detailsPage.css';
-
+import RecipeContext from '../context/RecipeContext';
+import '../css/details.css';
+// import { whiteHeartIcon } from '../images';
+// import { blackHeartIcon } from '../images';
+// import { shareIcon } from '../images';
 import recipeConstructor from '../components/details/recipeconstructor.js';
 import FavoriteContext from '../context/FavoriteContext';
-import RecipeContext from '../context/RecipeContext';
 
 import ImageDetail from '../components/details/ImageDetail';
 import CardDetail from '../components/details/CardDetail';

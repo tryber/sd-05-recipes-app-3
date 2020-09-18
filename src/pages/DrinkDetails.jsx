@@ -1,11 +1,11 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdDrink } from '../service/apis';
-import '../css/detailsPage.css';
-import { whiteHeartIcon } from '../images';
-import { blackHeartIcon } from '../images';
-import { shareIcon } from '../images';
+import '../css/details.css';
+// import { whiteHeartIcon } from '../images';
+// import { blackHeartIcon } from '../images';
+// import { shareIcon } from '../images';
 import recipeConstructor from '../components/details/recipeconstructor.js';
 import RecipeContext from '../context/RecipeContext';
 import FavoriteContext from '../context/FavoriteContext';
@@ -14,7 +14,7 @@ import ImageDetail from '../components/details/ImageDetail';
 import CardDetail from '../components/details/CardDetail';
 import IngredientDetail from '../components/details/IngredientDetail';
 import InstructionsDetail from '../components/details/InstructionsDetail';
-import VideoDetails from '../components/details/VideoDetails';
+// import VideoDetails from '../components/details/VideoDetails';
 import CarroselDetails from '../components/details/CarroselDetails';
 import StartRecipe from '../components/details/StartRecipe';
 
