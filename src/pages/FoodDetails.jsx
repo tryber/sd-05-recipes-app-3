@@ -1,22 +1,12 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
-import RecipeContext from '../context/RecipeContext';
 import '../css/detailsPage.css';
-import { whiteHeartIcon } from '../images';
-import { blackHeartIcon } from '../images';
-import { shareIcon } from '../images';
-import recipeConstructor from '../components/details/recipeconstructor.js';
 
-// import {
-//   ImageDetail,
-//   CardDetail,
-//   IngredientDetail,
-//   InstructionsDetail,
-//   VideoDetail,
-//   CarrouselDetails,
-// } from '../components/details/details_index';
+import recipeConstructor from '../components/details/recipeconstructor.js';
+import FavoriteContext from '../context/FavoriteContext';
+import RecipeContext from '../context/RecipeContext';
 
 import ImageDetail from '../components/details/ImageDetail';
 import CardDetail from '../components/details/CardDetail';
@@ -26,39 +16,34 @@ import VideoDetails from '../components/details/VideoDetails';
 import CarroselDetails from '../components/details/CarroselDetails';
 import StartRecipe from '../components/details/StartRecipe';
 
-
 function FoodDetails(props) {
-  const [favorite, setFavorite] = useState(false);
-  const handleFavorite = () => {
-    setFavorite(!favorite);
-  };
   const { idRecipe } = props.match.params;
+  const { favorite, isFavorite, loadFromStorage, recipes } = useContext(FavoriteContext);
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
-  const { strMealThumb, strMeal, strInstructions, strYoutube } = details[0];
+  const { strMealThumb, strMeal, strInstructions, strYoutube, strArea, strCategory, idMeal } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
-  // uma saida no console pra vc saber o que esta manipulado
-  // console.log(allIngredients, allMeasures);
   useEffect(() => {
     setFetching(true);
-    lookUpIdMeal(idRecipe)
-      .then((food) => setDetails(food.meals))
-      .catch((error) => alert('Algo inesperado aconteceingredients;u:', error));
+    lookUpIdMeal(idRecipe).then((food) => setDetails(food.meals))
+    .catch((error) => alert('Algo inesperado aconteceingredients;u:', error));
+    // loadFromStorage();
     setFetching(false);
   }, []);
-
+  
   if (fetching) return <div>Loading...</div>;
   return idRecipe ? (
     <div className="body-details">
       <p style={{ textAlign: 'center' }}>FoodDetails Page</p>
       <ImageDetail strOption={strMeal} thumb={strMealThumb} />
       <CardDetail
-        strOption={strMeal}
-        favorite={favorite}
-        blackHeartIcon={blackHeartIcon}
-        whiteHeartIcon={whiteHeartIcon}
-        shareIcon={shareIcon}
-        handleFavorite={handleFavorite}
-      />
+        id={idRecipe}
+        type="comidas"
+        image={strMealThumb}
+        category={strCategory}
+        area={strArea}
+        alcoholicOrNot=""
+        name={strMeal}
+        />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
       <VideoDetails youtube={strYoutube} />
@@ -67,17 +52,31 @@ function FoodDetails(props) {
     </div>
   ) : (
     <Redirect to="/comidas/">{alert('Não foi possível te surpreender desta vez!')}</Redirect>
-  );
-}
-
-FoodDetails.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.objectOf(String).isRequired,
-  }).isRequired,
-};
-
-export default FoodDetails;
-
-/* const receitaFavoritada =
+    );
+  }
+  
+  FoodDetails.propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.objectOf(String).isRequired,
+    }).isRequired,
+  };
+  
+  export default FoodDetails;
+  
+  /* const receitaFavoritada =
   { id, type, area, category, alcoholicOrNot, name, image }
   localStorage.setItem('favoriteRecipes', JSON.stringify({ receitaFavoritada })); */
+  
+  // import {
+    //   ImageDetail,
+    //   CardDetail,
+    //   IngredientDetail,
+    //   InstructionsDetail,
+    //   VideoDetail,
+    //   CarrouselDetails,
+    // } from '../components/details/details_index';
+    
+    // const [favorite, setFavorite] = useState(false);
+    // const handleFavorite = () => {
+      //   setFavorite(!favorite);
+      
