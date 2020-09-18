@@ -48,7 +48,7 @@ function DrinkDetails(props) {
   if (fetching) return <div>Loading...</div>;
   return idRecipe ? (
     <div className="body-details">
-      FoodDetails Page
+      DrinkDetails Page
       <ImageDetail strOption={strDrink} thumb={strDrinkThumb} />
       <CardDetail
         strOption={strDrink}

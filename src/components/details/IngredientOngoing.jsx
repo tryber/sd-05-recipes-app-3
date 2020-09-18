@@ -11,8 +11,10 @@ const verifyChecked = (setState, element) => {
   }
   if (document.querySelectorAll('input[name="cname"]:checked').length === document.querySelectorAll('input[name="cname"]').length) {
     setState(true);
+    document.getElementById('btn').disabled = false;
   } else {
     setState(false);
+    document.getElementById('btn').disabled = true;
   }
 };
 
@@ -24,10 +26,10 @@ function IngredientOngoing(props) {
       <h4>Ingredients</h4>
       <div>
         {ingredient.map((item, i) => (
-          <div>
+          <div data-testid={`${i}-ingredient-step`}>
             <input type="checkbox" id={item} name="cname" value={`${item} : ${measure[i]}`} onChange={() => verifyChecked(setDone, item)} />
             {/* ideia de checar o check https://stackoverflow.com/questions/30975459/add-strikethrough-to-checked-checkbox */}
-            <label data-testid={`${i}-ingredient-step`} htmlFor={item}>{`${item} : ${measure[i]}`}</label>
+            <label htmlFor={item}>{`${item} : ${measure[i]}`}</label>
           </div>
           ))}
       </div>

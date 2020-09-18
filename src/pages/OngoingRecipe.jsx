@@ -1,7 +1,6 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { lookUpIdMeal } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import '../css/Details.css';
 import { whiteHeartIcon } from '../images';
@@ -12,33 +11,41 @@ import ImageDetail from '../components/details/ImageDetail';
 import CardDetail from '../components/details/CardDetail';
 import IngredientOngoing from '../components/details/IngredientOngoing';
 import InstructionsDetail from '../components/details/InstructionsDetail';
+import { lookUpIdMeal, lookUpIdDrink } from '../service/apis';
 
 function OngoingRecipe(props) {
-  const { done } = useContext(RecipeContext);
+  const { idRecipe } = props.match.params;
   const [favorite, setFavorite] = useState(false);
   const handleFavorite = () => {
     setFavorite(!favorite);
   };
-  const { idRecipe } = props.match.params;
-  const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
-  const { strMealThumb, strMeal, strInstructions, strCategory } = details[0];
-  const { allIngredients, allMeasures } = recipeConstructor(details[0]);
+  const { setFetching, ongoing, setOngoing, page } = useContext(RecipeContext);
+  const { strMealThumb, strMeal, strDrinkThumb, strDrink, strInstructions, strCategory } = ongoing[0];
+  const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
   // uma saida no console pra vc saber o que esta manipulado
   // console.log(allIngredients, allMeasures);
   useEffect(() => {
     setFetching(true);
-    lookUpIdMeal(idRecipe)
-      .then((food) => setDetails(food.meals))
-      .catch((error) => alert('Algo inesperado aconteceingredients;u:', error));
+    if (page === 'MainFood') {
+      lookUpIdMeal(idRecipe)
+      .then((food) => setOngoing(food.meals))
+      .catch((error) => console.log('comida', error));
+    }
+    else {
+      lookUpIdDrink(idRecipe)
+      .then((drink) => setOngoing(drink.drinks))
+      .catch((error) => console.log('bebida', error));
+    }
     setFetching(false);
   }, []);
 
-  if (fetching) return <div>Loading...</div>;
-  return idRecipe ? (
-    <div data-testid="ingredient-step" className="body-details">
-      <ImageDetail strOption={strMeal} thumb={strMealThumb} />
+  return (
+    <div className="body-details">
+      <ImageDetail
+        strOption={strMeal ? strMeal : strDrink}
+        thumb={strMealThumb ? strMealThumb : strDrinkThumb} />
       <CardDetail
-        strOption={strMeal}
+        strOption={strMeal ? strMeal : strDrink}
         strCategory={strCategory}
         favorite={favorite}
         blackHeartIcon={blackHeartIcon}
@@ -48,13 +55,10 @@ function OngoingRecipe(props) {
       />
       <IngredientOngoing ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
-      {done &&
-        <Link to="/receitas-feitas">
-          <button data-testid="finish-recipe-btn" type="button">Finalizar Receita</button>
-        </Link>}
+      <Link to="/receitas-feitas">
+        <button data-testid="finish-recipe-btn" type="button" id="btn" disabled>Finalizar Receita</button>
+      </Link>
     </div>
-  ) : (
-    <Redirect to="/comidas/">{alert('Não foi possível te surpreender desta vez!')}</Redirect>
   );
 }
 

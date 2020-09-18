@@ -13,6 +13,7 @@ const RecipeProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState('');
   const [done, setDone] = useState(false);
+  const [ongoing, setOngoing] = useState(['data']);
   const context = {
     email,
     setEmail,
@@ -34,6 +35,8 @@ const RecipeProvider = ({ children }) => {
     setCategory,
     done,
     setDone,
+    ongoing,
+    setOngoing,
   };
 
   return <RecipeContext.Provider value={context}>{children}</RecipeContext.Provider>;
