@@ -82,4 +82,3 @@ export default FoodDetails;
 /* const receitaFavoritada =
   { id, type, area, category, alcoholicOrNot, name, image }
   localStorage.setItem('favoriteRecipes', JSON.stringify({ receitaFavoritada })); */
-  
