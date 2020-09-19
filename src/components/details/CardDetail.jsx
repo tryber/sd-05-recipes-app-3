@@ -5,12 +5,40 @@ import { blackHeartIcon } from '../../images';
 import { shareIcon } from '../../images';
 import FavoriteContext from '../../context/FavoriteContext';
 
-const CardDetail = (props) => {
-  const { id, strOption, strCategory } = props;
-  const { loadFromStorage, isFavorite } = useContext(FavoriteContext);
-  const recipes = loadFromStorage();
-  const isItFavorite = recipes ? recipes.some((itIs) => itIs.id === id) : false;
-  const [favorite, setFavorite] = useState(isItFavorite);
+class CardDetail extends Component {
+  // constructor(props){
+  //   super(props);
+  // }
+  render() {
+    const {
+      strOption,
+      favorite,
+      blackHeartIcon,
+      whiteHeartIcon,
+      handleFavorite,
+      strCategory,
+      strAlcoholic,
+    } = this.props;
+    return (
+      <div className="card-details">
+        <h1 data-testid="recipe-title">{strOption}</h1>
+        <h3 data-testid="recipe-category">
+          {strCategory}
+          {strAlcoholic}
+        </h3>
+        <div className="icon">
+          <button onClick={() => handleFavorite()}>
+            <img
+              data-testid="favorite-btn"
+              src={favorite ? blackHeartIcon : whiteHeartIcon}
+              alt="whiteHeart"
+            />
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
 
   function handleFavorite(favoriteRecipe) {
     isFavorite(favoriteRecipe, favorite);
@@ -47,6 +75,11 @@ export default CardDetail;
 
 CardDetail.propTypes = {
   strOption: PropTypes.string.isRequired,
+  pTypes.string.isRequired,
+  favorite: PropTypes.bool.isRequired,
+  handleFavorite: PropTypes.func.isRequired,
+  blackHeartIcon: PropTypes.string.isRequired,
+  whiteHeartIcon: PropTypes.string.isRequired,
+  strAlcoholic: PropTypes.string.isRequired,
   strCategory: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
 };
