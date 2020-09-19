@@ -15,7 +15,7 @@ const RecipeProvider = ({ children }) => {
   const [done, setDone] = useState(false);
   const [ongoing, setOngoing] = useState(['data']);
   const [isIngrFilter, setIsIngrFilter] = useState(false);
-  
+
   const context = {
     email,
     setEmail,
