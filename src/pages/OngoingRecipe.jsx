@@ -2,14 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
-import '../css/Details.css';
+import '../css/details.css';
 import { whiteHeartIcon } from '../images';
 import { blackHeartIcon } from '../images';
 import { shareIcon } from '../images';
 import recipeConstructor from '../components/details/recipeconstructor.js';
 import ImageDetail from '../components/details/ImageDetail';
 import CardDetail from '../components/details/CardDetail';
-import IngredientOngoing from '../components/details/IngredientOngoing';
+import IngredientOngoing from '../components/IngredientOngoing';
 import InstructionsDetail from '../components/details/InstructionsDetail';
 import { lookUpIdMeal, lookUpIdDrink } from '../service/apis';
 

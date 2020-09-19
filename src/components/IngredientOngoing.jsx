@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import RecipeContext from '../../context/RecipeContext';
+import RecipeContext from '../context/RecipeContext';
 
 const verifyChecked = (setState, element) => {
   // fonte https://qastack.com.br/programming/5541387/check-if-all-checkboxes-are-selected

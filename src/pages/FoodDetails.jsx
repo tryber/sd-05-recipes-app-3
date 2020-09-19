@@ -22,7 +22,7 @@ import CardDetail from '../components/details/CardDetail';
 import IngredientDetail from '../components/details/IngredientDetail';
 import InstructionsDetail from '../components/details/InstructionsDetail';
 import VideoDetails from '../components/details/VideoDetails';
-import CarroselDetails from '../components/details/CarroselDetails';
+// import CarroselDetails from '../components/details/CarroselDetails';
 import StartRecipe from '../components/details/StartRecipe';
 import ShareButton from '../components/details/ShareButton';
 
@@ -62,9 +62,9 @@ function FoodDetails(props) {
       <ShareButton url={props} />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
-      <VideoDetails youtube={strYoutube} />
-      <CarroselDetails />
       <StartRecipe literals={`/comidas/${idRecipe}/in-progress`} />
+      <VideoDetails youtube={strYoutube} />
+      {/* <CarroselDetails /> */}
     </div>
   ) : (
     <Redirect to="/comidas/">{alert('Não foi possível te surpreender desta vez!')}</Redirect>
