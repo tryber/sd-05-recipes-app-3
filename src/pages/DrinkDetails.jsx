@@ -50,7 +50,7 @@ function DrinkDetails(props) {
       Drink Details Page
       <ImageDetail strOption={strDrink} thumb={strDrinkThumb} />
       <CardDetail
-        id{idRecipe}
+        id={idRecipe}
         strOption={strDrink}
         favorite={favorite}
         blackHeartIcon={blackHeartIcon}
