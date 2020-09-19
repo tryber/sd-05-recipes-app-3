@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
-
 const RecipeProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,6 +13,7 @@ const RecipeProvider = ({ children }) => {
   const [category, setCategory] = useState('');
   const [done, setDone] = useState(false);
   const [ongoing, setOngoing] = useState(['data']);
+  const [isIngrFilter, setIsIngrFilter] = useState(false);
   const context = {
     email,
     setEmail,
@@ -37,13 +37,13 @@ const RecipeProvider = ({ children }) => {
     setDone,
     ongoing,
     setOngoing,
+    isIngrFilter,
+    setIsIngrFilter,
   };
-
+  
   return <RecipeContext.Provider value={context}>{children}</RecipeContext.Provider>;
 };
-
 export default RecipeProvider;
-
 RecipeProvider.propTypes = {
   children: PropTypes.objectOf(Object).isRequired,
 };

@@ -16,11 +16,12 @@ const verifyChecked = (setState, element, idRecipe, ing) => {
     setState(false);
     document.getElementById('btn').disabled = true;
   }
-  /* const storage = JSON.parse(localStorage.getItem('InProgressRecipes'));
-  console.log(storage.cocktails); */
-  // { cocktails: { id: [ingredientes]}
-  localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]: [ing] } }));
 };
+
+/* function localStore() {
+  const storage = JSON.parse(localStorage.getItem('InProgressRecipes'));
+  localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]: [...state.storage, ing] } }));
+} */
 
 function IngredientOngoing(props) {
   const { ingredient, measure, idRecipe } = props;
