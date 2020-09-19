@@ -1,24 +1,72 @@
-/* import React from 'react';
-import { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import '../css/Header.css';
+import PropTypes from 'prop-types';
+import RecipeContext from '../context/RecipeContext';
+import '../css/details.css';
+import { whiteHeartIcon } from '../images';
+import { blackHeartIcon } from '../images';
+import { shareIcon } from '../images';
+import recipeConstructor from '../components/details/recipeconstructor.js';
+import ImageDetail from '../components/details/ImageDetail';
+import CardDetail from '../components/details/CardDetail';
+import IngredientOngoing from '../components/IngredientOngoing';
+import InstructionsDetail from '../components/details/InstructionsDetail';
+import { lookUpIdMeal, lookUpIdDrink } from '../service/apis';
 
-function OngoingRecipe({ img, nome, categoria, ingredientes }) {
-  const [allChecked, setAllChecked] = useState(false);
+function OngoingRecipe(props) {
+  const { idRecipe } = props.match.params;
+  const [favorite, setFavorite] = useState(false);
+  const handleFavorite = () => {
+    setFavorite(!favorite);
+  };
+  const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
+  const {
+    strMealThumb, strMeal, strDrinkThumb, strDrink, strInstructions, strCategory,
+  } = ongoing[0];
+  const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
+  // uma saida no console pra vc saber o que esta manipulado
+  // console.log(allIngredients, allMeasures);
+  useEffect(() => {
+    setFetching(true);
+    if (props.type === 'comida') {
+      lookUpIdMeal(idRecipe)
+      .then((food) => setOngoing(food.meals))
+      .then(localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]: [] } })))
+      .catch((error) => console.log('comida', error));
+    } else if (props.type === 'bebida') {
+      lookUpIdDrink(idRecipe)
+      .then((drink) => setOngoing(drink.drinks))
+      .catch((error) => console.log('bebida', error));
+    }
+    setFetching(false);
+  }, []);
+
   return (
-    <div className="header">
-      <Header title="Receita em progresso" />
-      { <img/> }
-      <h3>nome da receita vinda como props da pag de detalhes</h3>
-      <p>categoria ou se a bebida é alcoólica ou não</p>
-      {provavelmente um map no ingredientes? <input type="checkbox" /> }
-      {allChecked && <Link to="/receitas-feitas">Concluir Receita</Link>}
-      <Footer />
+    <div className="body-details">
+      <ImageDetail strOption={strMeal || strDrink} thumb={strMealThumb || strDrinkThumb} />
+      <CardDetail
+        strOption={strMeal || strDrink} strCategory={strCategory}
+        favorite={favorite} blackHeartIcon={blackHeartIcon}
+        whiteHeartIcon={whiteHeartIcon} shareIcon={shareIcon}
+        handleFavorite={handleFavorite}
+      />
+      <IngredientOngoing
+        ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe}
+      />
+      <InstructionsDetail instructions={strInstructions} />
+      <Link to="/receitas-feitas">
+        <button data-testid="finish-recipe-btn" type="button" id="btn" disabled>
+        Finalizar Receita</button>
+      </Link>
     </div>
   );
 }
 
+OngoingRecipe.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.objectOf(String).isRequired,
+  }).isRequired,
+  type: PropTypes.string.isRequired,
+};
+
 export default OngoingRecipe;
-*/

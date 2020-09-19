@@ -11,7 +11,12 @@ class StartRecipe extends Component {
     const { literals } = this.props;
     return (
       <Link to={literals}>
-        <button className="button-iniciar" data-testid="start-recipe-btn">Iniciar Receita</button>
+        <button
+          /* className="button-iniciar" */
+          data-testid="start-recipe-btn"
+        >
+        Iniciar Receita
+        </button>
       </Link>
     );
   }
