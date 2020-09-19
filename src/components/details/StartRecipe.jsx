@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import '../../css/details.css';
 
 class StartRecipe extends Component {
   render() {
     const { literals } = this.props;
     return (
       <Link to={literals}>
-        <button data-testid="start-recipe-btn">Iniciar Receita</button>
+        <button className="button-iniciar" data-testid="start-recipe-btn">Iniciar Receita</button>
       </Link>
     );
   }

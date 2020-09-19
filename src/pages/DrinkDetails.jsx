@@ -3,10 +3,9 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdDrink } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-import '../css/Details.css';
+import '../css/details.css';
 import { whiteHeartIcon } from '../images';
 import { blackHeartIcon } from '../images';
-import { shareIcon } from '../images';
 import recipeConstructor from '../components/details/recipeconstructor.js';
 // import {
 //   ImageDetail,
@@ -22,9 +21,9 @@ import ImageDetail from '../components/details/ImageDetail';
 import CardDetail from '../components/details/CardDetail';
 import IngredientDetail from '../components/details/IngredientDetail';
 import InstructionsDetail from '../components/details/InstructionsDetail';
-import VideoDetails from '../components/details/VideoDetails';
-import CarroselDetails from '../components/details/CarroselDetails';
+import CarroselDetailsFood from '../components/details/CarroselDetailsFood';
 import StartRecipe from '../components/details/StartRecipe';
+import ShareButton from '../components/details/ShareButton';
 
 function DrinkDetails(props) {
   const [favorite, setFavorite] = useState(false);
@@ -33,7 +32,7 @@ function DrinkDetails(props) {
   };
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
-  const { strDrinkThumb, strDrink, strInstructions, strYoutube } = details[0];
+  const { strDrinkThumb, strDrink, strInstructions, strCategory, strAlcoholic } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
   // uma saida no console pra vc saber o que esta manipulado
   // console.log(allIngredients, allMeasures);
@@ -48,20 +47,21 @@ function DrinkDetails(props) {
   if (fetching) return <div>Loading...</div>;
   return idRecipe ? (
     <div className="body-details">
-      DrinkDetails Page
+      Drink Details Page
       <ImageDetail strOption={strDrink} thumb={strDrinkThumb} />
       <CardDetail
         strOption={strDrink}
         favorite={favorite}
         blackHeartIcon={blackHeartIcon}
         whiteHeartIcon={whiteHeartIcon}
-        shareIcon={shareIcon}
         handleFavorite={handleFavorite}
+        strCategory={strCategory}
+        strAlcoholic={strAlcoholic}
       />
+      <ShareButton url={props} />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
-      <VideoDetails youtube={strYoutube} />
-      <CarroselDetails recomendations="props" />
+      <CarroselDetailsFood recomendations="props" />
       <StartRecipe literals={`/bebidas/${idRecipe}/in-progress`} />
     </div>
   ) : (

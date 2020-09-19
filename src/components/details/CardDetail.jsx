@@ -6,7 +6,7 @@ import { shareIcon } from '../../images';
 import FavoriteContext from '../../context/FavoriteContext';
 
 const CardDetail = (props) => {
-  const { id, strOption, strCategory } = props;
+  const { id, name, type, strOption, strCategory, blackHeartIcon, whiteHeartIcon, shareIcon } = props;
   const { loadFromStorage, isFavorite } = useContext(FavoriteContext);
   const recipes = loadFromStorage();
   const isItFavorite = recipes ? recipes.some((itIs) => itIs.id === id) : false;
@@ -43,10 +43,22 @@ const CardDetail = (props) => {
     </div>
   );
 };
+
 export default CardDetail;
 
 CardDetail.propTypes = {
   strOption: PropTypes.string.isRequired,
   strCategory: PropTypes.string.isRequired,
+  favorite: PropTypes.bool.isRequired,
+  handleFavorite: PropTypes.func.isRequired,
+  blackHeartIcon: PropTypes.string.isRequired,
+  whiteHeartIcon: PropTypes.string.isRequired,
+  shareIcon: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  // handleFavorite: PropTypes.func.isRequired,
+  // whiteHeartIcon: PropTypes.string.isRequired,
+  // shareIcon: PropTypes.string.isRequired,
 };
+

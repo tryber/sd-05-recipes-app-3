@@ -3,20 +3,19 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
-import '../css/Details.css';
+import '../css/details.css';
 import { whiteHeartIcon } from '../images';
 import { blackHeartIcon } from '../images';
-import { shareIcon } from '../images';
 import recipeConstructor from '../components/details/recipeconstructor.js';
 
 // import {
-//   ImageDetail,
-//   CardDetail,
-//   IngredientDetail,
-//   InstructionsDetail,
-//   VideoDetail,
-//   CarrouselDetails,
-// } from '../components/details/details_index';
+  //   ImageDetail,
+  //   CardDetail,
+  //   IngredientDetail,
+  //   InstructionsDetail,
+  //   VideoDetail,
+  //   CarrouselDetails,
+  // } from '../components/details/details_index';
 
 import ImageDetail from '../components/details/ImageDetail';
 import CardDetail from '../components/details/CardDetail';
@@ -25,6 +24,7 @@ import InstructionsDetail from '../components/details/InstructionsDetail';
 import VideoDetails from '../components/details/VideoDetails';
 import CarroselDetails from '../components/details/CarroselDetails';
 import StartRecipe from '../components/details/StartRecipe';
+import ShareButton from '../components/details/ShareButton';
 
 
 function FoodDetails(props) {
@@ -34,7 +34,7 @@ function FoodDetails(props) {
   };
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
-  const { strMealThumb, strMeal, strInstructions, strYoutube } = details[0];
+  const { strMealThumb, strMeal, strInstructions, strYoutube, strCategory } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
   // uma saida no console pra vc saber o que esta manipulado
   // console.log(allIngredients, allMeasures);
@@ -56,13 +56,14 @@ function FoodDetails(props) {
         favorite={favorite}
         blackHeartIcon={blackHeartIcon}
         whiteHeartIcon={whiteHeartIcon}
-        shareIcon={shareIcon}
         handleFavorite={handleFavorite}
+        strCategory={strCategory}
       />
+      <ShareButton url={props} />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
       <VideoDetails youtube={strYoutube} />
-      <CarroselDetails recomendations="props" />
+      <CarroselDetails />
       <StartRecipe literals={`/comidas/${idRecipe}/in-progress`} />
     </div>
   ) : (

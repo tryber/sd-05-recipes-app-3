@@ -4,10 +4,13 @@ import RecipeProvider from './context/RecipeProvider';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import FavoriteProvider from './context/FavoriteProvider';
 
 ReactDOM.render(
   <RecipeProvider>
-    <App />
+    <FavoriteProvider>
+      <App />
+    </FavoriteProvider>
   </RecipeProvider>,
   document.getElementById('root'));
 
