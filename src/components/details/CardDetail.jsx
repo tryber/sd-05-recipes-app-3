@@ -14,6 +14,7 @@ class CardDetail extends Component {
       handleFavorite,
       strCategory,
       strAlcoholic,
+      shareIcon,
     } = this.props;
     return (
       <div className="card-details">
@@ -30,6 +31,11 @@ class CardDetail extends Component {
               alt="whiteHeart"
             />
           </button>
+          <div className="icon">
+            <button>
+            <img data-testid="share-btn" src={shareIcon} alt="share" />
+            </button>
+          </div>
         </div>
       </div>
     );
