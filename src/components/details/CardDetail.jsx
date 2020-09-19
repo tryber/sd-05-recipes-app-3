@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const CardDetail = (props) => {
-  const { id, name, type, strOption, strCategory, favorite, blackHeartIcon, whiteHeartIcon, shareIcon, handleFavorite strCategory,
+  const { id, name, type, strOption, favorite, blackHeartIcon, whiteHeartIcon, shareIcon, handleFavorite, strCategory,
       strAlcoholic } = props;
   const { loadFromStorage, isFavorite } = useContext(FavoriteContext);
   const recipes = loadFromStorage();
