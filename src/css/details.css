@@ -16,10 +16,19 @@ ex: image-details img {
   width: fit-content;
 }
 
+.button-iniciar {
+  position: fixed;
+}
+
 .card-details {
   border: 1px solid red;
   display: block;
   width: 50%;
+}
+
+.carroussel {
+  display: flex;
+  overflow-x: auto;
 }
 
 .image-details {
@@ -86,5 +95,4 @@ aqui vai as configuracoes de video
   /*
   aqui vai as configuracoes de video
   */
-
 }
