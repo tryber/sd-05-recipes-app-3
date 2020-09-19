@@ -33,8 +33,7 @@ function OngoingRecipe(props) {
       .then((food) => setOngoing(food.meals))
       .then(localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]: [] } })))
       .catch((error) => console.log('comida', error));
-    }
-    else if (props.type === 'bebida') {
+    } else if (props.type === 'bebida') {
       lookUpIdDrink(idRecipe)
       .then((drink) => setOngoing(drink.drinks))
       .catch((error) => console.log('bebida', error));
@@ -45,16 +44,19 @@ function OngoingRecipe(props) {
   return (
     <div className="body-details">
       <ImageDetail strOption={strMeal || strDrink} thumb={strMealThumb || strDrinkThumb} />
-      <CardDetail strOption={strMeal || strDrink} strCategory={strCategory}
+      <CardDetail
+        strOption={strMeal || strDrink} strCategory={strCategory}
         favorite={favorite} blackHeartIcon={blackHeartIcon}
         whiteHeartIcon={whiteHeartIcon} shareIcon={shareIcon}
         handleFavorite={handleFavorite}
       />
       <IngredientOngoing
-        ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
+        ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe}
+      />
       <InstructionsDetail instructions={strInstructions} />
       <Link to="/receitas-feitas">
-        <button data-testid="finish-recipe-btn" type="button" id="btn" disabled>Finalizar Receita</button>
+        <button data-testid="finish-recipe-btn" type="button" id="btn" disabled>
+        Finalizar Receita</button>
       </Link>
     </div>
   );
