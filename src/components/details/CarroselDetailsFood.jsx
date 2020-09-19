@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { allDrinksList } from '../../service/apis';
+import { allMealsList } from '../../service/apis';
 import '../../css/details.css';
 
-function CarroselDetails() {
+function CarroselDetailsFood() {
   const [recomendado, setRecomendado] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    allDrinksList()
-      .then((resp) => setRecomendado(resp.drinks.slice(0, 6)))
+    allMealsList()
+      .then((resp) => setRecomendado(resp.meals.slice(0, 6)))
       .catch((error) => alert('Algo inesperado aconteceu:', error));
     setIsLoading(false);
   }, []);
@@ -17,12 +17,12 @@ function CarroselDetails() {
       <div className="carroussel">
         {!isLoading &&
           recomendado.map((recomendations, index) => (
-            <div key={recomendations.idDrink} data-testid={`${index}-recomendation-card`}>
-              <h3 data-testid={`${index}-recomendation-title`}>{recomendations.strDrink}</h3>
+            <div key={recomendations.idMeal} data-testid={`${index}-recomendation-card`}>
+              <h3 data-testid={`${index}-recomendation-title`}>{recomendations.strMeal}</h3>
               <img
                 data-testid={`${index}-card-img`}
-                alt="drink"
-                src={recomendations.strDrinkThumb}
+                alt="food"
+                src={recomendations.strMealThumb}
               />
             </div>
           ))}
@@ -31,4 +31,4 @@ function CarroselDetails() {
   );
 }
 
-export default CarroselDetails;
+export default CarroselDetailsFood;

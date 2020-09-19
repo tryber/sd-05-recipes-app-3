@@ -23,6 +23,7 @@ const CardDetail = (props) => {
   function handleFavorite(favoriteRecipe) {
     isFavorite(favoriteRecipe, favorite);
   }
+    
   return (
     <div className="card-details">
       <h3 data-testid="recipe-title">{strOption}</h3>
