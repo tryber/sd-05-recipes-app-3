@@ -10,23 +10,26 @@ import FoodCategories from '../components/FoodCategories';
 
 function MainFood() {
   const {
-    data, setData, setFetching, fetching, setPage, category, search,
+    data,
+    setData,
+    setFetching,
+    fetching,
+    setPage,
+    category,
+    search,
+    isIngrFilter,
   } = useContext(RecipeContext);
-  // let previous = false;
-  // if (!data) previous = true;
-  useEffect(
-    () => {
-      setPage('MainFood');
+  // let previous = false; if (!data) previous = true;
+  useEffect(() => {
+    setPage('MainFood');
+    if (!isIngrFilter) {
       allMealsList()
-      .then((response) => setData(response.meals))
-      .catch((error) => alert('Algo inesperado aconteceu:', error));
+        .then((response) => setData(response.meals))
+        .catch((error) => alert('Algo inesperado aconteceu:', error));
       setFetching(false);
-    },
-    [
-      /* previous */
-    ],
-  );
-
+    }
+  }, []);
+  // previous dentro do [] deixado comentado pelo Elis
   if (fetching) {
     return (
       <div>
@@ -37,7 +40,7 @@ function MainFood() {
     );
   }
 
-  return (data.length === 1 && category === '' && search !== '') ? (
+  return data.length === 1 && category === '' && search !== '' ? (
     <div>
       <Redirect to={`/comidas/${data[0].idMeal}`} />
     </div>

@@ -14,6 +14,7 @@ const RecipeProvider = ({ children }) => {
   const [category, setCategory] = useState('');
   const [done, setDone] = useState(false);
   const [ongoing, setOngoing] = useState(['data']);
+  const [isIngrFilter, setIsIngrFilter] = useState(false);
   const context = {
     email,
     setEmail,
@@ -37,6 +38,8 @@ const RecipeProvider = ({ children }) => {
     setDone,
     ongoing,
     setOngoing,
+    isIngrFilter,
+    setIsIngrFilter,
   };
 
   return <RecipeContext.Provider value={context}>{children}</RecipeContext.Provider>;
