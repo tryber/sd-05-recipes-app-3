@@ -17,9 +17,9 @@ const CardDetail = (props) => {
   }
   return (
     <div className="card-details">
-    <h3 data-testid="recipe-title">{strOption}</h3>
-              <p data-testid="recipe-category">{strCategory}</p>
-  {/*  <p data-testid="recipe-category">{type.toUpperCase()}</p> */}
+      <h3 data-testid="recipe-title">{strOption}</h3>
+      <p data-testid="recipe-category">{strCategory}</p>
+      {/*  <p data-testid="recipe-category">{type.toUpperCase()}</p> */}
       <div className="icon">
         <button
           type="button"

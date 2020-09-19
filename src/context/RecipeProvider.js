@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
+
 const RecipeProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -40,7 +41,7 @@ const RecipeProvider = ({ children }) => {
     isIngrFilter,
     setIsIngrFilter,
   };
-  
+
   return <RecipeContext.Provider value={context}>{children}</RecipeContext.Provider>;
 };
 export default RecipeProvider;
