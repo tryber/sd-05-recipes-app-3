@@ -12,8 +12,9 @@ class StartRecipe extends Component {
     return (
       <Link to={literals}>
         <button
-        /* className="button-iniciar" */
-        data-testid="start-recipe-btn">
+          /* className="button-iniciar" */
+          data-testid="start-recipe-btn"
+        >
         Iniciar Receita
         </button>
       </Link>

@@ -24,7 +24,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route
-          exact path="/bebidas/:idRecipe" render={(props) => <DrinkDetails {...props} />} />
+          exact path="/bebidas/:idRecipe"
+          render={(props) => <DrinkDetails {...props} />}
+        />
         <Route exact path="/comidas/:idRecipe" render={(props) => <FoodDetails {...props} />} />
         <Route exact path="/comidas" component={MainFood} />
         <Route exact path="/bebidas" component={MainDrink} />
@@ -32,7 +34,7 @@ function App() {
           exact path="/comidas/:idRecipe/in-progress"
           render={(props) => <OngoingRecipe {...props} type="comida" />}
         />
-        <Route 
+        <Route
           exact path="/bebidas/:idRecipe/in-progress"
           render={(props) => <OngoingRecipe {...props} type="bebida" />}
         />
