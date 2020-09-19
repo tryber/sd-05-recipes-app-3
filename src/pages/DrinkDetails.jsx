@@ -56,7 +56,7 @@ function DrinkDetails(props) {
         blackHeartIcon={blackHeartIcon}
         whiteHeartIcon={whiteHeartIcon}
         handleFavorite={handleFavorite}
-        strCategory={strCategory}
+        strCategory=""
         strAlcoholic={strAlcoholic}
       />
       <ShareButton url={props} />
