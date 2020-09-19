@@ -19,7 +19,7 @@ const verifyChecked = (setState, element, idRecipe, ing) => {
   /* const storage = JSON.parse(localStorage.getItem('InProgressRecipes'));
   console.log(storage.cocktails); */
   // { cocktails: { id: [ingredientes]}
-  localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]:[ing] } }));
+  localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]: [ing] } }));
 };
 
 function IngredientOngoing(props) {

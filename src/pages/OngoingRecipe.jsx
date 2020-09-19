@@ -21,7 +21,7 @@ function OngoingRecipe(props) {
   };
   const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
   const {
-    strMealThumb, strMeal, strDrinkThumb, strDrink, strInstructions, strCategory
+    strMealThumb, strMeal, strDrinkThumb, strDrink, strInstructions, strCategory,
   } = ongoing[0];
   const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
   // uma saida no console pra vc saber o que esta manipulado
@@ -31,7 +31,7 @@ function OngoingRecipe(props) {
     if (props.type === 'comida') {
       lookUpIdMeal(idRecipe)
       .then((food) => setOngoing(food.meals))
-      .then(localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [ idRecipe ]: [] } })))
+      .then(localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]: [] } })))
       .catch((error) => console.log('comida', error));
     }
     else if (props.type === 'bebida') {
@@ -44,24 +44,14 @@ function OngoingRecipe(props) {
 
   return (
     <div className="body-details">
-      <ImageDetail
-        strOption={strMeal || strDrink}
-        thumb={strMealThumb || strDrinkThumb}
-      />
-      <CardDetail
-        strOption={strMeal || strDrink}
-        strCategory={strCategory}
-        favorite={favorite}
-        blackHeartIcon={blackHeartIcon}
-        whiteHeartIcon={whiteHeartIcon}
-        shareIcon={shareIcon}
+      <ImageDetail strOption={strMeal || strDrink} thumb={strMealThumb || strDrinkThumb} />
+      <CardDetail strOption={strMeal || strDrink} strCategory={strCategory}
+        favorite={favorite} blackHeartIcon={blackHeartIcon}
+        whiteHeartIcon={whiteHeartIcon} shareIcon={shareIcon}
         handleFavorite={handleFavorite}
       />
       <IngredientOngoing
-        ingredient={allIngredients}
-        measure={allMeasures}
-        idRecipe={idRecipe}
-        />
+        ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
       <InstructionsDetail instructions={strInstructions} />
       <Link to="/receitas-feitas">
         <button data-testid="finish-recipe-btn" type="button" id="btn" disabled>Finalizar Receita</button>
