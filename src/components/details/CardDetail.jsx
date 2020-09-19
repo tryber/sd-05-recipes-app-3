@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { blackHeartIcon } from '../../images';
 import { shareIcon } from '../../images'; */
 import FavoriteContext from '../../context/FavoriteContext';
+
 const CardDetail = (props) => {
   const {
     id,
@@ -11,7 +12,7 @@ const CardDetail = (props) => {
     strCategory,
     blackHeartIcon,
     whiteHeartIcon,
-    shareIcon
+    shareIcon,
   } = props;
 
   const { loadFromStorage, isFavorite } = useContext(FavoriteContext);
