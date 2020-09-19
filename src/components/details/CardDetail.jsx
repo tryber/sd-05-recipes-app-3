@@ -47,7 +47,7 @@ const CardDetail = (props) => {
 export default CardDetail;
 
 CardDetail.propTypes = {
-  strOption: PropTypes.string.isRequired,
+  // strOption: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
   handleFavorite: PropTypes.func.isRequired,
   blackHeartIcon: PropTypes.string.isRequired,
