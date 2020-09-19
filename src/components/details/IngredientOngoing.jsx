@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from '../../context/RecipeContext';
 
-const verifyChecked = (setState, element ) => {
+const verifyChecked = (setState, element) => {
   // fonte https://qastack.com.br/programming/5541387/check-if-all-checkboxes-are-selected
   if (document.querySelector(`label[for="${element}"]`).style.textDecoration === 'line-through') {
     document.querySelector(`label[for="${element}"]`).style.textDecoration = null;
@@ -21,7 +21,7 @@ const verifyChecked = (setState, element ) => {
 // function localStore() {
 // const storage = JSON.parse(localStorage.getItem('InProgressRecipes'));
 // localStorage.
-// setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]: 
+// setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]:
 // [...state.storage, ing] } }));
 // }
 
