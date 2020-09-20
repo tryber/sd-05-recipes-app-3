@@ -40,7 +40,7 @@ function MainDrink() {
     );
   }
 
-  return data.length === 1 && category === '' && search !== '' ? (
+  return (data.length === 1 && category === '' && search !== '') ? (
     <div>
       <Redirect to={`/bebidas/${data[0].idDrink}`} />
     </div>

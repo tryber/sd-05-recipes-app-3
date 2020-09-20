@@ -12,15 +12,20 @@ function copyToClipboard(text) {
 
 function ShareButton(props) {
   const { pathname } = props.url.location;
+  console.log(pathname);
 
   return (
-    <input
-      type="image"
-      src={shareIcon}
-      alt="Share Button"
-      data-testid="share-btn"
-      onClick={() => copyToClipboard(pathname)}
-    />
+    <div className="icon">
+      <input
+        style={{ textDecoration: 'none' }}
+        type="image"
+        src={shareIcon}
+        alt="Share Button"
+        data-testid="share-btn"
+        value={pathname}
+        onClick={({ target }) => copyToClipboard(target.value)}
+      />
+    </div>
   );
 }
 

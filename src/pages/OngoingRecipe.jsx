@@ -1,28 +1,30 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
 import '../css/details.css';
-import { whiteHeartIcon } from '../images';
-import { blackHeartIcon } from '../images';
-import { shareIcon } from '../images';
 import recipeConstructor from '../components/details/recipeconstructor.js';
 import ImageDetail from '../components/details/ImageDetail';
 import CardDetail from '../components/details/CardDetail';
 import IngredientOngoing from '../components/IngredientOngoing';
 import InstructionsDetail from '../components/details/InstructionsDetail';
 import { lookUpIdMeal, lookUpIdDrink } from '../service/apis';
+import FinishRecipeButton from '../components/details/FinishRecipeButton';
+import FavoriteButton from '../components/details/FavoriteButton';
+import ShareButton from '../components/details/ShareButton';
 
 function OngoingRecipe(props) {
   const { idRecipe } = props.match.params;
-  const [favorite, setFavorite] = useState(false);
-  const handleFavorite = () => {
-    setFavorite(!favorite);
-  };
   const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
   const {
-    strMealThumb, strMeal, strDrinkThumb, strDrink, strInstructions, strCategory,
+    strMealThumb,
+    strMeal,
+    strDrinkThumb,
+    strDrink,
+    strInstructions,
+    strCategory,
   } = ongoing[0];
+  //
   const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
   // uma saida no console pra vc saber o que esta manipulado
   // console.log(allIngredients, allMeasures);
@@ -30,34 +32,34 @@ function OngoingRecipe(props) {
     setFetching(true);
     if (props.type === 'comida') {
       lookUpIdMeal(idRecipe)
-      .then((food) => setOngoing(food.meals))
-      .then(localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]: [] } })))
-      .catch((error) => console.log('comida', error));
+        .then((food) => setOngoing(food.meals))
+        .then(
+          localStorage.setItem(
+            'InProgressRecipes',
+            JSON.stringify({ cocktails: { [idRecipe]: [] } }),
+          ),
+        )
+        .catch((error) => console.log('comida', error));
     } else if (props.type === 'bebida') {
       lookUpIdDrink(idRecipe)
-      .then((drink) => setOngoing(drink.drinks))
-      .catch((error) => console.log('bebida', error));
+        .then((drink) => setOngoing(drink.drinks))
+        .catch((error) => console.log('bebida', error));
     }
     setFetching(false);
   }, []);
-
+//
   return (
     <div className="body-details">
       <ImageDetail strOption={strMeal || strDrink} thumb={strMealThumb || strDrinkThumb} />
       <CardDetail
-        strOption={strMeal || strDrink} strCategory={strCategory}
-        favorite={favorite} blackHeartIcon={blackHeartIcon}
-        whiteHeartIcon={whiteHeartIcon} shareIcon={shareIcon}
-        handleFavorite={handleFavorite}
+        strOption={strMeal || strDrink}
+        trCategory={strCategory}
       />
-      <IngredientOngoing
-        ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe}
-      />
+      <FavoriteButton />
+      <ShareButton url={props} />
+      <IngredientOngoing ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
       <InstructionsDetail instructions={strInstructions} />
-      <Link to="/receitas-feitas">
-        <button data-testid="finish-recipe-btn" type="button" id="btn" disabled>
-        Finalizar Receita</button>
-      </Link>
+      <FinishRecipeButton literals={'/receitas-feitas'} />
     </div>
   );
 }
