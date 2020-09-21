@@ -1,4 +1,4 @@
-/*
+/* /*
 details.css Contribuiter: Elisangelo,
 
 para acessar elementos filhos de uma classe faca:
@@ -8,6 +8,132 @@ classeDoElementPai elementoDesejado {
 ex: image-details img {
 }
 */
+
+.icon img {
+  display: block;
+  width: 5vh;
+}
+
+.ingredients-details {
+  border: 1px solid rgb(110, 52, 52);
+  display: block;
+}
+
+.instructions-details {
+  border: 1px solid rgb(227, 243, 5);
+  display: block;
+}
+
+.video-details video {
+  border: 1px solid red;
+  display: block;
+}
+
+.recomendations-details {
+  border: 1px solid blue;
+  display: block;
+}
+
+.card-body {
+  display: block;
+  height: fit-content;
+  justify-content: space-around;
+  position: relative;
+}
+
+.body-details {
+  border: 5px solid rgb(5, 5, 5);
+  flex-direction: column;
+  width: 100vw;
+}
+
+.start-recipe-button button , .finish-recipe-button button {
+  bottom: 0;
+  display: flex;
+  position: fixed;
+  right: 0;
+}
+
+.card-details {
+  border: 1px solid red;
+  display: block;
+  height: 20vh;
+  position: relative;
+  top: auto;
+  width: 50%;
+}
+
+.icon {
+  display: block;
+  font-style: normal;
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.carroussel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: auto;
+  overflow-x: auto;
+  position: relative;
+  top: auto;
+  width: 95%;
+}
+
+.carroussel-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  position: relative;
+  width: 90%;
+}
+
+.carroussel img {
+  border-radius: 10px;
+  padding: 5px;
+  width: 45vw;
+}
+
+.image-details {
+  display: block;
+  justify-content: center;
+  margin: auto;
+  position: relative;
+  top: auto;
+  width: 100vw;
+}
+
+.image-details img {
+  background-color: whitesmoke;
+  border: 1px solid rgb(243, 32, 225);
+  display: flex;
+  margin: auto;
+  position: relative;
+  top: auto;
+  width: 100%;
+}
+
+/* .ingredients-details {
+  border: 1px solid rgb(110, 52, 52);
+  display: block;
+}
+
+.instructions-details {
+  border: 1px solid rgb(227, 243, 5);
+  display: block;
+}
+
+.video-details video {
+  border: 1px solid red;
+  display: block;
+}
+
+.recomendations-details {
+  border: 1px solid blue;
+  display: block;
+}
 
 .body-details {
   border: 5px solid rgb(5, 5, 5);
@@ -43,56 +169,25 @@ ex: image-details img {
   margin: auto;
   width: 97vw;
 
-  /*
   border-radius: 5px;
   justify-content: right;
   min-width: 10vw;
   width: 100%;
-   flex-direction: column;
+  flex-direction: column;
   margin: 2vh 1vw;
   overflow: hidden;
   position: static;
   top: 12vw;
-  */
-
 }
 
-.icon img {
-  width: 5vh;
+css atualizado
+
+details.css Contribuiter: Elisangelo,
+
+para acessar elementos filhos de uma classe faca:
+classeDoElementPai elementoDesejado {
+  regras css
 }
-
-.ingredients-details {
-  border: 1px solid rgb(110, 52, 52);
-  display: block;
-
-  /* width: 100%;
-  justify-content: left;
-  background-color: white; */
+ex: image-details img {
 }
-
-.instructions-details {
-  border: 1px solid rgb(227, 243, 5);
-  display: block;
-
-  /* width: 90%;
-  height: fit-content;
-  background-color: rgb(201, 235, 245); */
-
-}
-
-.video-details video {
-  border: 1px solid red;
-
-  /*
-aqui vai as configuracoes de video
 */
-
-}
-
-.recomendations-details {
-  border: 1px solid blue;
-
-  /*
-  aqui vai as configuracoes de video
-  */
-}

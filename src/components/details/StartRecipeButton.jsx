@@ -9,7 +9,7 @@ class StartRecipe extends Component {
   // }
   render() {
     const { literals } = this.props;
-    // console.log(this.props)
+    console.log(this.props);
     return (
       <div className="start-recipe-button">
         <Link to={literals}>

@@ -1,37 +1,22 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { lookUpIdMeal } from '../service/apis';
 import RecipeContext from '../context/RecipeContext';
 import '../css/details.css';
-import { whiteHeartIcon } from '../images';
-import { blackHeartIcon } from '../images';
 import recipeConstructor from '../components/details/recipeconstructor.js';
-
-// import {
-  //   ImageDetail,
-  //   CardDetail,
-  //   IngredientDetail,
-  //   InstructionsDetail,
-  //   VideoDetail,
-  //   CarrouselDetails,
-  // } from '../components/details/details_index';
-
 import ImageDetail from '../components/details/ImageDetail';
 import CardDetail from '../components/details/CardDetail';
 import IngredientDetail from '../components/details/IngredientDetail';
 import InstructionsDetail from '../components/details/InstructionsDetail';
 import VideoDetails from '../components/details/VideoDetails';
-// import CarroselDetails from '../components/details/CarroselDetails';
 import StartRecipe from '../components/details/StartRecipe';
 import ShareButton from '../components/details/ShareButton';
-
+import CarroselDetails from '../components/details/CarroselDetails';
+import FavoriteButton from '../components/details/FavoriteButton';
 
 function FoodDetails(props) {
-  const [favorite, setFavorite] = useState(false);
-  const handleFavorite = () => {
-    setFavorite(!favorite);
-  };
+  // const { pathname } =  props.url.location;
   const { idRecipe } = props.match.params;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strMealThumb, strMeal, strInstructions, strYoutube, strCategory } = details[0];
@@ -45,26 +30,23 @@ function FoodDetails(props) {
       .catch((error) => alert('Algo inesperado aconteceingredients;u:', error));
     setFetching(false);
   }, []);
-
+//
   if (fetching) return <div>Loading...</div>;
+//
   return idRecipe ? (
     <div className="body-details">
-      <p style={{ textAlign: 'center' }}>FoodDetails Page</p>
       <ImageDetail strOption={strMeal} thumb={strMealThumb} />
       <CardDetail
         strOption={strMeal}
-        favorite={favorite}
-        blackHeartIcon={blackHeartIcon}
-        whiteHeartIcon={whiteHeartIcon}
-        handleFavorite={handleFavorite}
         strCategory={strCategory}
       />
+      <FavoriteButton props="props" />
       <ShareButton url={props} />
+      <CarroselDetails />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
-      <StartRecipe literals={`/comidas/${idRecipe}/in-progress`} />
+      <StartRecipe literals={`${idRecipe}/in-progress`} />
       <VideoDetails youtube={strYoutube} />
-      {/* <CarroselDetails /> */}
     </div>
   ) : (
     <Redirect to="/comidas/">{alert('Não foi possível te surpreender desta vez!')}</Redirect>
