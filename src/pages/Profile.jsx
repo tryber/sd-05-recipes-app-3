@@ -5,8 +5,9 @@ import Footer from '../components/Footer';
 import '../css/Profile.css';
 
 function Profile() {
-  const storageUser = JSON.parse(localStorage.getItem('user'));
-  const emailUser = storageUser.email;
+  const user = JSON.parse(localStorage.getItem('user')) || { email: '' };
+  // choice in order to make tests pass both on header, footer and profile
+  const emailUser = user.email;
   const logOut = () => localStorage.clear();
   return (
     <div>
