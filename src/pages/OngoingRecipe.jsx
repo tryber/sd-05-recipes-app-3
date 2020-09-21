@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
@@ -12,10 +12,33 @@ import { lookUpIdMeal, lookUpIdDrink } from '../service/apis';
 import FinishRecipeButton from '../components/details/FinishRecipeButton';
 import FavoriteButton from '../components/details/FavoriteButton';
 import ShareButton from '../components/details/ShareButton';
+import FavoriteContext from '../context/FavoriteContext';
 
 function OngoingRecipe(props) {
-  const { idRecipe } = props.match.params;
+  // const { idRecipe } = props.match.params;
   const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
+  const { readFromStorage, isFavorite } = useContext(FavoriteContext);
+  const {
+    location: { pathname }, match: { params: { idRecipe }, }, type } = props;
+  const isItFavorite = readFromStorage()
+    ? readFromStorage().some((itIs) => itIs.id === idRecipe)
+    : false;
+  const [favorite, setFavorite] = useState(isItFavorite);
+  function handleFavorite(favoriteRecipeId) {
+    const favoritedRecipe = {
+      id: favoriteRecipeId,
+      type: type,
+      area: strArea,
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb,
+    };
+    // recipes = recipes.filter((card) => card.id !== favoriteRecipeId);
+    isFavorite(favoritedRecipe, favorite);
+    setFavorite(!favorite);
+    console.log(favorite ? 'Receita desfavoritada:' : 'Receita favoritada:', favoritedRecipe);
+  }
   const {
     strMealThumb,
     strMeal,
@@ -23,8 +46,12 @@ function OngoingRecipe(props) {
     strDrink,
     strInstructions,
     strCategory,
+    strArea,
+    strAlcoholic,
   } = ongoing[0];
-  //
+  // 
+  const name = type === 'comidas' ? strMeal : strDrink;
+  const thumb = type === 'comidas' ? strMealThumb : strDrinkThumb;
   const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
   // uma saida no console pra vc saber o que esta manipulado
   // console.log(allIngredients, allMeasures);
@@ -50,13 +77,13 @@ function OngoingRecipe(props) {
 //
   return (
     <div className="body-details">
-      <ImageDetail strOption={strMeal || strDrink} thumb={strMealThumb || strDrinkThumb} />
+      <ImageDetail strOption={name} thumb={thumb} />
       <CardDetail
         strOption={strMeal || strDrink}
         trCategory={strCategory}
       />
-      <FavoriteButton />
-      <ShareButton url={props} />
+      <FavoriteButton id={idRecipe} func={handleFavorite} idx="" favorite={favorite} />
+      <ShareButton url={pathname} literals={'-share-btn'} alt={name} idx='' />
       <IngredientOngoing ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
       <InstructionsDetail instructions={strInstructions} />
       <FinishRecipeButton literals={'/receitas-feitas'} />

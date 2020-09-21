@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/Profile.css';
+import recipeConstructor from '../components/details/recipeconstructor';
 
 function Profile() {
   const storageUser = JSON.parse(localStorage.getItem('user'));
-  const emailUser = storageUser.email;
+  console.log(storageUser);
+  const emailUser = storageUser ? storageUser.email : 'Os_Indecisos@users.com.br';
   const logOut = () => localStorage.clear();
   return (
     <div>

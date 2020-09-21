@@ -6,13 +6,13 @@ class CardDetail extends Component {
   //   super(props);
   // }
   render() {
-    const { strOption, strCategory, strAlcoholic } = this.props;
+    const { strOption, strCategory, strAlcoholic, strArea, type } = this.props;
     return (
       <div className="card-body">
         <div className="card-details">
           <h1 data-testid="recipe-title">{strOption}</h1>
           <h3 data-testid="recipe-category">
-            {strAlcoholic} {strCategory}
+            {type === 'comidas' ? (`${strArea} - ${strCategory}`) : (strAlcoholic)}
           </h3>
         </div>
       </div>

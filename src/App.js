@@ -25,11 +25,12 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route
           exact path="/bebidas/:idRecipe"
-          render={(props) => <DrinkDetails {...props} />}
+          render={(props) => <DrinkDetails {...props} type="bebidas"/>}
         />
-        <Route exact path="/comidas/:idRecipe" render={(props) => <FoodDetails {...props} />} />
-        <Route exact path="/comidas" component={MainFood} />
-        <Route exact path="/bebidas" component={MainDrink} />
+        <Route
+          exact path="/comidas/:idRecipe"
+          render={(props) => <FoodDetails {...props} type="comidas" />}
+        />
         <Route
           exact path="/comidas/:idRecipe/in-progress"
           render={(props) => <OngoingRecipe {...props} type="comida" />}
@@ -38,6 +39,8 @@ function App() {
           exact path="/bebidas/:idRecipe/in-progress"
           render={(props) => <OngoingRecipe {...props} type="bebida" />}
         />
+        <Route exact path="/comidas" component={MainFood} />
+        <Route exact path="/bebidas" component={MainDrink} />
         <Route exact path="/explorar" component={Explore} />
         <Route exact path="/explorar/comidas" component={ExploreFood} />
         <Route exact path="/explorar/bebidas" component={ExploreDrink} />
@@ -48,6 +51,10 @@ function App() {
         <Route path="/perfil" component={Profile} />
         <Route path="/receitas-feitas" component={DoneRecipes} />
         <Route path="/receitas-favoritas" component={FavoriteRecipes} />
+        {/* <Route
+          exact path="/receitas-favoritas"
+          render={(props) => <FavoriteRecipes {...props} />}
+        /> */}
       </Switch>
     </BrowserRouter>
   );

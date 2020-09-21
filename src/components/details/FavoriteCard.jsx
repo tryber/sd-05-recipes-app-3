@@ -1,80 +1,62 @@
 import { Link } from 'react-router-dom';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import FavoriteContext from '../../context/FavoriteContext';
-import { whiteHeartIcon } from '../../images';
-import { blackHeartIcon } from '../../images';
-import { shareIcon } from '../../images';
-import '../../css/details.css';
-
-const SharingButton = (func, share, name, index) => (
-  <div>
-    <button type="button" className="icon" value="share" onClick={() => func()}>
-      <img
-        data-testid={`${index}-horizontal-share-btn`}
-        src={share}
-        alt={`sharing ${name} recipe`}
-      />
-    </button>
-  </div>
-);
-
-const FavoriteButton = (id, handle, index, favorite, blackHeart, whiteHeart) => (
-  <div>
-    <button type="button" className="icon" value={id} onClick={() => handle(id)}>
-      <img
-        data-testid={`${index}-horizontal-favorite-btn`}
-        src={favorite ? blackHeart : whiteHeart}
-        alt="favorited recipe"
-      />
-    </button>
-  </div>
-);
+import '../../css/favorite.css';
+import ShareButton from './ShareButton';
+import FavoriteButton from './FavoriteButton';
 
 function FavoriteCard(props) {
-  const { id, index, image, name, category, area, alcoholicOrNot, type, recipes } = props;
-  const { loadFromStorage, isFavorite } = useContext(FavoriteContext);
-  const fromStore = loadFromStorage();
-  const isItFavorite = fromStore.some((itIs) => itIs.id === id);
+  const { id, index, image, name, category, area, alcoholicOrNot, type, recipes, setReload, reload } = props;
+  const { readFromStorage, getDesfavorited } = useContext(FavoriteContext);
+  const isItFavorite = readFromStorage().some((itIs) => itIs.id === id);
   const [favorite, setFavorite] = useState(isItFavorite);
+
+  // useEffect(() => {
+  //   //   setFavorite(isItFavorite);
+  //   setFavorite(isItFavorite)
+  // }, []);
   //
   const handleFavorite = (ide) => {
-    const disFavorite = recipes.filter((curValue) => curValue.id === ide);
+    const disFavorite = recipes.filter((curValue) => curValue.id === ide).map(id => id.id);
     // console.log('Receita a ser deletada:', disFavorite);
-    //
     if (disFavorite) {
-      // console.log(favorite);
-      document.querySelector(`.body-card-${id}`).remove();
-      isFavorite(...disFavorite, favorite);
-      setFavorite(!favorite);
+      getDesfavorited(...disFavorite, !favorite);
+      setFavorite(favorite);
+      setReload(!reload);
+
+      // document.querySelector(`.body-card-${id}`).remove();
     }
   };
+  console.log(favorite);
   //
-  const handleSharing = () => console.log('sharingButton');
-  console.log('origem:', area, 'categoria:', category, 'tipo:', type);
   return (
-    <div id={name} className={`body-card-${id}`}>
+    <div id={name} className="card-body" >
       <Link to={`${type}/${id}`}>
-        <div className="image-details">
+        <div className="image">
           <img data-testid={`${index}-horizontal-image`} src={image} alt={name} />
         </div>
       </Link>
-      <div className="info-card">
-        <h4>
+      <div className="card-details">
+        <div classname="info">
           {type === 'comidas' ? (
-            <span data-testid={`${index}-horizontal-top-text`}>
-              {area}-{category}
-            </span>
+            <p data-testid={`${index}-horizontal-top-text`}>
+              {`${area} - ${category}`}
+            </p>
           ) : (
-            <span data-testid={`${index}-horizontal-top-text`}>{alcoholicOrNot}</span>
+            <p data-testid={`${index}-horizontal-top-text`}>{alcoholicOrNot}</p>
           )}
-        </h4>
-        <Link to={`${type}/${id}`}>
+        <Link to={`/${type}/${id}`}>
           <h3 data-testid={`${index}-horizontal-name`}>{name}</h3>
         </Link>
-        {SharingButton(handleSharing, shareIcon, name, index)}
-        {FavoriteButton(id, handleFavorite, index, favorite, blackHeartIcon, whiteHeartIcon)}
-      </div>
+        </div>
+        <div className="icon-favorites">
+        <ShareButton literals={`${index}-horizontal-share-btn`} alt={name} idx={index} url={props} id={id}/>
+        {/* {SharingButton(handleSharing, shareIcon, name, index)} */}
+        <FavoriteButton id={id} func={handleFavorite} idx={index} favorite={favorite} />
+        {/* {FavoriteButton(id, handle, index, favorite)} */}
+        </div>
+        </div>
     </div>
   );
 }
@@ -92,3 +74,31 @@ FavoriteCard.propTypes = {
   type: PropTypes.string.isRequired,
   recipes: PropTypes.arrayOf(Object).isRequired,
 };
+
+// const SharingButton = (func, share, name, index) => (
+//   <div>
+//     <button type="button" className="icon" value="share" onClick={() => func()}>
+//       <img
+//         data-testid={`${index}-horizontal-share-btn`}
+//         src={share}
+//         alt={`sharing ${name} recipe`}
+//       />
+//     </button>
+//   </div>
+// );
+
+// const FavoriteButton = (id, handle, index, favorite, blackHeart, whiteHeart) => (
+//   <div>
+//     <button type="button" className="icon" value={id} onClick={() => handle(id)}>
+//       <img
+//         data-testid={`${index}-horizontal-favorite-btn`}
+//         src={favorite ? blackHeart : whiteHeart}
+//         alt={favorite ? "blackHeart" : "whiteHeart"}
+//       />
+//     </button>
+//   </div>
+// );
+
+//
+// const handleSharing = () => console.log('sharingButton');
+// console.log('origem:', area, 'categoria:', category, 'tipo:', type);
