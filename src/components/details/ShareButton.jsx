@@ -1,6 +1,5 @@
 // Cesar me explicou
 import React from 'react';
-import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import shareIcon from '../../images/shareIcon.svg';
 

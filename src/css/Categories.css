@@ -1,5 +1,4 @@
 /* Categories.css individual style by Elisângelo */
-/* */
 .categories {
   color: black;
   display: flex;
@@ -30,17 +29,15 @@
   width: 45vw;
 }
 
-
 .favorite button {
-    color: #1c1d1d;
-    font-size: 15px;
-    font-weight: 300;
-    max-width: 20vh;
-    min-width: 150px;
-    padding: 5px 0;
-    text-align: center;
-    width: 45vw;
-    position: relative;
-    top: 2vh;
-  }
-  
+  color: #1c1d1d;
+  font-size: 15px;
+  font-weight: 300;
+  max-width: 20vh;
+  min-width: 150px;
+  padding: 5px 0;
+  position: relative;
+  text-align: center;
+  top: 2vh;
+  width: 45vw;
+}

@@ -1,5 +1,6 @@
 //  filterbytype
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../css/favorite.css';
 
 function FilterByType({ func }) {
@@ -40,3 +41,8 @@ function FilterByType({ func }) {
   );
 }
 export default FilterByType;
+
+
+FilterByType.propTypes = {
+  func: PropTypes.func.isRequired,
+};

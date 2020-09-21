@@ -14,63 +14,61 @@ function FavoriteRecipes() {
   const [filter, setFilter] = useState('all');
   const [recipes, setRecipes] = useState([]);
   console.log('antes: ', recipes, filter);
- useEffect(() => {
+  useEffect(() => {
     setRecipes([...readFromStorage()]);
   }, [reload]);
-  
-  
+
   const handletype = (type) => {
     setFilter(type);
-    switch (type) {
-    case 'comidas':
-      return setRecipes([...readFromStorage().filter((caso) => caso.type === filter)]);
-    case 'bebidas':
-      return setRecipes([...readFromStorage().filter((caso) => caso.type === filter)]);
-    case 'all':
-       return setRecipes([...readFromStorage()]);//.filter((caso) => caso.type !== filter);
-    default: break;
-    }
+    // switch (type) {
+    // case 'comida':
+    //   return setRecipes([...readFromStorage().filter((caso) => caso.type === filter)]);
+    // case 'bebida':
+    //   return setRecipes([...readFromStorage().filter((caso) => caso.type === filter)]);
+    // case 'all':
+    //    return setRecipes([...readFromStorage()]);//.filter((caso) => caso.type !== filter);
+    // default: break;
+    // }
   };
 
   return recipes.length ? (
     <div className="page-0">
       <Header title="Receitas Favoritas" />
       <FilterByType func={handletype} />
-    <div className="body-page">
-      {recipes.map((item, idx, array) => (
-        <FavoriteCard
-          // key={idx}
-          index={idx}
-          id={item.id}
-          type={item.type}
-          area={item.area}
-          category={item.category}
-          alcoholicOrNot={item.alcoholicOrNot}
-          name={item.name}
-          image={item.image}
-          recipes={array}
-          setReload={setReload}
-          reload={reload}
-        />
-      ))}
+      <div className="body-page">
+        {recipes.map((item, idx, array) => (
+          <FavoriteCard
+            // key={idx}
+            index={idx}
+            id={item.id}
+            type={item.type}
+            area={item.area}
+            category={item.category}
+            alcoholicOrNot={item.alcoholicOrNot}
+            name={item.name}
+            image={item.image}
+            recipes={array}
+            setReload={setReload}
+            reload={reload}
+          />
+        ))}
+      </div>
     </div>
-    </div>
-    ) : (
+  ) : (
     <div className="page-0">
       <Header title="Receitas Favoritas" />
       <div className="body-page1">
         <FilterByType func={handletype} />
-          <div >
-            <p>Você não possui nenhuma receita favoritada!</p>
-          </div>
+        <div>
+          <p>Você não possui nenhuma receita favoritada!</p>
         </div>
       </div>
-    );
-
-  }
+    </div>
+  );
+}
 export default FavoriteRecipes;
-      
-      /*
+
+/*
       (!recipes || recipes.length === 0) ? (
         <div>
         <p>Você não tem nenhuma recipa favoritada!</p>

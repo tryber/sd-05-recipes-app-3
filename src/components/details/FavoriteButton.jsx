@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { whiteHeartIcon } from '../../images';
 import { blackHeartIcon } from '../../images';
-// import '../../css/details.css';
 //
 function FavoriteButton(props) {
   const { id, func, idx, favorite } = props;
@@ -25,9 +24,13 @@ function FavoriteButton(props) {
 
 export default FavoriteButton;
 
-// FavoriteButton.propTypes = {
-//   favorite: PropTypes.bool.isRequired,
-//   handleFavorite: PropTypes.func.isRequired,
-//   blackHeartIcon: PropTypes.string.isRequired,
-//   whiteHeartIcon: PropTypes.string.isRequired,
-// };
+FavoriteButton.propTypes = {
+  idx: PropTypes.number.isRequired,
+  func: PropTypes.func.isRequired,
+  favorite: PropTypes.bool.isRequired,
+  id: PropTypes.string,
+};
+
+FavoriteButton.defaultProps = {
+  id: 'string',
+};

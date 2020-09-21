@@ -6,13 +6,13 @@ class CardDetail extends Component {
   //   super(props);
   // }
   render() {
-    const { strOption, strCategory, strAlcoholic, strArea, type } = this.props;
+    const { strOption, strCategory, alc, strArea, type } = this.props;
     return (
       <div className="card-body">
         <div className="card-details">
           <h1 data-testid="recipe-title">{strOption}</h1>
           <h3 data-testid="recipe-category">
-            {type === 'comidas' ? (`${strArea} - ${strCategory}`) : (strAlcoholic)}
+            {type === 'comida' ? (`${strArea} - ${strCategory}`) : (alc)}
           </h3>
         </div>
       </div>
@@ -24,6 +24,12 @@ export default CardDetail;
 
 CardDetail.propTypes = {
   strOption: PropTypes.string.isRequired,
-  strAlcoholic: PropTypes.string.isRequired,
+  alc: PropTypes.string.isRequired,
   strCategory: PropTypes.string.isRequired,
+  strArea: PropTypes.string,
+  type: PropTypes.string.isRequired,
+};
+
+CardDetail.defaultProps = {
+  strArea: 'origin',
 };
