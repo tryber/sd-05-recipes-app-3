@@ -83,7 +83,8 @@ function OngoingRecipe(props) {
         trCategory={strCategory}
       />
       <FavoriteButton id={idRecipe} func={handleFavorite} idx="" favorite={favorite} />
-      <ShareButton url={pathname} literals={'-share-btn'} alt={name} idx='' />
+      {/* <ShareButton url={pathname} literals={'-share-btn'} alt={name} idx='' /> */}
+      <ShareButton />
       <IngredientOngoing ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
       <InstructionsDetail instructions={strInstructions} />
       <FinishRecipeButton literals={'/receitas-feitas'} />

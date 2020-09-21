@@ -1,29 +1,29 @@
 // Cesar me explicou
 import React from 'react';
-// import PropTypes from 'prop-types';
-import { copy } from 'clipboard-copy';
-
+import PropTypes from 'prop-types';
+import copy from 'clipboard-copy';
 import shareIcon from '../../images/shareIcon.svg';
 
-function copyToClipboard(text) {
-  if (!text) copy(text);
-  // console.log('escopo da funcao copy:', copy(), 'chamada da funcao copy():', copy(text));
-  return alert('Link copiado!');
+function copyToClipboard() {
+  document.getElementById('share-button').innerHTML = 'Link copiado!';
+  return copy(window.location.href);
 }
+// honestidade acadêmica: ajuda do grupo 4
 
-function ShareButton(props) {
-  const { alt = 'share-recipe', idx = '', url = `/comidas/0`, literals } = props;
-// console.log(alt, url) ;
+function ShareButton() {
+  /* const { pathname } = props.url.location;
+  console.log(pathname); */
   return (
-    <div className="icon-share">
-      <img
+    <div className="icon">
+      <input
+        id="share-button"
         style={{ textDecoration: 'none' }}
         type="image"
         src={shareIcon}
-        alt={`${alt} share-btn`}
-        data-testid={`${idx}${literals}`}
-        value={url}
-        onClick={({ target }) => copyToClipboard(target.value)}
+        alt="Share Button"
+        data-testid="share-btn"
+        // value={pathname}
+        onClick={() => copyToClipboard()}
       />
     </div>
   );

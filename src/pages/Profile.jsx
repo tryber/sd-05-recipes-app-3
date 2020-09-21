@@ -6,9 +6,9 @@ import '../css/Profile.css';
 import recipeConstructor from '../components/details/recipeconstructor';
 
 function Profile() {
-  const storageUser = JSON.parse(localStorage.getItem('user'));
-  console.log(storageUser);
-  const emailUser = storageUser ? storageUser.email : 'Os_Indecisos@users.com.br';
+  const user = JSON.parse(localStorage.getItem('user')) || { email: '' };
+  // choice in order to make tests pass both on header, footer and profile
+  const emailUser = user.email;
   const logOut = () => localStorage.clear();
   return (
     <div>
