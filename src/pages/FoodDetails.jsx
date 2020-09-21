@@ -18,6 +18,7 @@ import FavoriteButton from '../components/details/FavoriteButton';
 function FoodDetails(props) {
   // const { pathname } =  props.url.location;
   const { idRecipe } = props.match.params;
+  const { url } = props.match;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strMealThumb, strMeal, strInstructions, strYoutube, strCategory } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
@@ -41,7 +42,7 @@ function FoodDetails(props) {
         strCategory={strCategory}
       />
       <FavoriteButton props="props" />
-      <ShareButton url={props} />
+      <ShareButton idRecipe={idRecipe} url={url} />
       <CarroselDetails />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />

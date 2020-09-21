@@ -32,11 +32,11 @@ function App() {
         <Route exact path="/bebidas" component={MainDrink} />
         <Route
           exact path="/comidas/:idRecipe/in-progress"
-          render={(props) => <OngoingRecipe {...props} type="comida" />}
+          render={(props) => <OngoingRecipe {...props} />}
         />
         <Route
           exact path="/bebidas/:idRecipe/in-progress"
-          render={(props) => <OngoingRecipe {...props} type="bebida" />}
+          render={(props) => <OngoingRecipe {...props} />}
         />
         <Route exact path="/explorar" component={Explore} />
         <Route exact path="/explorar/comidas" component={ExploreFood} />
