@@ -5,14 +5,14 @@ import copy from 'clipboard-copy';
 import shareIcon from '../../images/shareIcon.svg';
 
 function copyToClipboard(url, idRecipe) {
-  const copied = document.getElementById('share-button').innerHTML = 'Link copiado!';
+  document.getElementById('share-button').innerHTML = 'Link copiado!';
   if (url.includes('comida')) {
     copy(`http://localhost:3000/comidas/${idRecipe}`)
-      .then(() => alert(copied));
+      .then(() => alert('Link copiado'));
   }
   if (url.includes('bebida')) {
     copy(`http://localhost:3000/bebidas/${idRecipe}`)
-      .then(() => alert(copied));
+      .then(() => alert('Link copiado'));
   }
 }
 // honestidade acadêmica: ajuda do grupo 4
@@ -20,7 +20,7 @@ function copyToClipboard(url, idRecipe) {
 function ShareButton(props) {
   const { idRecipe, url } = props;
   /* const { pathname } = props.url.location;
-  console.log(pathname); */   
+  console.log(pathname); */
   return (
     <div className="icon">
       <input
@@ -43,4 +43,5 @@ ShareButton.propTypes = {
   url: PropTypes.shape({
     location: PropTypes.string.isRequired,
   }).isRequired,
+  idRecipe: PropTypes.number.isRequired,
 };

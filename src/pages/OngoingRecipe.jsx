@@ -14,7 +14,6 @@ import FavoriteButton from '../components/details/FavoriteButton';
 import ShareButton from '../components/details/ShareButton';
 
 function OngoingRecipe(props) {
-  console.log(props);
   const { idRecipe } = props.match.params;
   const { url } = props.match;
   const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
@@ -70,7 +69,6 @@ OngoingRecipe.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.objectOf(String).isRequired,
   }).isRequired,
-  type: PropTypes.string.isRequired,
 };
 
 export default OngoingRecipe;
