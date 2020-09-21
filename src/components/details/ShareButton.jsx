@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
-
 import shareIcon from '../../images/shareIcon.svg';
 
 function copyToClipboard() {
@@ -11,10 +10,9 @@ function copyToClipboard() {
 }
 // honestidade acadêmica: ajuda do grupo 4
 
-function ShareButton(props) {
-  const { pathname } = props.url.location;
-  console.log(pathname);
-
+function ShareButton() {
+  /* const { pathname } = props.url.location;
+  console.log(pathname); */
   return (
     <div className="icon">
       <input
@@ -24,7 +22,7 @@ function ShareButton(props) {
         src={shareIcon}
         alt="Share Button"
         data-testid="share-btn"
-        value={pathname}
+        // value={pathname}
         onClick={() => copyToClipboard()}
       />
     </div>

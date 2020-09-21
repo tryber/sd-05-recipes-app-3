@@ -18,12 +18,12 @@ const verifyChecked = (setState, element) => {
   }
 };
 
-// function localStore() {
-// const storage = JSON.parse(localStorage.getItem('InProgressRecipes'));
-// localStorage.
-// setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]:
-// [...state.storage, ing] } }));
-// }
+/* function localStore() {
+const storage = JSON.parse(localStorage.getItem('InProgressRecipes'));
+localStorage.
+setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]:
+[...state.storage, ing] } }));
+} */
 
 function IngredientOngoing(props) {
   const { ingredient, measure, idRecipe } = props;
