@@ -1,14 +1,15 @@
 // Cesar me explicou
 import React from 'react';
 import PropTypes from 'prop-types';
-import { copy } from 'clipboard-copy';
+import copy from 'clipboard-copy';
 
 import shareIcon from '../../images/shareIcon.svg';
 
-function copyToClipboard(text) {
-  if (!text) copy(text);
-  return alert('Link copiado!');
+function copyToClipboard() {
+  document.getElementById('share-button').innerHTML = 'Link copiado!';
+  return copy(window.location.href);
 }
+// honestidade acadêmica: ajuda do grupo 4
 
 function ShareButton(props) {
   const { pathname } = props.url.location;
@@ -17,13 +18,14 @@ function ShareButton(props) {
   return (
     <div className="icon">
       <input
+        id="share-button"
         style={{ textDecoration: 'none' }}
         type="image"
         src={shareIcon}
         alt="Share Button"
         data-testid="share-btn"
         value={pathname}
-        onClick={({ target }) => copyToClipboard(target.value)}
+        onClick={() => copyToClipboard()}
       />
     </div>
   );
