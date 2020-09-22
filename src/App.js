@@ -25,19 +25,22 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route
           exact path="/bebidas/:idRecipe"
-          render={(props) => <DrinkDetails {...props} />}
+          render={(props) => <DrinkDetails {...props} /* type="bebidas" *//>}
         />
-        <Route exact path="/comidas/:idRecipe" render={(props) => <FoodDetails {...props} />} />
-        <Route exact path="/comidas" component={MainFood} />
-        <Route exact path="/bebidas" component={MainDrink} />
+        <Route
+          exact path="/comidas/:idRecipe"
+          render={(props) => <FoodDetails {...props} /* type="comidas" */ />}
+        />
         <Route
           exact path="/comidas/:idRecipe/in-progress"
-          render={(props) => <OngoingRecipe {...props} />}
+          render={(props) => <OngoingRecipe {...props} /* type="comidas" */ />}
         />
         <Route
           exact path="/bebidas/:idRecipe/in-progress"
-          render={(props) => <OngoingRecipe {...props} />}
+          render={(props) => <OngoingRecipe {...props} type="bebidas" />}
         />
+        <Route exact path="/comidas" component={MainFood} />
+        <Route exact path="/bebidas" component={MainDrink} />
         <Route exact path="/explorar" component={Explore} />
         <Route exact path="/explorar/comidas" component={ExploreFood} />
         <Route exact path="/explorar/bebidas" component={ExploreDrink} />

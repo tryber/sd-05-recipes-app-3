@@ -2,48 +2,57 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FavoriteContext from './FavoriteContext';
 
-const saveInStorage = (favorite) => {
-  console.log('receita a ser salva:', favorite);
+const saveInStorage = (recipes) => localStorage.setItem('favoriteRecipes', JSON.stringify(recipes));
+
+const readFromStorage = () => JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+const getFavorited = (favoriteRecipe) => {
+  console.log('esta receita será favorita:', favoriteRecipe);
   if (!localStorage.getItem('favoriteRecipes')) {
-    localStorage.setItem('favoriteRecipes', JSON.stringify([favorite]));
-    // console.log(JSON.parse(localStorage.getItem('favoriteRecipes')))
+    saveInStorage([{ ...favoriteRecipe }]);
   } else {
-    const recipes = [...JSON.parse(localStorage.getItem('favoriteRecipes'))];
+    let recipes = readFromStorage();
     // console.log(recipes);
-    const filteredRecipes = recipes.filter((card) => card.id !== favorite.id);
-    localStorage.setItem('favoriteRecipes', JSON.stringify([...filteredRecipes, favorite]));
+    recipes = recipes.filter((card) => card.id !== favoriteRecipe.id);
+    recipes = [...recipes, { ...favoriteRecipe }];
+    saveInStorage(recipes);
+    // console.log('receita favoritada:', favoriteRecipe);
   }
+  // return new Promise((resolve) => {
+  //   setTimeout(() => {
+  //     resolve({ status: 'OK' });
+  //   }, 1000);
+  // });
 };
+//
+function getDesfavorited(recipeId) {
+  console.log('id da receita foi desfavoritada: ', recipeId);
 
-function deleteFromStorage(toBeDeleted) {
-  console.log('receita a ser apagada:', toBeDeleted);
-  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  if (!localStorage.getItem('favoriteRecipes')) return false;
-  const onlyFavorites = favoriteRecipes.filter((card) => card.id !== toBeDeleted.id);
-  localStorage.setItem('favoriteRecipes', JSON.stringify([...onlyFavorites]));
-  return true;
+  let recipes = readFromStorage();
+  // console.log('antes: ', recipes)
+  recipes = recipes ? recipes.filter((recipe) => recipe.id !== recipeId) : [];
+  // console.log('depois: ', recipes)
+
+  saveInStorage(recipes);
+  // console.log('receita desfavoritada:', recipes[recipeId]);
+  // return new Promise((resolve) => {
+  //   setTimeout(() => {
+  //     resolve({ status: 'OK' });
+  //   }, 1000);
+  // });
 }
-
+//
 function FavoriteProvider({ children }) {
-  const loadFromStorage = () => {
-    // const { email } = JSON.parse(localStorage.getItem('user'));
-    // const user = JSON.parse(localStorage.getItem('user'));
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    // console.log('user: ', user.email, 'receitas salva:', favoriteRecipes);
-    // if (user.email  && localStorage.getItem('favoriteRecipes')) {
-      // }
-    // console.log('voce de novo?', user.email );
-    return favoriteRecipes;
-  };
-
   function isFavorite(favoriteRecipe, isItFavorite) {
-    console.log('estado receita favorite?', !isItFavorite);
-    return isItFavorite ? deleteFromStorage(favoriteRecipe) : saveInStorage(favoriteRecipe);
-  }
+    console.log('receita favoritada?: ', isItFavorite, favoriteRecipe);
 
+    // console.log('estado receita favorite?', !isItFavorite,'receita: ', favoriteRecipe);
+    return isItFavorite ? getFavorited(favoriteRecipe) : getDesfavorited(favoriteRecipe);
+  }
+  //
   const Context = {
-    deleteFromStorage,
-    loadFromStorage,
+    getDesfavorited,
+    readFromStorage,
     isFavorite,
   };
 

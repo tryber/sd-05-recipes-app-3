@@ -26,7 +26,7 @@ function FoodCategories() {
         .catch((error) => alert('Algo inesperado aconteceu:', error));
     }
   };
-
+//
   return (
     <div className="categories">
       {categories.map((categ, i) => (i <= 4 ? (
