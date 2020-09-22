@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../../css/details.css'
+import '../../css/details.css';
 
 class ImageDetail extends Component {
   // constructor(props){
