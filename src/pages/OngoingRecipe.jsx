@@ -33,7 +33,7 @@ function OngoingRecipe(props) {
       name,
       image,
     };
-    isFavorite(favoritedRecipe, favorite);
+    isFavorite(favoritedRecipe, !favorite);
     setFavorite(!favorite);
   }
   const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
