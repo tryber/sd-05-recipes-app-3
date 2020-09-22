@@ -26,12 +26,12 @@ function OngoingRecipe(props) {
   const image = (type === 'comidas') ? strMealThumb : strDrinkThumb;
   function handleFavorite(favoriteRecipeId) {
     const favoritedRecipe = { id: favoriteRecipeId,
-      type: type,
+      type,
       area: strArea,
       category: strCategory,
       alcoholicOrNot: strAlcoholic,
-      name: name,
-      image: image,
+      name,
+      image,
     };
     isFavorite(favoritedRecipe, !favorite);
     setFavorite(!favorite);

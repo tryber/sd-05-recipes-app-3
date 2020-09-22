@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../../css/favorite.css';
 
-function FilterByType(func) {
+function FilterByType({ func }) {
   return (
     <div className="filterByType">
       <div key="All" className="favorite">
@@ -12,7 +12,7 @@ function FilterByType(func) {
           type="button"
           // key="All"
           data-testid="filter-by-all-btn"
-          onClick={({ target }) => func(target.value)}
+          onClick={() => func('all')}
         >
           All
         </button>
@@ -22,7 +22,7 @@ function FilterByType(func) {
           type="button"
           value="comidas"
           data-testid="filter-by-food-btn"
-          onClick={({ target }) => func(target.value)}
+          onClick={() => func('comida')}
         >
           Food
         </button>
@@ -32,7 +32,7 @@ function FilterByType(func) {
           type="button"
           value="bebidas"
           data-testid="filter-by-drink-btn"
-          onClick={({ target }) => func(target.value)}
+          onClick={() => func('bebida')}
         >
           Drink
         </button>

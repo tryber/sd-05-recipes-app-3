@@ -6,30 +6,33 @@ import FavoriteContext from '../context/FavoriteContext';
 // import RecipeContext from '../context/RecipeContext';
 import '../css/favorite.css';
 
+// const renderFiltered = [];
+
 function FavoriteRecipes() {
   const { readFromStorage } = useContext(FavoriteContext);
   // const isItFavorite = readFromStorage().some((itIs) => itIs.id === id);
   const [reload, setReload] = useState(false);
   // const loadRecipes = readFromStorage();
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  console.log('antes: ', recipes, filter);
   useEffect(() => {
     setRecipes(readFromStorage());
+    setFilter(!filter);
   }, [reload]);
-  const handletype = (type) => {
-    setFilter(type);
-    // switch (type) {
-    // case 'comida':
-    //   return setRecipes([...readFromStorage().filter((caso) => caso.type === filter)]);
-    // case 'bebida':
-    //   return setRecipes([...readFromStorage().filter((caso) => caso.type === filter)]);
-    // case 'all':
-    //    return setRecipes([...readFromStorage()]);//.filter((caso) => caso.type !== filter);
-    // default: break;
-    // }
-  };
-
+  const handletype = (type) => console.log(type);
+  //   console.log('antes: ', recipes, 'filtro:', type);
+  //   switch (type) {
+  //     case 'all':
+  //       setFilter(!filter);
+  //       renderFiltered = recipes;
+  //     case 'comida':
+  //       renderFiltered = recipes.filter((caso) => caso.type === type);
+  //     case 'bebida':
+  //       renderFiltered = recipes.filter((caso) => caso.type === type);
+  //     default:
+  //       break;
+  //   };
+    // console.log(renderFiltered);
   return (
     <div className="">
       <Header title="Receitas Favoritas" />
@@ -38,26 +41,26 @@ function FavoriteRecipes() {
         <FilterByType func={handletype} />
         {!recipes || recipes.length === 0 ? (
           <div>
-            <p>Você não tem nenhuma recipa favoritada!</p>
+            <p>Você não tem nenhuma receita favoritada!</p>
           </div>
-        ) : (
-        recipes.map((item, idx, array) => (
-          <FavoriteCard
-            // key={idx}
-            index={idx}
-            id={item.id}
-            type={item.type}
-            area={item.area}
-            category={item.category}
-            alcoholicOrNot={item.alcoholicOrNot}
-            name={item.name}
-            image={item.image}
-            recipes={array}
-            setReload={setReload}
-            reload={reload}
-          />
+          ) : (
+            recipes.map((item, idx, array) => (
+              <FavoriteCard
+              // key={idx}
+              index={idx}
+              id={item.id}
+              type={item.type}
+              area={item.area}
+              category={item.category}
+              alcoholicOrNot={item.alcoholicOrNot}
+              name={item.name}
+              image={item.image}
+              recipes={array}
+              setReload={setReload}
+              reload={reload}
+            />
           ))
-          )}
+        )}
       </div>
     </div>
   );
