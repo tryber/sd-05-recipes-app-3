@@ -17,7 +17,7 @@ class StartRecipe extends Component {
             /* className="button-iniciar" */
             data-testid="start-recipe-btn"
           >
-            Iniciar Receita
+            Iniciar Receita!
           </button>
         </Link>
       </div>

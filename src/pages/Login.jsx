@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
 import '../css/Login.css';
+import { logo } from '../../src/images/'
 
 function inputEmail(handleEmailChange) {
   return (
@@ -63,9 +64,7 @@ function Login() {
 
   return (
     <div className="login-page" data-testid="">
-      <div className="title">
-        <h1>Login</h1>
-      </div>
+      <img src={logo} className="title" />
       {inputEmail(handleEmailChange)}
       {inputPassword(handlePasswordChange)}
       <Link className="enter" to="/comidas">

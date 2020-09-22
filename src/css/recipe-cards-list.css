@@ -9,7 +9,7 @@
   margin-bottom: 1vh;
   max-width: 20vw;
   min-width: 10pc;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: static;
   top: 12vw;
 }

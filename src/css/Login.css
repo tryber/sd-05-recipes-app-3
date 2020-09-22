@@ -1,19 +1,19 @@
 .title {
-  color: rgb(237, 95, 101);
-  display: flex;
-  font-size: 36px;
-  font-weight: 700;
-  height: 25vh;
-  justify-content: space-around;
-  margin-bottom: 10vh;
-  margin-top: 8vh;
-  width: 100%;
+  background-color: rgb(151, 156, 160);
+  border: dashed 5px rgb(237, 95, 101);
+  border-radius: 15px;
+  margin: auto;
+  margin-top: 24vh;
+  margin-bottom: 8vh;
+  width: 18em;
 }
 
 .login-page {
+  background-color:rgb(237, 95, 101);
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  margin: auto;
+  /* margin: auto; */
   width: 100%;
 }
 
@@ -29,7 +29,7 @@
 
 .login-input input {
   background-color: white;
-  border: 1px solid rgb(237, 95, 101);
+  border: 2px solid rgb(247, 206, 93);
   border-radius: 50px;
   color: black;
   font-size: 20px;
@@ -43,7 +43,7 @@
 }
 
 .enter button {
-  background-color: rgb(237, 95, 101);
+  background-color: rgb(247, 206, 93);
   border: 1px solid black;
   border-radius: 50px;
   color: black;

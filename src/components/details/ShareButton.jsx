@@ -23,16 +23,17 @@ function ShareButton(props) {
   console.log(pathname); */
   return (
     <div className="icon">
-      <input
+      <button
         id="share-button"
         style={{ textDecoration: 'none' }}
         type="image"
-        src={shareIcon}
         alt="Share Button"
         data-testid="share-btn"
         // value={pathname}
         onClick={() => copyToClipboard(url, idRecipe)}
-      />
+      >
+        <img src={shareIcon} />
+      </button>
     </div>
   );
 }
