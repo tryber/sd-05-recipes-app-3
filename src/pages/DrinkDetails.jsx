@@ -17,6 +17,7 @@ import '../css/details.css';
 function DrinkDetails(props) {
   // const pathname =  props.url;
   const { idRecipe } = props.match.params;
+  const { url } = props.match;
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strDrinkThumb, strDrink, strInstructions, strCategory, strAlcoholic } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
@@ -41,7 +42,7 @@ function DrinkDetails(props) {
         strAlcoholic={strAlcoholic}
       />
       <FavoriteButton />
-      <ShareButton url={props} />
+      <ShareButton idRecipe={idRecipe} url={url} />
       <CarroselDetailsFood recomendations="props" />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />

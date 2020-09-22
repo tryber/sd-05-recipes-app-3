@@ -15,6 +15,7 @@ import ShareButton from '../components/details/ShareButton';
 
 function OngoingRecipe(props) {
   const { idRecipe } = props.match.params;
+  const { url } = props.match;
   const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
   const {
     strMealThumb,
@@ -30,7 +31,7 @@ function OngoingRecipe(props) {
   // console.log(allIngredients, allMeasures);
   useEffect(() => {
     setFetching(true);
-    if (props.type === 'comida') {
+    if (url.includes('comidas')) {
       lookUpIdMeal(idRecipe)
         .then((food) => setOngoing(food.meals))
         .then(
@@ -40,7 +41,7 @@ function OngoingRecipe(props) {
           ),
         )
         .catch((error) => console.log('comida', error));
-    } else if (props.type === 'bebida') {
+    } else if (url.includes('bebidas')) {
       lookUpIdDrink(idRecipe)
         .then((drink) => setOngoing(drink.drinks))
         .catch((error) => console.log('bebida', error));
@@ -56,7 +57,7 @@ function OngoingRecipe(props) {
         trCategory={strCategory}
       />
       <FavoriteButton />
-      <ShareButton />
+      <ShareButton idRecipe={idRecipe} url={url} />
       <IngredientOngoing ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
       <InstructionsDetail instructions={strInstructions} />
       <FinishRecipeButton literals={'/receitas-feitas'} />
@@ -68,7 +69,6 @@ OngoingRecipe.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.objectOf(String).isRequired,
   }).isRequired,
-  type: PropTypes.string.isRequired,
 };
 
 export default OngoingRecipe;
