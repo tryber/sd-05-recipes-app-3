@@ -38,6 +38,7 @@ function App() {
         <Route
           exact path="/bebidas/:idRecipe/in-progress"
           render={(props) => <OngoingRecipe {...props} type="bebidas" />}
+       
         />
         <Route exact path="/comidas" component={MainFood} />
         <Route exact path="/bebidas" component={MainDrink} />

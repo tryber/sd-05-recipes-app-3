@@ -68,5 +68,4 @@ OngoingRecipe.propTypes = {
     url: PropTypes.string.isRequired,
     params: PropTypes.objectOf(String).isRequired,
   }).isRequired,
-  type: PropTypes.string.isRequired,
 };
