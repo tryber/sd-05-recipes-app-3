@@ -17,7 +17,6 @@ function FavoriteRecipes() {
   useEffect(() => {
     setRecipes(readFromStorage());
   }, [reload]);
-
   const handletype = (type) => {
     setFilter(type);
     // switch (type) {
@@ -31,12 +30,18 @@ function FavoriteRecipes() {
     // }
   };
 
-  return recipes.length ? (
-    <div className="page-0">
+  return (
+    <div className="">
       <Header title="Receitas Favoritas" />
-      <FilterByType func={handletype} />
       <div className="body-page">
-        {recipes.map((item, idx, array) => (
+        <p>Tela de Receitas Favoritas</p>
+        <FilterByType func={handletype} />
+        {!recipes || recipes.length === 0 ? (
+          <div>
+            <p>Você não tem nenhuma recipa favoritada!</p>
+          </div>
+        ) : (
+        recipes.map((item, idx, array) => (
           <FavoriteCard
             // key={idx}
             index={idx}
@@ -51,20 +56,11 @@ function FavoriteRecipes() {
             setReload={setReload}
             reload={reload}
           />
-        ))}
-      </div>
-    </div>
-  ) : (
-    <div className="page-0">
-      <Header title="Receitas Favoritas" />
-      <div className="body-page1">
-        <FilterByType func={handletype} />
-        <div>
-          <p>Você não possui nenhuma receita favoritada!</p>
+          ))
+          )}
         </div>
       </div>
-    </div>
-  );
+    );
 }
 export default FavoriteRecipes;
 
