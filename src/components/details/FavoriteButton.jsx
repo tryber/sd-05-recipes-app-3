@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { whiteHeartIcon } from '../../images';
 import { blackHeartIcon } from '../../images';
-import '../../css/details.css';
 //
 function FavoriteButton(props) {
-  const [favorite, setFavorite] = useState(false);
-  const handleFavorite = () => {
-    setFavorite(!favorite);
-  };
-  //
-  console.log(props);
-  //
+  const { id, func, idx, favorite, literals } = props;
   return (
-    <div className="icon">
-      <button onClick={() => handleFavorite()}>
+    <div className="icon-favorite">
+      <button type="button" className="icon" value={id} onClick={() => func(id)}>
         <img
-          data-testid="favorite-btn"
+          data-testid={`${idx}${literals}`}
           src={favorite ? blackHeartIcon : whiteHeartIcon}
-          alt="whiteHeart"
+          alt={favorite ? 'blackHeart' : 'whiteHeart'}
         />
       </button>
     </div>
@@ -27,9 +20,14 @@ function FavoriteButton(props) {
 
 export default FavoriteButton;
 
-// FavoriteButton.propTypes = {
-//   favorite: PropTypes.bool.isRequired,
-//   handleFavorite: PropTypes.func.isRequired,
-//   blackHeartIcon: PropTypes.string.isRequired,
-//   whiteHeartIcon: PropTypes.string.isRequired,
-// };
+FavoriteButton.propTypes = {
+  idx: PropTypes.number.isRequired,
+  func: PropTypes.func.isRequired,
+  favorite: PropTypes.bool.isRequired,
+  id: PropTypes.string,
+  literals: PropTypes.string.isRequired,
+};
+
+FavoriteButton.defaultProps = {
+  id: 'string',
+};

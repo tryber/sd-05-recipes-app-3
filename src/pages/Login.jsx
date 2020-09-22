@@ -58,7 +58,7 @@ function Login() {
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
     localStorage.setItem('user', JSON.stringify({ email }));
-    console.log(JSON.parse(localStorage.getItem('user')));
+    // console.log(JSON.parse(localStorage.getItem('user')));
   };
 
   return (

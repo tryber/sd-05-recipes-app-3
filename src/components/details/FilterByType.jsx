@@ -1,38 +1,38 @@
+//  filterbytype
 import React from 'react';
-import '../../css/Categories.css';
+import PropTypes from 'prop-types';
+import '../../css/favorite.css';
 
-function FilterByType(handleClick) {
+function FilterByType({ func }) {
   return (
-    <div className="categories">
-      <div className="favorite">
+    <div className="filterByType">
+      <div key="All" className="favorite">
         <button
+          value="all"
           type="button"
-          key="All"
+          // key="All"
           data-testid="filter-by-all-btn"
-          onClick={handleClick}
-          // value={type}
+          onClick={() => func('all')}
         >
           All
         </button>
       </div>
-      <div className="favorite">
+      <div key="Comidas" className="favorite">
         <button
           type="button"
-          key="Food"
+          value="comidas"
           data-testid="filter-by-food-btn"
-          onClick={handleClick}
-          // value={type}
+          onClick={() => func('comida')}
         >
           Food
         </button>
       </div>
-      <div className="favorite">
+      <div key="Bebidas" className="favorite">
         <button
           type="button"
-          key="Drink"
+          value="bebidas"
           data-testid="filter-by-drink-btn"
-          onClick={handleClick}
-          // value={type}
+          onClick={() => func('bebida')}
         >
           Drink
         </button>
@@ -41,3 +41,8 @@ function FilterByType(handleClick) {
   );
 }
 export default FilterByType;
+
+
+FilterByType.propTypes = {
+  func: PropTypes.func.isRequired,
+};
