@@ -27,6 +27,7 @@ function FoodDetails(props) {
   const { match: { params: { idRecipe }, url }, type = 'comida' } = props;
   // console.log(idRecipe)
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
+
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strMealThumb, strMeal, strInstructions, strYoutube, strCategory, strArea = 'Unknown' } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
@@ -63,6 +64,7 @@ function FoodDetails(props) {
         func={handleFavorite} idx="" favorite={favorite} />
         <ShareButton idRecipe={idRecipe} url={url} />
       </div> */}
+   
       <CarroselDetails />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
