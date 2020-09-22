@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
+// import Slider from 'react-slick';
+// import '../../css/details.css';
 import { allDrinksList } from '../../service/apis';
-import '../../css/details.css';
 
 function CarroselDetails() {
   const [recomendado, setRecomendado] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   // console.log(recomendado.length);
+  /* const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  }; */
   useEffect(() => {
     setIsLoading(true);
     allDrinksList()
@@ -18,6 +28,7 @@ function CarroselDetails() {
     <div>
       <h3>Recomendadas</h3>
       <div className="carroussel">
+        {/* <Slider {...settings}> */}
         {!isLoading &&
           recomendado.map((recomendations, index) => (
             <div
@@ -33,6 +44,7 @@ function CarroselDetails() {
               />
             </div>
           ))}
+        {/* </Slider> */}
       </div>
     </div>
   );

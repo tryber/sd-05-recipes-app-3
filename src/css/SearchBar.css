@@ -51,11 +51,11 @@
 }
 
 .searchBarButton button {
-  background-color: limegreen;
-  border: green;
+  background-color: rgb(247, 206, 93);
+  border: solid 2px rgb(237, 95, 101);
   border-radius: 50px;
   display: flex;
-  font-size: 25px;
+  font-size: 15px;
   justify-content: center;
   min-width: 200px;
   padding: 5px;
