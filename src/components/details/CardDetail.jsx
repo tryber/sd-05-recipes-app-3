@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../../css/details.css';
 
 class CardDetail extends Component {
   // constructor(props){

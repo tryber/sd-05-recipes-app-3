@@ -56,8 +56,8 @@ function DrinkDetails(props) {
   return idRecipe ? (
     <div className="body-details">
       <ImageDetail strOption={strDrink} thumb={strDrinkThumb} />
-      <CardDetail strOption={strDrink} strCategory={strCategory} alc={alc} type={type} />
       {SocialButtons(idRecipe, favorite, url, handleFavorite)}
+      <CardDetail strOption={strDrink} strCategory={strCategory} alc={alc} type={type} />
       {/* <div className="icon-details">
         <FavoriteButton literals={'favorite-btn'} id={idRecipe}
         func={handleFavorite} idx="" favorite={favorite} />

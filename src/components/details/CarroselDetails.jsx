@@ -25,8 +25,8 @@ function CarroselDetails() {
   }, [isLoading]);
   //
   return (
-    <div>
-      <h3>Recomendadas</h3>
+    <div className="recomendadas">
+      <h3>Recommended</h3>
       <div className="carroussel">
         {/* <Slider {...settings}> */}
         {!isLoading &&
