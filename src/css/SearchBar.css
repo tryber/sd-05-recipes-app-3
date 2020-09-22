@@ -51,7 +51,7 @@
 }
 
 .searchBarButton button {
-  background-color:rgb(247, 206, 93);
+  background-color: rgb(247, 206, 93);
   border: solid 2px rgb(237, 95, 101);
   border-radius: 50px;
   display: flex;

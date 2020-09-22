@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { allDrinksList } from '../../service/apis';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
+// import Slider from 'react-slick';
 // import '../../css/details.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Slider from "react-slick";
+import { allDrinksList } from '../../service/apis';
 
 function CarroselDetails() {
   const [recomendado, setRecomendado] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   // console.log(recomendado.length);
-  const settings = {
+  /* const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-  };
+  }; */
   useEffect(() => {
     setIsLoading(true);
     allDrinksList()
@@ -28,8 +28,8 @@ function CarroselDetails() {
     <div>
       <h3>Recomendadas</h3>
       <div className="carroussel">
-        <Slider {...settings}>
-        {/* {!isLoading &&
+        {/* <Slider {...settings}> */}
+        {!isLoading &&
           recomendado.map((recomendations, index) => (
             <div
               key={recomendations.idDrink}
@@ -43,11 +43,8 @@ function CarroselDetails() {
                 src={recomendations.strDrinkThumb}
               />
             </div>
-          ))} */}
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-        </Slider>
+          ))}
+        {/* </Slider> */}
       </div>
     </div>
   );
