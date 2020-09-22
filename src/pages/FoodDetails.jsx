@@ -64,7 +64,6 @@ function FoodDetails(props) {
         func={handleFavorite} idx="" favorite={favorite} />
         <ShareButton idRecipe={idRecipe} url={url} />
       </div> */}
-   
       <CarroselDetails />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />

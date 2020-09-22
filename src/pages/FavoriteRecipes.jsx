@@ -46,20 +46,20 @@ function FavoriteRecipes() {
           ) : (
             recipes.map((item, idx, array) => (
               <FavoriteCard
-              // key={idx}
-              index={idx}
-              id={item.id}
-              type={item.type}
-              area={item.area}
-              category={item.category}
-              alcoholicOrNot={item.alcoholicOrNot}
-              name={item.name}
-              image={item.image}
-              recipes={array}
-              setReload={setReload}
-              reload={reload}
-            />
-          ))
+                index={idx}
+                id={item.id}
+                type={item.type}
+                area={item.area}
+                category={item.category}
+                alcoholicOrNot={item.alcoholicOrNot}
+                name={item.name}
+                image={item.image}
+                recipes={array}
+                setReload={setReload}
+                reload={reload}
+              />
+            ),
+          )
         )}
       </div>
     </div>
