@@ -28,7 +28,7 @@ const getFavorited = (favoriteRecipe) => {
 function getDesfavorited(recipeId) {
   console.log('id da receita foi desfavoritada: ', recipeId);
 
-  let recipes = [...readFromStorage()];
+  let recipes = readFromStorage();
   // console.log('antes: ', recipes)
   recipes = recipes ? recipes.filter((recipe) => recipe.id !== recipeId) : false;
   // console.log('depois: ', recipes)

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../../css/favorite.css';
 
-function FilterByType({ func }) {
+function FilterByType(func) {
   return (
     <div className="filterByType">
       <div key="All" className="favorite">

@@ -15,7 +15,7 @@ function FavoriteRecipes() {
   const [recipes, setRecipes] = useState([]);
   console.log('antes: ', recipes, filter);
   useEffect(() => {
-    setRecipes([...readFromStorage()]);
+    setRecipes(readFromStorage());
   }, [reload]);
 
   const handletype = (type) => {

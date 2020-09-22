@@ -53,7 +53,7 @@ function OngoingRecipe(props) {
   return (<div className="body-details">
     <ImageDetail strOption={name} thumb={thumb} />
     <CardDetail strOption={strMeal || strDrink} trCategory={strCategory} />
-    <FavoriteButton id={idRecipe} func={handleFavorite} idx="" favorite={favorite} />
+    <FavoriteButton literals={'favorite-btn'} id={idRecipe} func={handleFavorite} idx="" favorite={favorite} />
     <ShareButton />
     <IngredientOngoing ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
     <InstructionsDetail instructions={strInstructions} />
