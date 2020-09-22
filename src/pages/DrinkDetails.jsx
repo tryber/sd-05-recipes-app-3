@@ -16,10 +16,10 @@ import '../css/details.css';
 import FavoriteContext from '../context/FavoriteContext';
 
 function DrinkDetails(props) {
-  const { location: { pathname }, match: { params: { idRecipe } }, type = 'bebida' } = props;
+  const { match: { params: { idRecipe } }, type = 'bebida' } = props;
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
-  const { strDrinkThumb, strDrink, strInstructions, strCategory, strAlcoholic, strArea = 'Unknown' } = details[0];
+  const { strDrinkThumb, strDrink, strInstructions, strCategory, strAlcoholic, strArea = '' } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
   const isItFavorite = readFromStorage() ? readFromStorage()
     .some((itIs) => itIs.id === idRecipe) : false;
@@ -52,7 +52,7 @@ function DrinkDetails(props) {
       <CardDetail strOption={strDrink} strCategory={strCategory} alc={alc} type={type} />
       <div className="icon-details">
         <FavoriteButton literals={'favorite-btn'} id={idRecipe} func={handleFavorite} idx="" favorite={favorite} />
-        <ShareButton literals={'share-btn'} alt={strDrink} idx="" url={pathname} />
+        <ShareButton /* literals={'share-btn'} alt={strDrink} idx="" url={pathname} */ />
       </div>
       <CarroselDetailsFood recomendations="props" />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />

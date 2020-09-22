@@ -17,7 +17,7 @@ import FavoriteButton from '../components/details/FavoriteButton';
 import FavoriteContext from '../context/FavoriteContext';
 
 function FoodDetails(props) {
-  const { location: { pathname }, match: { params: { idRecipe } }, type = 'comida' } = props;
+  const { match: { params: { idRecipe } }, type = 'comida' } = props;
   // console.log(idRecipe)
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
@@ -28,7 +28,7 @@ function FoodDetails(props) {
   // console.log(readFromStorage().some((itIs) => itIs.id === idRecipe));
   const [favorite, setFavorite] = useState(isItFavorite);
   function handleFavorite(favoriteRecipeId) {
-    const favoritedRecipe = favorite ? idRecipe : { id: favoriteRecipeId, type, area: strArea, category: strCategory, alcoholicOrNot: 'Unknown', name: strMeal, image: strMealThumb };
+    const favoritedRecipe = favorite ? idRecipe : { id: favoriteRecipeId, type, area: strArea, category: strCategory, alcoholicOrNot: '', name: strMeal, image: strMealThumb };
     // recipes = recipes.filter((card) => card.id !== favoriteRecipeId);
     // console.log(favorite ? 'Receita desfavoritada:' : 'Receita favoritada:', favoritedRecipe);
     isFavorite(favoritedRecipe, !favorite);
@@ -58,7 +58,7 @@ function FoodDetails(props) {
           idx=""
           favorite={favorite}
         />
-        <ShareButton literals={'share-btn'} alt={strMeal} idx="" url={pathname} />
+        <ShareButton /* literals={'share-btn'} alt={strMeal} idx="" url={pathname} */ />
       </div>
       <CarroselDetails />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
