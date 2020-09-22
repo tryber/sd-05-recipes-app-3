@@ -28,7 +28,7 @@ function FavoriteCard(props) {
           <img data-testid={`${index}-horizontal-image`} src={image} alt={name} />
         </div>
       </Link>
-      <div className="card-details">
+      <div className="details">
         <div className="info">
           {type === 'comida' ? (
             <p data-testid={`${index}-horizontal-top-text`}>{`${area} - ${category}`}</p>

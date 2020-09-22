@@ -15,8 +15,15 @@ import FavoriteButton from '../components/details/FavoriteButton';
 import '../css/details.css';
 import FavoriteContext from '../context/FavoriteContext';
 
+const SocialButtons = (ide, fav, u, func) => (
+  <div className="icon-details">
+    <FavoriteButton literals={'favorite-btn'} id={ide} func={func} idx="" favorite={fav} />
+    <ShareButton idRecipe={ide} url={u} />
+  </div>
+);
+
 function DrinkDetails(props) {
-  const { match: { params: { idRecipe } }, type = 'bebida' } = props;
+  const { match: { params: { idRecipe }, url }, type = 'bebida' } = props;
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strDrinkThumb, strDrink, strInstructions, strCategory, strAlcoholic, strArea = '' } = details[0];
@@ -50,10 +57,12 @@ function DrinkDetails(props) {
     <div className="body-details">
       <ImageDetail strOption={strDrink} thumb={strDrinkThumb} />
       <CardDetail strOption={strDrink} strCategory={strCategory} alc={alc} type={type} />
-      <div className="icon-details">
-        <FavoriteButton literals={'favorite-btn'} id={idRecipe} func={handleFavorite} idx="" favorite={favorite} />
-        <ShareButton /* literals={'share-btn'} alt={strDrink} idx="" url={pathname} */ />
-      </div>
+      {SocialButtons(idRecipe, favorite, url, handleFavorite)}
+      {/* <div className="icon-details">
+        <FavoriteButton literals={'favorite-btn'} id={idRecipe}
+        func={handleFavorite} idx="" favorite={favorite} />
+        <ShareButton idRecipe={idRecipe} url={url} />
+      </div> */}
       <CarroselDetailsFood recomendations="props" />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
@@ -69,8 +78,8 @@ DrinkDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.objectOf(String).isRequired,
   }).isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.objectOf(String).isRequired,
-  }).isRequired,
+  // location: PropTypes.shape({
+  //   pathname: PropTypes.objectOf(String).isRequired,
+  // }).isRequired,
   type: PropTypes.string.isRequired,
 };

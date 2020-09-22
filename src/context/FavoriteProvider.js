@@ -30,7 +30,7 @@ function getDesfavorited(recipeId) {
 
   let recipes = readFromStorage();
   // console.log('antes: ', recipes)
-  recipes = recipes ? recipes.filter((recipe) => recipe.id !== recipeId) : false;
+  recipes = recipes ? recipes.filter((recipe) => recipe.id !== recipeId) : [];
   // console.log('depois: ', recipes)
 
   saveInStorage(recipes);

@@ -18,43 +18,43 @@ function OngoingRecipe(props) {
   const { strMealThumb, strMeal, strDrinkThumb, strDrink } = ongoing[0];
   const { strInstructions, strCategory, strArea, strAlcoholic } = ongoing[0];
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
-  const { match: { params: { idRecipe } }, type } = props;
+  const { match: { params: { idRecipe }, url }, type } = props;
   const isItFavorite = readFromStorage() ? readFromStorage()
     .some((itIs) => itIs.id === idRecipe) : false;
   const [favorite, setFavorite] = useState(isItFavorite);
+  const name = (type === 'comidas') ? strMeal : strDrink;
+  const image = (type === 'comidas') ? strMealThumb : strDrinkThumb;
   function handleFavorite(favoriteRecipeId) {
     const favoritedRecipe = { id: favoriteRecipeId,
       type,
       area: strArea,
       category: strCategory,
       alcoholicOrNot: strAlcoholic,
-      name: strDrink,
-      image: strDrinkThumb,
+      name,
+      image,
     };
     isFavorite(favoritedRecipe, favorite);
     setFavorite(!favorite);
   }
-  const name = type === 'comidas' ? strMeal : strDrink;
-  const thumb = type === 'comidas' ? strMealThumb : strDrinkThumb;
   const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
   useEffect(() => {
     setFetching(true);
-    if (props.type === 'comida') {
+    if (url.includes('comidas')) {
       lookUpIdMeal(idRecipe).then((food) => setOngoing(food.meals))
         .then(localStorage.setItem('InProgressRecipes', JSON.stringify({ cocktails: { [idRecipe]: [] } })))
-        .catch((error) => console.log('comida', error));
-    } else if (props.type === 'bebida') {
+        .catch((error) => alert('comida', error));
+    } else if (url.includes('bebidas')) {
       lookUpIdDrink(idRecipe)
         .then((drink) => setOngoing(drink.drinks))
-        .catch((error) => console.log('bebida', error));
+        .catch((error) => alert('bebida', error));
     }
     setFetching(false);
-  }, []);
+  }, [favorite]);
   return (<div className="body-details">
-    <ImageDetail strOption={name} thumb={thumb} />
-    <CardDetail strOption={strMeal || strDrink} trCategory={strCategory} />
+    <ImageDetail strOption={strMeal || strDrink} thumb={strMealThumb || strDrinkThumb} />
+    <CardDetail strOption={strMeal || strDrink} strCategory={strCategory} />
     <FavoriteButton literals={'favorite-btn'} id={idRecipe} func={handleFavorite} idx="" favorite={favorite} />
-    <ShareButton />
+    <ShareButton idRecipe={idRecipe} url={url} />
     <IngredientOngoing ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
     <InstructionsDetail instructions={strInstructions} />
     <FinishRecipeButton literals={'/receitas-feitas'} />
@@ -65,9 +65,8 @@ export default OngoingRecipe;
 
 OngoingRecipe.propTypes = {
   match: PropTypes.shape({
+    url: PropTypes.string.isRequired,
     params: PropTypes.objectOf(String).isRequired,
   }).isRequired,
   type: PropTypes.string.isRequired,
 };
-
-/* <ShareButton url={pathname} literals={'-share-btn'} alt={name} idx='' /> */
