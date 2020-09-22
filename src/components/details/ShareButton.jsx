@@ -27,12 +27,11 @@ function ShareButton(props) {
         id="share-button"
         style={{ textDecoration: 'none' }}
         type="image"
-        alt="Share Button"
         data-testid="share-btn"
         // value={pathname}
         onClick={() => copyToClipboard(url, idRecipe)}
       >
-        <img src={shareIcon} />
+        <img src={shareIcon} alt="Share Button" />
       </button>
     </div>
   );
