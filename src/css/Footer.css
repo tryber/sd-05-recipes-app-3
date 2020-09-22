@@ -1,9 +1,9 @@
 /* Footer.css individual style by Elisângelo */
 .footer {
-  background-color: white;
+  background: linear-gradient(to bottom, transparent 0%, rgb(237, 95, 101) 13%);
   bottom: 0;
   display: flex;
-  height: 15vh;
+  height: 11vh;
   margin: auto;
   position: fixed;
   width: 100%;

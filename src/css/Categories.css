@@ -5,6 +5,7 @@
   flex-flow: wrap;
   justify-content: space-around;
   margin: auto;
+  margin-top: 3vh;
   max-width: 100%;
   position: relative;
   top: 10vh;
@@ -19,6 +20,8 @@
 }
 
 .categorie button {
+  background-color: rgb(247, 206, 93);
+  border: solid 1px  rgb(237, 95, 101);
   color: #1c1d1d;
   font-size: 15px;
   font-weight: 300;
