@@ -33,11 +33,11 @@ function App() {
         />
         <Route
           exact path="/comidas/:idRecipe/in-progress"
-          render={(props) => <OngoingRecipe {...props} type="comidas" />}
+          render={(props) => <OngoingRecipe {...props} /* type="comidas" */ />}
         />
         <Route
           exact path="/bebidas/:idRecipe/in-progress"
-          render={(props) => <OngoingRecipe {...props} type="bebidas" />}
+          render={(props) => <OngoingRecipe {...props} /* type="bebidas" */ />}
         />
         <Route exact path="/comidas" component={MainFood} />
         <Route exact path="/bebidas" component={MainDrink} />

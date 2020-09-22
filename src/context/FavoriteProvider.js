@@ -9,12 +9,12 @@ const readFromStorage = () => JSON.parse(localStorage.getItem('favoriteRecipes')
 const getFavorited = (favoriteRecipe) => {
   console.log('esta receita será favorita:', favoriteRecipe);
   if (!localStorage.getItem('favoriteRecipes')) {
-    saveInStorage([favoriteRecipe]);
+    saveInStorage([{...favoriteRecipe}]);
   } else {
     let recipes = readFromStorage();
     // console.log(recipes);
     recipes = recipes.filter((card) => card.id !== favoriteRecipe.id);
-    recipes = [...recipes, favoriteRecipe];
+    recipes = [...recipes, {...favoriteRecipe}];
     saveInStorage(recipes);
     // console.log('receita favoritada:', favoriteRecipe);
   }
