@@ -8,6 +8,10 @@
 }
 */
 
+.body {
+  height: 100vh;
+}
+
 .body-page {
   display: flex;
   flex-direction: column;
@@ -15,7 +19,7 @@
   margin: 2vh auto;
   max-width: 1024px;
   position: relative;
-  top: 12vh;
+  top: 8vh;
   width: 100vw;
 }
 
@@ -33,7 +37,7 @@
   border-radius: 5px;
   display: flex;
   height: fit-content;
-  justify-content: space-around;
+  justify-content: flex-start;
   margin: 5px;
   position: relative;
   top: 2vh;
@@ -43,8 +47,8 @@
 .info {
   align-items: flex-start;
   display: flex;
-  justify-content: space-around;
-  text-align: center;
+  justify-content: space-between;
+  text-align: left;
 }
 
 .icon-favorites {
@@ -57,19 +61,20 @@
 .image {
   display: flex;
   justify-content: flex-start;
+  width: 50%;
 }
 
 .image img {
   background-color: whitesmoke;
   margin: auto;
-  width: 35vw;
+  width: 40vw;
 }
 
 .card-details {
   display: flex;
   flex-direction: column;
   font-size: 4vmin;
-  justify-content: space-around;
+  justify-content: space-between;
   line-height: 10px;
   text-align: center;
 }
@@ -89,7 +94,5 @@
   justify-content: space-around;
   margin: auto;
   max-width: 100%;
-  position: relative;
-  top: 12vh;
   z-index: 0;
 }

@@ -25,19 +25,19 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route
           exact path="/bebidas/:idRecipe"
-          render={(props) => <DrinkDetails {...props} /* type="bebidas" *//>}
+          render={(props) => <DrinkDetails {...props} /* type="bebida" *//>}
         />
         <Route
           exact path="/comidas/:idRecipe"
-          render={(props) => <FoodDetails {...props} /* type="comidas" */ />}
+          render={(props) => <FoodDetails {...props} /* type="comida" */ />}
         />
         <Route
           exact path="/comidas/:idRecipe/in-progress"
-          render={(props) => <OngoingRecipe {...props} type="comidas" />}
+          render={(props) => <OngoingRecipe {...props} type="comida" />}
         />
         <Route
           exact path="/bebidas/:idRecipe/in-progress"
-          render={(props) => <OngoingRecipe {...props} type="bebidas" />}
+          render={(props) => <OngoingRecipe {...props} type="bebida" />}
        
         />
         <Route exact path="/comidas" component={MainFood} />

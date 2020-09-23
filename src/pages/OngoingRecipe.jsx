@@ -25,7 +25,6 @@ function OngoingRecipe(props) {
   const name = strMeal || strDrink;
   const image = strMealThumb || strDrinkThumb;
   function handleFavorite(favoriteRecipeId) {
-    console.log('Ongoing-Page:', name, type)
     const favoritedRecipe = { id: favoriteRecipeId,
       type,
       area: strArea,
@@ -34,7 +33,6 @@ function OngoingRecipe(props) {
       name,
       image,
     };
-    console.log('Ongoing-Page:', favoritedRecipe)
     isFavorite(favoritedRecipe, !favorite);
     setFavorite(!favorite);
   }
@@ -54,9 +52,9 @@ function OngoingRecipe(props) {
   }, [favorite]);
   return (<div className="body-details">
     <ImageDetail strOption={strMeal || strDrink} thumb={strMealThumb || strDrinkThumb} />
+    <FavoriteButton literals={'favorite-btn'} id={idRecipe} func={handleFavorite} favorite={favorite} />
+    <ShareButton literals={'share-btn'} alt={name} url={props} id={idRecipe} />
     <CardDetail strOption={strMeal || strDrink} strCategory={strCategory} />
-    <FavoriteButton literals={'favorite-btn'} id={idRecipe} func={handleFavorite} idx="" favorite={favorite} />
-    <ShareButton idRecipe={idRecipe} url={url} />
     <IngredientOngoing ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
     <InstructionsDetail instructions={strInstructions} />
     <FinishRecipeButton literals={'/receitas-feitas'} />

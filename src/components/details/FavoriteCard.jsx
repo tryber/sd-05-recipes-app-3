@@ -40,13 +40,13 @@ function FavoriteCard(props) {
           </Link>
         </div>
         <div className="icon-favorites">
-          <ShareButton />
+          <ShareButton literals={`${index}-horizontal-share-btn`} alt={name} url={props} id={id} />
           <FavoriteButton
             id={id}
             func={handleFavorite}
-            idx={index}
+            // idx={index}
             favorite={favorite}
-            literals={'-horizontal-favorite-btn'}
+            literals={`${index}-horizontal-favorite-btn`}
           />
         </div>
       </div>

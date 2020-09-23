@@ -6,6 +6,24 @@ import FavoriteContext from '../context/FavoriteContext';
 // import RecipeContext from '../context/RecipeContext';
 import '../css/favorite.css';
 
+const mapRecipe = (recipes, reload, setReload) => (
+  recipes.map((item, idx, array) => (
+    <FavoriteCard
+      index={idx}
+      id={item.id}
+      type={item.type}
+      area={item.area}
+      category={item.category}
+      alcoholicOrNot={item.alcoholicOrNot}
+      name={item.name}
+      image={item.image}
+      recipes={array}
+      setReload={setReload}
+      reload={reload}
+    />
+  ))
+);
+
 function FavoriteRecipes() {
   const { readFromStorage } = useContext(FavoriteContext);
   const [reload, setReload] = useState(false);
@@ -13,30 +31,28 @@ function FavoriteRecipes() {
   useEffect(() => {
     setRecipes(readFromStorage());
   }, [reload]);
-  // 
   const handletype = (type) => {
     switch (type) {
-      case 'comidas':
-        setRecipes(readFromStorage().filter((caso) => caso.type === type));
-      case 'bebidas':
-        setRecipes(readFromStorage().filter((caso) => caso.type === type));
+      case 'comida':
+        return setRecipes(readFromStorage().filter((caso) => caso.type === type));
+      case 'bebida':
+        return setRecipes(readFromStorage().filter((caso) => caso.type === type));
       default:
-        setRecipes(readFromStorage());
-      break;
-    };
+        return setRecipes(readFromStorage());
+    }
   };
   return (
-    <div className="">
+    <div className="body">
       <Header title="Receitas Favoritas" />
       <div className="body-page">
-        <p>Tela de Receitas Favoritas</p>
+        {/* <p>Tela de Receitas Favoritas</p> */}
         <FilterByType func={handletype} />
         {(!recipes || recipes.length === 0) ? (
           <div>
             <p>Você não tem nenhuma receita favoritada!</p>
           </div>
-          ) : (
-            recipes.map((item, idx, array) => (
+          ) : (mapRecipe(recipes, reload, setReload)
+            /* recipes.map((item, idx, array) => (
               <FavoriteCard
                 index={idx}
                 id={item.id}
@@ -51,10 +67,11 @@ function FavoriteRecipes() {
                 reload={reload}
               />
             ),
-          )
+          ) */
         )}
       </div>
     </div>
   );
 }
+
 export default FavoriteRecipes;

@@ -4,12 +4,12 @@ import { whiteHeartIcon } from '../../images';
 import { blackHeartIcon } from '../../images';
 //
 function FavoriteButton(props) {
-  const { id, func, idx, favorite, literals } = props;
+  const { id, func, favorite, literals } = props;
   return (
     <div className="icon-favorite">
       <button type="button" className="icon" value={id} onClick={() => func(id)}>
         <img
-          data-testid={`${idx}${literals}`}
+          data-testid={literals}
           src={favorite ? blackHeartIcon : whiteHeartIcon}
           alt={favorite ? 'blackHeart' : 'whiteHeart'}
         />
@@ -21,7 +21,6 @@ function FavoriteButton(props) {
 export default FavoriteButton;
 
 FavoriteButton.propTypes = {
-  idx: PropTypes.number.isRequired,
   func: PropTypes.func.isRequired,
   favorite: PropTypes.bool.isRequired,
   id: PropTypes.string,

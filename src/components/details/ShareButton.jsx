@@ -4,34 +4,31 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import shareIcon from '../../images/shareIcon.svg';
 
-function copyToClipboard(url, idRecipe) {
-  document.getElementById('share-button').innerHTML = 'Link copiado!';
-  if (url.includes('comida')) {
-    copy(`http://localhost:3000/comidas/${idRecipe}`)
-      .then(() => alert('Link copiado'));
+function copyToClipboard(url, id) {
+  document.getElementById(`share-button-${id}`).innerHTML = 'Link copiado!';
+  if (url.type.includes('comida')) {
+    copy(`http://localhost:3000/comidas/${id}`)
+    .then(() => alert('Link copiado'));
   }
-  if (url.includes('bebida')) {
-    copy(`http://localhost:3000/bebidas/${idRecipe}`)
-      .then(() => alert('Link copiado'));
+  if (url.type.includes('bebida')) {
+    copy(`http://localhost:3000/bebidas/${id}`)
+    .then(() => alert('Link copiado'));
   }
 }
 // honestidade acadêmica: ajuda do grupo 4
 
 function ShareButton(props) {
-  const { idRecipe, url } = props;
-  /* const { pathname } = props.url.location;
-  console.log(pathname); */
+  const { id, url, literals, alt } = props;
   return (
     <div className="icon">
       <input
-        id="share-button"
+        id={`share-button-${id}`}
         style={{ textDecoration: 'none' }}
         type="image"
         src={shareIcon}
-        alt="Share Button"
-        data-testid="share-btn"
-        // value={pathname}
-        onClick={() => copyToClipboard(url, idRecipe)}
+        alt={alt}
+        data-testid={literals}
+        onClick={() => copyToClipboard(url, id)}
       />
     </div>
   );
@@ -43,5 +40,7 @@ ShareButton.propTypes = {
   url: PropTypes.shape({
     location: PropTypes.string.isRequired,
   }).isRequired,
-  idRecipe: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+  literals: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
 };

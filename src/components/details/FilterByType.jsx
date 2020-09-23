@@ -20,9 +20,9 @@ function FilterByType({ func }) {
       <div key="Comidas" className="favorite">
         <button
           type="button"
-          value="comidas"
+          value="comida"
           data-testid="filter-by-food-btn"
-          onClick={() => func('comidas')}
+          onClick={({ target }) => func(target.value)}
         >
           Food
         </button>
@@ -30,9 +30,9 @@ function FilterByType({ func }) {
       <div key="Bebidas" className="favorite">
         <button
           type="button"
-          value="bebidas"
+          value="bebida"
           data-testid="filter-by-drink-btn"
-          onClick={() => func('bebidas')}
+          onClick={({ target }) => func(target.value)}
         >
           Drink
         </button>
