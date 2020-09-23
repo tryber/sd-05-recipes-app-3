@@ -22,7 +22,7 @@ function FilterByType({ func }) {
           type="button"
           value="comidas"
           data-testid="filter-by-food-btn"
-          onClick={() => func('comida')}
+          onClick={() => func('comidas')}
         >
           Food
         </button>
@@ -32,7 +32,7 @@ function FilterByType({ func }) {
           type="button"
           value="bebidas"
           data-testid="filter-by-drink-btn"
-          onClick={() => func('bebida')}
+          onClick={() => func('bebidas')}
         >
           Drink
         </button>

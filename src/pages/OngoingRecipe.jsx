@@ -22,9 +22,10 @@ function OngoingRecipe(props) {
   const isItFavorite = readFromStorage() ? readFromStorage()
     .some((itIs) => itIs.id === idRecipe) : false;
   const [favorite, setFavorite] = useState(isItFavorite);
-  const name = (type === 'comidas') ? strMeal : strDrink;
-  const image = (type === 'comidas') ? strMealThumb : strDrinkThumb;
+  const name = strMeal || strDrink;
+  const image = strMealThumb || strDrinkThumb;
   function handleFavorite(favoriteRecipeId) {
+    console.log('Ongoing-Page:', name, type)
     const favoritedRecipe = { id: favoriteRecipeId,
       type,
       area: strArea,
@@ -33,6 +34,7 @@ function OngoingRecipe(props) {
       name,
       image,
     };
+    console.log('Ongoing-Page:', favoritedRecipe)
     isFavorite(favoritedRecipe, !favorite);
     setFavorite(!favorite);
   }
