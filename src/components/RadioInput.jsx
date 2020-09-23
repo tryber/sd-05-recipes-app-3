@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../css/SearchBar.css';
 
 const RadioInput = ({ onChange, value, validation, dataTestId }) => (
   <div className="radioSearch" data-testid={dataTestId}>

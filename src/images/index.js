@@ -4,3 +4,4 @@ export { default as mealIcon } from './mealIcon.svg';
 export { default as blackHeartIcon } from './blackHeartIcon.svg';
 export { default as whiteHeartIcon } from './whiteHeartIcon.svg';
 export { default as shareIcon } from './shareIcon.svg';
+export { default as logo } from './logoIC.png';

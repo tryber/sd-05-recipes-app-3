@@ -1,10 +1,12 @@
 .explore-buttons {
+  background-color: rgb(247, 206, 93);
   display: flex;
   flex-wrap: wrap;
   height: 40%;
   justify-content: space-around;
   margin: auto;
   min-width: 250px;
+  padding: 50px 0;
   width: 100%;
 }
 
@@ -12,9 +14,9 @@
   align-items: center;
   display: flex;
   font-family: Montserrat, sans-serif;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
-  height: 28vh;
+  height: 40vh;
   justify-content: center;
 }
 
@@ -26,8 +28,10 @@
 }
 
 .buttons button {
-  border: none;
+  background-color: rgb(237, 95, 101);
+  border: solid 2px  rgb(237, 95, 101);
   border-radius: 50px;
+  color: white;
   font-family: Montserrat, sans-serif;
   font-size: 20px;
   font-weight: 600;
@@ -37,9 +41,10 @@
 }
 
 .sign-off button {
-  background-color: red;
+  background-color: white;
+  color: black;
 }
 
 .favorite button {
-  background-color: lime;
+  background-color: rgb(237, 95, 101);
 }

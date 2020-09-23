@@ -6,7 +6,7 @@ import { blackHeartIcon } from '../../images';
 function FavoriteButton(props) {
   const { id, func, favorite, literals } = props;
   return (
-    <div className="icon-favorite">
+    <div className="icon">
       <button type="button" className="icon" value={id} onClick={() => func(id)}>
         <img
           data-testid={literals}
