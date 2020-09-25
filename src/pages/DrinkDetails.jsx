@@ -28,7 +28,7 @@ function DrinkDetails(props) {
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strDrinkThumb, strDrink, strInstructions, strCategory, strAlcoholic, strArea = '' } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
-  const isItFavorite = readFromStorage() ? readFromStorage()
+  const isItFavorite = readFromStorage('favoriteRecipes') ? readFromStorage('favoriteRecipes')
     .some((itIs) => itIs.id === idRecipe) : false;
   const [favorite, setFavorite] = useState(isItFavorite);
   function handleFavorite(favoriteRecipeId) {

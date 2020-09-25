@@ -8,10 +8,11 @@ import FavoriteButton from './FavoriteButton';
 
 function FavoriteCard(props) {
   const { alcoholicOrNot, type, recipes, setReload, reload } = props;
-  const { id, index, image, name, category, area } = props;
+  const { id, index, image, name, category, area, url } = props;
   const { readFromStorage, getDesfavorited } = useContext(FavoriteContext);
-  const isItFavorite = readFromStorage().some((itIs) => itIs.id === id);
+  const isItFavorite = readFromStorage('favoriteRecipes').some((itIs) => itIs.id === id);
   const [favorite, setFavorite] = useState(isItFavorite);
+  const literal = `/${type}s/${id}`;
   const handleFavorite = (ide) => {
     const disFavorite = recipes.filter((curValue) => curValue.id === ide).map((card) => card.id);
     if (disFavorite) {
@@ -35,12 +36,12 @@ function FavoriteCard(props) {
           ) : (
             <p data-testid={`${index}-horizontal-top-text`}>{alcoholicOrNot}</p>
           )}
-          <Link to={`/${type}s/${id}`}>
+          <Link to={literal}>
             <h3 data-testid={`${index}-horizontal-name`}>{name}</h3>
           </Link>
         </div>
         <div className="icon-favorites">
-          <ShareButton literals={`${index}-horizontal-share-btn`} alt={name} url={props} id={id} />
+          <ShareButton literals={`${index}-horizontal-share-btn`} alt={name} url={url} id={id} />
           <FavoriteButton
             id={id}
             func={handleFavorite}
@@ -68,6 +69,7 @@ FavoriteCard.propTypes = {
   recipes: PropTypes.arrayOf(Object).isRequired,
   setReload: PropTypes.func.isRequired,
   reload: PropTypes.bool.isRequired,
+  url: PropTypes.objectOf(String).isRequired,
 };
 /* <ShareButton literals={`${index}-horizontal-share-btn`}
 // alt={name} idx={index} url={props} id={id}/> */

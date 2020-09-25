@@ -4,16 +4,16 @@ import FavoriteContext from './FavoriteContext';
 
 const saveInStorage = (recipes) => localStorage.setItem('favoriteRecipes', JSON.stringify(recipes));
 
-const readFromStorage = () => JSON.parse(localStorage.getItem('favoriteRecipes'));
+const readFromStorage = (array) => JSON.parse(localStorage.getItem(array));
 
 const getFavorited = (favoriteRecipe) => {
   console.log('esta receita será favorita:', favoriteRecipe);
   if (!localStorage.getItem('favoriteRecipes')) {
     saveInStorage([{ ...favoriteRecipe }]);
   } else {
-    let recipes = readFromStorage();
+    let recipes = readFromStorage('favoriteRecipes');
     // console.log(recipes);
-    recipes = recipes.filter((card) => card.id !== favoriteRecipe.id);
+    recipes = recipes ? recipes.filter((card) => card.id !== favoriteRecipe.id) : [];
     recipes = [...recipes, { ...favoriteRecipe }];
     saveInStorage(recipes);
     // console.log('receita favoritada:', favoriteRecipe);
@@ -28,7 +28,7 @@ const getFavorited = (favoriteRecipe) => {
 function getDesfavorited(recipeId) {
   console.log('id da receita foi desfavoritada: ', recipeId);
 
-  let recipes = readFromStorage();
+  let recipes = readFromStorage('favoriteRecipes');
   // console.log('antes: ', recipes)
   recipes = recipes ? recipes.filter((recipe) => recipe.id !== recipeId) : [];
   // console.log('depois: ', recipes)

@@ -6,7 +6,7 @@ import FavoriteContext from '../context/FavoriteContext';
 // import RecipeContext from '../context/RecipeContext';
 import '../css/favorite.css';
 
-const mapRecipe = (recipes, reload, setReload) => (
+const mapRecipe = (recipes, reload, setReload) =>
   recipes.map((item, idx, array) => (
     <FavoriteCard
       index={idx}
@@ -20,26 +20,31 @@ const mapRecipe = (recipes, reload, setReload) => (
       recipes={array}
       setReload={setReload}
       reload={reload}
+      url={item}
     />
-  ))
-);
+  ));
 
 function FavoriteRecipes() {
   const { readFromStorage } = useContext(FavoriteContext);
   const [reload, setReload] = useState(false);
-  const [recipes, setRecipes] = useState(readFromStorage());
+  const [recipes, setRecipes] = useState(readFromStorage('favoriteRecipes'));
   useEffect(() => {
-    setRecipes(readFromStorage());
+    setRecipes(readFromStorage('favoriteRecipes'));
   }, [reload]);
   const handletype = (type) => {
-    switch (type) {
-      case 'comida':
-        return setRecipes(readFromStorage().filter((caso) => caso.type === type));
-      case 'bebida':
-        return setRecipes(readFromStorage().filter((caso) => caso.type === type));
-      default:
-        return setRecipes(readFromStorage());
+    if (recipes) {
+      switch (type) {
+        case 'comida':
+          return setRecipes(
+            readFromStorage('favoriteRecipes').filter((caso) => caso.type === type));
+        case 'bebida':
+          return setRecipes(
+            readFromStorage('favoriteRecipes').filter((caso) => caso.type === type));
+        default:
+          return setRecipes(readFromStorage('favoriteRecipes'));
+      }
     }
+    return true;
   };
   return (
     <div className="body">
@@ -47,27 +52,12 @@ function FavoriteRecipes() {
       <div className="body-page">
         {/* <p>Tela de Receitas Favoritas</p> */}
         <FilterByType func={handletype} />
-        {(!recipes || recipes.length === 0) ? (
+        {!recipes || recipes.length === 0 ? (
           <div>
             <p>Você não tem nenhuma receita favoritada!</p>
           </div>
-          ) : (mapRecipe(recipes, reload, setReload)
-            /* recipes.map((item, idx, array) => (
-              <FavoriteCard
-                index={idx}
-                id={item.id}
-                type={item.type}
-                area={item.area}
-                category={item.category}
-                alcoholicOrNot={item.alcoholicOrNot}
-                name={item.name}
-                image={item.image}
-                recipes={array}
-                setReload={setReload}
-                reload={reload}
-              />
-            ),
-          ) */
+        ) : (
+          mapRecipe(recipes, reload, setReload)
         )}
       </div>
     </div>

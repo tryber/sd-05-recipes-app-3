@@ -31,7 +31,7 @@ function FoodDetails(props) {
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strMealThumb, strMeal, strInstructions, strYoutube, strCategory, strArea = 'Unknown' } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
-  const isItFavorite = readFromStorage() ? readFromStorage()
+  const isItFavorite = readFromStorage('favoriteRecipes') ? readFromStorage('favoriteRecipes')
     .some((itIs) => itIs.id === idRecipe) : false;
   // console.log(readFromStorage().some((itIs) => itIs.id === idRecipe));
   const [favorite, setFavorite] = useState(isItFavorite);
