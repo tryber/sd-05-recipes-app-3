@@ -40,7 +40,7 @@ function State(setFetching, setOngoing, favorite, url, idRecipe) {
 function OngoingRecipe(props) {
   const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
   const { strMealThumb, strMeal, strDrinkThumb, strDrink } = ongoing[0];
-  const { strInstructions, strCategory, strArea, strAlcoholic } = ongoing[0];
+  const { strInstructions, strCategory, strArea = '', strAlcoholic = '' } = ongoing[0];
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
   const { match: { params: { idRecipe }, url }, type } = props;
 //

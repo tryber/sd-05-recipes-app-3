@@ -46,8 +46,9 @@ function FoodDetails(props) {
   // console.log(allIngredients, allMeasures);
   useEffect(() => {
     setFetching(true);
-    lookUpIdMeal(idRecipe).then((food) => {(food.meals) ?
-        setDetails(food.meals) : alert('Algo inesperado aconteceingredients.')})
+    lookUpIdMeal(idRecipe).then((food) => {
+      if (food.meals) setDetails(food.meals);
+    })
       .catch((error) => alert('Algo inesperado aconteceingredients.', error));
     setFetching(false);
   }, [favorite]);
