@@ -16,16 +16,16 @@ import CarroselDetails from '../components/details/CarroselDetails';
 import FavoriteButton from '../components/details/FavoriteButton';
 import FavoriteContext from '../context/FavoriteContext';
 
-const SocialButtons = (ide, fav, u, func) => (
+const SocialButtons = (ide, fav, u, func, name) => (
   <div className="icon-details">
     <FavoriteButton literals={'favorite-btn'} id={ide} func={func} idx="" favorite={fav} />
-    <ShareButton idRecipe={ide} url={u} />
+    <ShareButton literals={'share-btn'} alt={name} url={u} id={ide} />
   </div>
 );
 
 function FoodDetails(props) {
   const { match: { params: { idRecipe }, url }, type = 'comida' } = props;
-  // console.log(idRecipe)
+  const local = { type: url };
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
 
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
@@ -48,7 +48,7 @@ function FoodDetails(props) {
     setFetching(true);
     lookUpIdMeal(idRecipe)
       .then((food) => setDetails(food.meals))
-      .catch((error) => alert('Algo inesperado aconteceingredients;u:', error));
+      .catch((error) => alert('Algo inesperado aconteceingredients.', error));
     setFetching(false);
   }, [favorite]);
   //
@@ -57,7 +57,7 @@ function FoodDetails(props) {
   return idRecipe ? (
     <div className="body-details">
       <ImageDetail strOption={strMeal} thumb={strMealThumb} />
-      {SocialButtons(idRecipe, favorite, url, handleFavorite)}
+      {SocialButtons(idRecipe, favorite, local, handleFavorite, strMeal)}
       <CardDetail strOption={strMeal} strCategory={strCategory} strArea={strArea} type={type} />
       {/* <div className="icon-details">
         <FavoriteButton literals={'favorite-btn'} id={idRecipe}

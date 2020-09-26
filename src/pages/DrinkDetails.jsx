@@ -15,15 +15,16 @@ import FavoriteButton from '../components/details/FavoriteButton';
 import '../css/details.css';
 import FavoriteContext from '../context/FavoriteContext';
 
-const SocialButtons = (ide, fav, u, func) => (
+const SocialButtons = (ide, fav, u, func, name) => (
   <div className="icon-details">
     <FavoriteButton literals={'favorite-btn'} id={ide} func={func} idx="" favorite={fav} />
-    <ShareButton idRecipe={ide} url={u} />
+    <ShareButton literals={'share-btn'} alt={name} url={u} id={ide} />
   </div>
 );
 
 function DrinkDetails(props) {
   const { match: { params: { idRecipe }, url }, type = 'bebida' } = props;
+  const local = { type: url };
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
   const { strDrinkThumb, strDrink, strInstructions, strCategory, strAlcoholic, strArea = '' } = details[0];
@@ -32,23 +33,21 @@ function DrinkDetails(props) {
     .some((itIs) => itIs.id === idRecipe) : false;
   const [favorite, setFavorite] = useState(isItFavorite);
   function handleFavorite(favoriteRecipeId) {
-    const favoritedRecipe = favorite ?
-      idRecipe : { id: favoriteRecipeId,
-        type,
-        area: strArea,
-        category: strCategory,
-        alcoholicOrNot: strAlcoholic,
-        name: strDrink,
-        image: strDrinkThumb,
-      };
-    // recipes = recipes.filter((card) => card.id !== favoriteRecipeId);
+    const favoritedRecipe = favorite ? idRecipe : { id: favoriteRecipeId,
+      type,
+      area: strArea,
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb,
+    };
     isFavorite(favoritedRecipe, !favorite);
     setFavorite(!favorite);
   }
   useEffect(() => {
     setFetching(true);
     lookUpIdDrink(idRecipe).then((drink) => setDetails(drink.drinks))
-      .catch((error) => alert('Algo inesperado aconteceingredients', error));
+      .catch((error) => alert('Algo inesperado aconteceingredients.', error));
     setFetching(false);
   }, [favorite]);
   if (fetching) return <div>Loading...</div>;
@@ -56,13 +55,8 @@ function DrinkDetails(props) {
   return idRecipe ? (
     <div className="body-details">
       <ImageDetail strOption={strDrink} thumb={strDrinkThumb} />
-      {SocialButtons(idRecipe, favorite, url, handleFavorite)}
+      {SocialButtons(idRecipe, favorite, local, handleFavorite, strDrink)}
       <CardDetail strOption={strDrink} strCategory={strCategory} alc={alc} type={type} />
-      {/* <div className="icon-details">
-        <FavoriteButton literals={'favorite-btn'} id={idRecipe}
-        func={handleFavorite} idx="" favorite={favorite} />
-        <ShareButton idRecipe={idRecipe} url={url} />
-      </div> */}
       <CarroselDetailsFood recomendations="props" />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />

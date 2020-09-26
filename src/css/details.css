@@ -39,7 +39,7 @@ ex: image-details img {
 }
 
 .card-body {
-  align-items: center;
+  align-items: stretch;
   background-color: rgb(247, 206, 93);
   display: flex;
   flex-direction: column;
@@ -49,6 +49,7 @@ ex: image-details img {
 }
 
 .card-details {
+  align-items: stretch;
   display: flex;
   flex-wrap: wrap;
   font-family: Courgette, cursive;
@@ -61,6 +62,7 @@ ex: image-details img {
 .body-details {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   justify-content: flex-start;
   margin: auto;
   margin-bottom: 35px;
@@ -76,6 +78,11 @@ ex: image-details img {
   left: 0;
   line-height: 25px;
   position: fixed;
+}
+
+.start-recipe-button button:disabled , .finish-recipe-button button:disabled {
+  background-color: rgb(146, 150, 146);
+
 }
 
 /* .icon-favorite img , .icon-share input {

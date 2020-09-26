@@ -2,17 +2,21 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../css/favorite.css';
-import ShareButton from '../components/details/ShareButton.jsx';
+import ShareButton from './details/ShareButton.jsx';
 
-const Hs = (d, n) => <h4 data-testid={d}>{n}</h4>;
+const Aga = (tipo, ide, idx, name) => (
+  <Link to={`/${tipo}s/${ide}`}>
+    <h3 data-testid={`${idx}-horizontal-name`}>{name}</h3>
+  </Link>
+);
 
 function DoneCard(props) {
   const { id, index, type, area, category, name, image, alcoholic, date, tags, url } = props;
-  // const literal = `/${type}s/${id}`;
+  const literal = `/${type}s/${id}`;
   return (
     <div id={name} className="">
-      <Link to={`${type}s/${id}`}>
-        <div className="">
+      <Link to={literal}>
+        <div className="image">
           <img data-testid={`${index}-horizontal-image`} src={image} alt={name} />
         </div>
       </Link>
@@ -31,11 +35,7 @@ function DoneCard(props) {
           ) : (
             <p data-testid={`${index}-horizontal-top-text`}>{alcoholic}</p>
             )}
-          <Link to={`/${type}s/${id}`}>
-            {/* <H h={'h3'} d={`${index}-horizontal-name`} n={name} /> */}
-            <h3 data-testid={`${index}-horizontal-name`}>{name}</h3>
-          </Link>
-          {/* <Hs d={`${index}-horizontal-done-date`} n={date} /> */}
+          {Aga(type, id, index, name)}
           <h4 data-testid={`${index}-horizontal-done-date`}>{date}</h4>
         </div>
         <div className="">

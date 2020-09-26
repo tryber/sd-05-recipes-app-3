@@ -6,13 +6,18 @@ import '../../css/favorite.css';
 import ShareButton from './ShareButton';
 import FavoriteButton from './FavoriteButton';
 
+const Aga = (literal, idx, name) => (
+  <Link to={literal}>
+    <h3 data-testid={`${idx}-horizontal-name`}>{name}</h3>
+  </Link>
+);
+
 function FavoriteCard(props) {
   const { alcoholicOrNot, type, recipes, setReload, reload } = props;
   const { id, index, image, name, category, area, url } = props;
   const { readFromStorage, getDesfavorited } = useContext(FavoriteContext);
   const isItFavorite = readFromStorage('favoriteRecipes').some((itIs) => itIs.id === id);
   const [favorite, setFavorite] = useState(isItFavorite);
-  const literal = `/${type}s/${id}`;
   const handleFavorite = (ide) => {
     const disFavorite = recipes.filter((curValue) => curValue.id === ide).map((card) => card.id);
     if (disFavorite) {
@@ -21,10 +26,10 @@ function FavoriteCard(props) {
       setReload(!reload);
     }
   };
-  //
+  const literal = `/${type}s/${id}`;
   return (
     <div id={name} className="card-body">
-      <Link to={`${type}s/${id}`}>
+      <Link to={literal}>
         <div className="image">
           <img data-testid={`${index}-horizontal-image`} src={image} alt={name} />
         </div>
@@ -36,9 +41,10 @@ function FavoriteCard(props) {
           ) : (
             <p data-testid={`${index}-horizontal-top-text`}>{alcoholicOrNot}</p>
           )}
-          <Link to={literal}>
+          {Aga(literal, index, name)}
+          {/* <Link to={`/${type}s/${id}`}>
             <h3 data-testid={`${index}-horizontal-name`}>{name}</h3>
-          </Link>
+          </Link> */}
         </div>
         <div className="icon-favorites">
           <ShareButton literals={`${index}-horizontal-share-btn`} alt={name} url={url} id={id} />

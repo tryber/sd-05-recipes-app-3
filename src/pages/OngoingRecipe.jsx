@@ -14,40 +14,9 @@ import ShareButton from '../components/details/ShareButton';
 import FavoriteContext from '../context/FavoriteContext';
 import '../css/details.css';
 
-function OngoingRecipe(props) {
-  const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
-  const { strMealThumb, strMeal, strDrinkThumb, strDrink } = ongoing[0];
-  const { strInstructions, strCategory, strArea, strAlcoholic } = ongoing[0];
-  const { readFromStorage, isFavorite } = useContext(FavoriteContext);
-  const {
-    match: {
-      params: { idRecipe },
-      url,
-    },
-    type,
-  } = props;
-  const isItFavorite = readFromStorage()
-    ? readFromStorage().some((itIs) => itIs.id === idRecipe)
-    : false;
-  const [favorite, setFavorite] = useState(isItFavorite);
-  const name = strMeal || strDrink;
-  const image = strMealThumb || strDrinkThumb;
-  function handleFavorite(favoriteRecipeId) {
-    const favoritedRecipe = {
-      id: favoriteRecipeId,
-      type,
-      area: strArea,
-      category: strCategory,
-      alcoholicOrNot: strAlcoholic,
-      name,
-      image,
-    };
-    isFavorite(favoritedRecipe, !favorite);
-    setFavorite(!favorite);
-  }
-  const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
+function State(setFetching, setOngoing, favorite, url, idRecipe) {
   useEffect(() => {
-    console.log(url);
+    // console.log(url);
     setFetching(true);
     if (url.includes('comidas')) {
       console.log(url);
@@ -66,7 +35,30 @@ function OngoingRecipe(props) {
     }
     setFetching(false);
   }, [favorite]);
-  // console.log(JSON.parse(localStorage.getItem('InProgressRecipes')));
+}
+
+function OngoingRecipe(props) {
+  const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
+  const { strMealThumb, strMeal, strDrinkThumb, strDrink } = ongoing[0];
+  const { strInstructions, strCategory, strArea, strAlcoholic } = ongoing[0];
+  const { readFromStorage, isFavorite } = useContext(FavoriteContext);
+  const { match: { params: { idRecipe }, url }, type } = props;
+//
+  const isItFavorite = readFromStorage('favoriteRecipes').some((itIs) => itIs.id === idRecipe);
+//
+  const [favorite, setFavorite] = useState(isItFavorite);
+  const name = strMeal || strDrink;
+  const image = strMealThumb || strDrinkThumb;
+//
+  const favoritedRecipe = { id: 'id', type, area: strArea, category: strCategory, alcoholicOrNot: strAlcoholic, name, image };
+  function handleFavorite(favoriteRecipeId) {
+    favoritedRecipe.id = favoriteRecipeId;
+    isFavorite(favoritedRecipe, !favorite);
+    setFavorite(!favorite);
+  }
+//
+  const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
+  State(setFetching, setOngoing, favorite, url, idRecipe);
   return (
     <div className="body-details">
       <ImageDetail strOption={strMeal || strDrink} thumb={strMealThumb || strDrinkThumb} />
@@ -94,6 +86,29 @@ OngoingRecipe.propTypes = {
   }).isRequired,
   type: PropTypes.string.isRequired,
 };
+
+
+// useEffect(() => {
+//   console.log(url);
+//   setFetching(true);
+//   if (url.includes('comidas')) {
+//     console.log(url);
+//     lookUpIdMeal(idRecipe)
+//       .then((food) => setOngoing(food.meals))
+//       .then(
+//         localStorage.setItem('InProgressRecipes', JSON.stringify({ meals: { [idRecipe]: [] } })))
+//       .catch((error) => alert('comida', error));
+//   } else if (url.includes('bebidas')) {
+//     lookUpIdDrink(idRecipe)
+//       .then((drink) => setOngoing(drink.drinks))
+//       .then(
+//         localStorage.setItem('InProgressRecipes',
+//           JSON.stringify({ cocktails: { [idRecipe]: [] } })))
+//       .catch((error) => alert('bebida', error));
+//   }
+//   setFetching(false);
+// }, [favorite]);
+
 /*
 dateModified: "2016-08-31 19:32:08"
 idDrink: "13501"

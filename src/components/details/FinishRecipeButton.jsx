@@ -22,7 +22,7 @@ class FinishRecipeButton extends Component {
   // }
   render() {
     const { literals, id, type } = this.props;
-    const date = new Date().getDate().toLocaleDateString();
+    const date = new Date().toLocaleDateString();
     console.log('data:', date);
     return (
       <div className="finish-recipe-button">

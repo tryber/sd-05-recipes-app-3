@@ -4,7 +4,7 @@ import FavoriteContext from './FavoriteContext';
 
 const saveInStorage = (recipes) => localStorage.setItem('favoriteRecipes', JSON.stringify(recipes));
 
-const readFromStorage = (array) => JSON.parse(localStorage.getItem(array));
+const readFromStorage = (array) => JSON.parse(localStorage.getItem(array || []));
 
 const getFavorited = (favoriteRecipe) => {
   console.log('esta receita será favorita:', favoriteRecipe);
