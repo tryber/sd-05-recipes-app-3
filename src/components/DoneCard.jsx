@@ -14,14 +14,14 @@ function DoneCard(props) {
   const { id, index, type, area, category, name, image, alcoholic, date, tags, url } = props;
   const literal = `/${type}s/${id}`;
   return (
-    <div id={name} className="">
-      <Link to={literal}>
-        <div className="image">
+    <div id={name} className="card-body">
+      <div className="image">
+        <Link to={literal}>
           <img data-testid={`${index}-horizontal-image`} src={image} alt={name} />
-        </div>
-      </Link>
-      <div className="">
-        <div className="">
+        </Link>
+      </div>
+      <div className="card-details">
+        <div className="info">
           {type === 'comida' ? (
             <div>
               <p data-testid={`${index}-horizontal-top-text`}>{`${area} - ${category}`}</p>
@@ -34,13 +34,13 @@ function DoneCard(props) {
             </div>
           ) : (
             <p data-testid={`${index}-horizontal-top-text`}>{alcoholic}</p>
+          /* <p data-testid={`${index}-${tags}-horizontal-tag`}>{tags}</p> */
             )}
           {Aga(type, id, index, name)}
           <h4 data-testid={`${index}-horizontal-done-date`}>{date}</h4>
         </div>
-        <div className="">
+        <div className="icon">
           <ShareButton literals={`${index}-horizontal-share-btn`} alt={name} url={url} id={id} />
-          {/* <p data-testid={`${index}-${tags}-horizontal-tag`}>{tags}</p> */}
         </div>
       </div>
     </div>

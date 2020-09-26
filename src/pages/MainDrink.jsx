@@ -16,8 +16,8 @@ function MainDrink() {
     setFetching,
     fetching,
     setPage,
-    category,
-    search,
+    // category,
+    // search,
   } = useContext(RecipeContext);
   // let previous = false; if (!data) previous = true;
   useEffect(() => {
@@ -40,7 +40,7 @@ function MainDrink() {
     );
   }
 
-  return (data.length === 1 && category === '' && search !== '') ? (
+  return (data.length === 1) ? (
     <div>
       <Redirect to={`/bebidas/${data[0].idDrink}`} />
     </div>

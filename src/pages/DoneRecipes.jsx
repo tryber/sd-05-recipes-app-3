@@ -88,6 +88,7 @@ function DoneRecipes() {
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
+    setReload(!reload);
     makeRequest(doneRecipe, setReload, reload);
     setRecipes(readFromStorage('doneRecipes'));
   }, []);

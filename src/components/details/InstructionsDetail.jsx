@@ -19,5 +19,9 @@ export default InstructionsDetail;
 
 
 InstructionsDetail.propTypes = {
-  instructions: PropTypes.string.isRequired,
+  instructions: PropTypes.string,
+};
+
+InstructionsDetail.defaultProps = {
+  instructions: 'instructions',
 };

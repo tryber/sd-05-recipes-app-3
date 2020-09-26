@@ -25,12 +25,14 @@ export default CardDetail;
 
 CardDetail.propTypes = {
   strOption: PropTypes.string.isRequired,
-  alc: PropTypes.string.isRequired,
-  strCategory: PropTypes.string.isRequired,
+  alc: PropTypes.string,
+  strCategory: PropTypes.string,
   strArea: PropTypes.string,
   type: PropTypes.string.isRequired,
 };
 
 CardDetail.defaultProps = {
   strArea: 'origin',
+  strCategory: '',
+  alc: '',
 };

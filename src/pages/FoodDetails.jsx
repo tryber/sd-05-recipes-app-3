@@ -46,8 +46,8 @@ function FoodDetails(props) {
   // console.log(allIngredients, allMeasures);
   useEffect(() => {
     setFetching(true);
-    lookUpIdMeal(idRecipe)
-      .then((food) => setDetails(food.meals))
+    lookUpIdMeal(idRecipe).then((food) => {(food.meals) ?
+        setDetails(food.meals) : alert('Algo inesperado aconteceingredients.')})
       .catch((error) => alert('Algo inesperado aconteceingredients.', error));
     setFetching(false);
   }, [favorite]);
@@ -59,11 +59,6 @@ function FoodDetails(props) {
       <ImageDetail strOption={strMeal} thumb={strMealThumb} />
       {SocialButtons(idRecipe, favorite, local, handleFavorite, strMeal)}
       <CardDetail strOption={strMeal} strCategory={strCategory} strArea={strArea} type={type} />
-      {/* <div className="icon-details">
-        <FavoriteButton literals={'favorite-btn'} id={idRecipe}
-        func={handleFavorite} idx="" favorite={favorite} />
-        <ShareButton idRecipe={idRecipe} url={url} />
-      </div> */}
       <CarroselDetails />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />

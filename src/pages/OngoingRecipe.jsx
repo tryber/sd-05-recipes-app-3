@@ -44,7 +44,8 @@ function OngoingRecipe(props) {
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
   const { match: { params: { idRecipe }, url }, type } = props;
 //
-  const isItFavorite = readFromStorage('favoriteRecipes').some((itIs) => itIs.id === idRecipe);
+  const isItFavorite = readFromStorage('favoriteRecipes') ? readFromStorage('favoriteRecipes')
+  .some((itIs) => itIs.id === idRecipe) : false;
 //
   const [favorite, setFavorite] = useState(isItFavorite);
   const name = strMeal || strDrink;

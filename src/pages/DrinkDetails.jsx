@@ -45,8 +45,9 @@ function DrinkDetails(props) {
     setFavorite(!favorite);
   }
   useEffect(() => {
-    setFetching(true);
-    lookUpIdDrink(idRecipe).then((drink) => setDetails(drink.drinks))
+    setFetching(!fetching);
+    lookUpIdDrink(idRecipe).then((drink) => {(drink.drinks) ?
+        setDetails(drink.drinks) : alert('Algo inesperado aconteceingredients.')})
       .catch((error) => alert('Algo inesperado aconteceingredients.', error));
     setFetching(false);
   }, [favorite]);

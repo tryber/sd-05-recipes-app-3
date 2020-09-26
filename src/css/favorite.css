@@ -62,8 +62,8 @@
 .image {
   display: flex;
   justify-content: center;
-  left: 0;
   position: relative;
+  right: 0;
   width: 50%;
 }
 

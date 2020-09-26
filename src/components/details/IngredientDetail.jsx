@@ -25,6 +25,6 @@ class IngredientDetail extends Component {
 export default IngredientDetail;
 
 IngredientDetail.propTypes = {
-  ingredient: PropTypes.string.isRequired,
-  measure: PropTypes.string.isRequired,
+  ingredient: PropTypes.arrayOf(String).isRequired,
+  measure: PropTypes.arrayOf(String).isRequired,
 };
