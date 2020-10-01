@@ -8,12 +8,12 @@ function DrinkCategories() {
 
   useEffect(() => {
     drinkCategories()
-      .then((response) => setCategories(response.drinks))
+      .then((response) => setCategories(response.drinks.slice(0, 12)))
       .catch((error) => alert('Atualize a página', error));
   }, []);
 
   const handleFilter = (filter) => {
-    drinkCategoryFilter(filter).then((response) => setData(response.drinks))
+    drinkCategoryFilter(filter).then((response) => setData(response.drinks.slice(0, 12)))
     .catch((error) => alert('Atualize a página', error));
   };
 
@@ -23,7 +23,7 @@ function DrinkCategories() {
       handleFilter(target.value);
     } else if (target.value === category || target.value === 'All') {
       setCategory('All');
-      allDrinksList().then((response) => setData(response.drinks))
+      allDrinksList().then((response) => setData(response.drinks.slice(0, 12)))
         .catch((error) => alert('Algo inesperado aconteceu:', error));
     }
   };

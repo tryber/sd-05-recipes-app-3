@@ -27,13 +27,11 @@ function FoodDetails(props) {
   const { match: { params: { idRecipe }, url }, type = 'comida' } = props;
   const local = { type: url };
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
-
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
-  const { strMealThumb, strMeal, strInstructions, strYoutube, strCategory, strArea = 'Unknown' } = details[0];
+  const { strMealThumb, strMeal, strInstructions, strYoutube, strAlcoholic= '', strCategory, strArea = '' } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
   const isItFavorite = readFromStorage('favoriteRecipes') ? readFromStorage('favoriteRecipes')
     .some((itIs) => itIs.id === idRecipe) : false;
-  // console.log(readFromStorage().some((itIs) => itIs.id === idRecipe));
   const [favorite, setFavorite] = useState(isItFavorite);
   function handleFavorite(favoriteRecipeId) {
     const favoritedRecipe = favorite ? idRecipe : { id: favoriteRecipeId, type, area: strArea, category: strCategory, alcoholicOrNot: '', name: strMeal, image: strMealThumb };
@@ -54,17 +52,19 @@ function FoodDetails(props) {
   }, [favorite]);
   //
   if (fetching) return <div>Loading...</div>;
-  //
+  const alc = strAlcoholic;
   return idRecipe ? (
-    <div className="body-details">
+    <div>
       <ImageDetail strOption={strMeal} thumb={strMealThumb} />
-      {SocialButtons(idRecipe, favorite, local, handleFavorite, strMeal)}
-      <CardDetail strOption={strMeal} strCategory={strCategory} strArea={strArea} type={type} />
-      <CarroselDetails />
-      <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
-      <InstructionsDetail instructions={strInstructions} />
-      <StartRecipe literals={`${idRecipe}/in-progress`} />
-      <VideoDetails youtube={strYoutube} />
+      <div className="body-details">
+        {SocialButtons(idRecipe, favorite, local, handleFavorite, strMeal)}
+        <CardDetail strOption={strMeal} strCategory={strCategory} alc={alc} strArea={strArea} type={type} />
+        <CarroselDetails />
+        <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
+        <InstructionsDetail instructions={strInstructions} />
+        <VideoDetails youtube={strYoutube} />
+        <StartRecipe literals={`${idRecipe}/in-progress`} />
+      </div>
     </div>
   ) : (
     <Redirect to="/comidas/">{alert('Não foi possível te surpreender desta vez!')}</Redirect>

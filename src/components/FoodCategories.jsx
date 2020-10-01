@@ -7,12 +7,12 @@ function FoodCategories() {
   const { categories, setCategories, setData, category, setCategory } = useContext(RecipeContext);
 
   useEffect(() => {
-    mealsCategories().then((response) => setCategories(response.meals))
+    mealsCategories().then((response) => setCategories(response.meals.slice(0, 12)))
       .catch((error) => alert('Atualize a página', error));
   }, []);
 
   const handleFilter = (filter) => {
-    mealCategoryFilter(filter).then((response) => setData(response.meals))
+    mealCategoryFilter(filter).then((response) => setData(response.meals.slice(0, 12)))
       .catch((error) => alert('Atualize a página', error));
   };
 
@@ -22,7 +22,7 @@ function FoodCategories() {
       handleFilter(target.value);
     } else if (target.value === category || target.value === 'All') {
       setCategory('All');
-      allMealsList().then((response) => setData(response.meals))
+      allMealsList().then((response) => setData(response.meals.slice(0, 12)))
         .catch((error) => alert('Algo inesperado aconteceu:', error));
     }
   };

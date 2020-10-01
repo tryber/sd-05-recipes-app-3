@@ -5,16 +5,16 @@ import '../../css/details.css';
 function CarroselDetailsFood() {
   const [recomendado, setRecomendado] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  // console.log(recomendado.length);
   useEffect(() => {
     setIsLoading(true);
     allMealsList()
-      .then((resp) => setRecomendado(resp.meals.slice(0, 6)))
-      .catch((error) => alert('Algo inesperado aconteceu:', error));
+    .then((resp) => setRecomendado(resp.meals.slice(0, 6)))
+    .catch((error) => alert('Algo inesperado aconteceu:', error));
     if (recomendado) setIsLoading(false);
   }, [isLoading]);
+  console.log(recomendado.length);
   return (
-    <div>
+    <div className="recomendadas">
       <h3>Recomendadas</h3>
       <div className="carroussel">
         {!isLoading &&

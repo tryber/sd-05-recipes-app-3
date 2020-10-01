@@ -27,7 +27,7 @@ function DrinkDetails(props) {
   const local = { type: url };
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
-  const { strDrinkThumb, strDrink, strInstructions, strCategory, strAlcoholic, strArea = '' } = details[0];
+  const { strDrinkThumb, strDrink, strInstructions, strCategory, strAlcoholic= '', strArea = '' } = details[0];
   const { allIngredients, allMeasures } = recipeConstructor(details[0]);
   const isItFavorite = readFromStorage('favoriteRecipes') ? readFromStorage('favoriteRecipes')
     .some((itIs) => itIs.id === idRecipe) : false;
@@ -45,7 +45,7 @@ function DrinkDetails(props) {
     setFavorite(!favorite);
   }
   useEffect(() => {
-    setFetching(!fetching);
+    setFetching(true);
     lookUpIdDrink(idRecipe).then((drink) => {
       if (drink.drinks) setDetails(drink.drinks);
     })
@@ -55,14 +55,16 @@ function DrinkDetails(props) {
   if (fetching) return <div>Loading...</div>;
   const alc = strAlcoholic;
   return idRecipe ? (
-    <div className="body-details">
-      <ImageDetail strOption={strDrink} thumb={strDrinkThumb} />
+    <div>
+    <ImageDetail strOption={strDrink} thumb={strDrinkThumb} />
+      <div className="body-details">
       {SocialButtons(idRecipe, favorite, local, handleFavorite, strDrink)}
-      <CardDetail strOption={strDrink} strCategory={strCategory} alc={alc} type={type} />
-      <CarroselDetailsFood recomendations="props" />
+      <CardDetail strOption={strDrink} strCategory={strCategory} strArea={strArea} alc={alc} type={type} />
+      <CarroselDetailsFood />
       <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
       <InstructionsDetail instructions={strInstructions} />
       <StartRecipe literals={`${idRecipe}/in-progress`} />
+    </div>
     </div>) : (
       <Redirect to="/bebidas/">{alert('Não foi possível te surpreender desta vez!')}</Redirect>
   );

@@ -28,7 +28,7 @@ ex: image-details img {
   margin-bottom: 50px;
   margin-top: 30px;
 }
-
+/* 
 .recomendations-details {
   display: block;
 }
@@ -36,7 +36,7 @@ ex: image-details img {
 .recomendadas {
   font-family: Courgette, cursive;
   margin-top: 20px;
-}
+} */
 
 .card-body {
   align-items: stretch;
@@ -46,6 +46,7 @@ ex: image-details img {
   height: 10vh;
   justify-content: space-around;
   margin: auto;
+  width: fit-content;
 }
 
 .card-details {
@@ -56,18 +57,18 @@ ex: image-details img {
   height: 30vh;
   margin: 5px auto;
   position: relative;
-  width: 90%;
+  width: 90vw;
 }
 
 .body-details {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  justify-content: flex-start;
+  /* height: 100vh; */
+  /* justify-content: flex-start; */
   margin: auto;
   margin-bottom: 35px;
   max-width: 1260px;
-  width: 100%;
+  width: 95vw;
 }
 
 .start-recipe-button button , .finish-recipe-button button {
@@ -99,40 +100,40 @@ ex: image-details img {
 .carroussel {
   border: dashed 2px rgb(237, 95, 101);
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  /* flex-direction: row; */
+  justify-content: flex-start;
   margin: auto;
-  overflow-x: auto;
   position: relative;
   top: auto;
-  width: 95%;
+  width: 90%;
+  overflow-x: auto;
 }
 
 .carroussel-card {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   position: relative;
-  width: 90%;
+  /* width: 90%; */
 }
 
 .carroussel img {
   border-radius: 10px;
   padding: 5px;
-  width: 45vw;
+  width: 40vw;
 }
 
 .image-details {
   margin: auto;
   position: relative;
   top: auto;
-  width: 100vw;
+  /* width: 100%; */
 }
 
 .image-details img {
   background-color: whitesmoke;
   display: flex;
-  height: 57vh;
+  width: 100vw;
   margin: auto;
   position: relative;
   top: auto;

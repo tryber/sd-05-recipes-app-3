@@ -8,27 +8,19 @@ import { allDrinksList } from '../../service/apis';
 function CarroselDetails() {
   const [recomendado, setRecomendado] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  // console.log(recomendado.length);
-  /* const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  }; */
   useEffect(() => {
     setIsLoading(true);
     allDrinksList()
-      .then((resp) => setRecomendado(resp.drinks.slice(0, 6)))
-      .catch((error) => alert('Algo inesperado aconteceu:', error));
+    .then((resp) => setRecomendado(resp.drinks.slice(0, 6)))
+    .catch((error) => alert('Algo inesperado aconteceu:', error));
     if (recomendado) setIsLoading(false);
   }, [isLoading]);
   //
+  console.log(recomendado.length);
   return (
     <div className="recomendadas">
       <h3>Recommended</h3>
       <div className="carroussel">
-        {/* <Slider {...settings}> */}
         {!isLoading &&
           recomendado.map((recomendations, index) => (
             <div
@@ -44,7 +36,6 @@ function CarroselDetails() {
               />
             </div>
           ))}
-        {/* </Slider> */}
       </div>
     </div>
   );
