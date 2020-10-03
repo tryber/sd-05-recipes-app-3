@@ -14,7 +14,7 @@ const Aga = (literal, idx, name) => (
 
 function FavoriteCard(props) {
   const { alcoholicOrNot, type, recipes, setReload, reload } = props;
-  const { id, index, image, name, category, area, url } = props;
+  const { id, index, image, name, category, area } = props;
   const { readFromStorage, getDesfavorited } = useContext(FavoriteContext);
   const isItFavorite = readFromStorage('favoriteRecipes').some((itIs) => itIs.id === id);
   const [favorite, setFavorite] = useState(isItFavorite);
@@ -42,16 +42,12 @@ function FavoriteCard(props) {
             <p data-testid={`${index}-horizontal-top-text`}>{alcoholicOrNot}</p>
           )}
           {Aga(literal, index, name)}
-          {/* <Link to={`/${type}s/${id}`}>
-            <h3 data-testid={`${index}-horizontal-name`}>{name}</h3>
-          </Link> */}
         </div>
         <div className="icon-favorites">
-          <ShareButton literals={`${index}-horizontal-share-btn`} alt={name} url={url} id={id} />
+          <ShareButton literals={`${index}-horizontal-share-btn`} alt={name} url={literal} id={id} />
           <FavoriteButton
             id={id}
             func={handleFavorite}
-            // idx={index}
             favorite={favorite}
             literals={`${index}-horizontal-favorite-btn`}
           />
@@ -77,5 +73,3 @@ FavoriteCard.propTypes = {
   reload: PropTypes.bool.isRequired,
   url: PropTypes.objectOf(String).isRequired,
 };
-/* <ShareButton literals={`${index}-horizontal-share-btn`}
-// alt={name} idx={index} url={props} id={id}/> */

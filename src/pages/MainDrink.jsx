@@ -24,7 +24,7 @@ function MainDrink() {
     setPage('MainDrink');
     if (!isIngrFilter) {
       allDrinksList()
-        .then((response) => response.drinks ? setData(response.drinks.slice(0, 12)): false)
+        .then((response) => setData(response.drinks))
         .catch((error) => alert('Algo inesperado aconteceu:', error));
       setFetching(false);
     }
@@ -49,7 +49,9 @@ function MainDrink() {
       {!fetching && <DrinkCategories />}
       <Header title="Bebidas" />
       <div className="list-of-cards">
-        {data.map((item, idx) => (/* (idx < 12) ?  */<Drink key={item.idDrink} drink={item} idx={idx} />/* : false */))}
+        {data.map((item, idx) => (
+          (idx < 12) ? <Drink key={item.idDrink} drink={item} idx={idx} />
+          : false))}
       </div>
       <Footer />
     </div>
@@ -57,11 +59,3 @@ function MainDrink() {
 }
 
 export default MainDrink;
-// if (data === null) {
-//   return (
-//     <div>
-//       <p>Redirecting...</p>
-//       {alert('Não foi possível encontrar uma receita para esse filtro.')}
-//     </div>
-//   );
-// }

@@ -8,13 +8,14 @@ function DrinkCategories() {
 
   useEffect(() => {
     drinkCategories()
-      .then((response) => setCategories(response.drinks.slice(0, 12)))
+      .then((response) => setCategories(response.drinks))
       .catch((error) => alert('Atualize a página', error));
   }, []);
 
   const handleFilter = (filter) => {
-    drinkCategoryFilter(filter).then((response) => setData(response.drinks.slice(0, 12)))
-    .catch((error) => alert('Atualize a página', error));
+    drinkCategoryFilter(filter)
+      .then((response) => setData(response.drinks))
+      .catch((error) => alert('Atualize a página', error));
   };
 
   const handleClick = ({ target }) => {
@@ -23,31 +24,32 @@ function DrinkCategories() {
       handleFilter(target.value);
     } else if (target.value === category || target.value === 'All') {
       setCategory('All');
-      allDrinksList().then((response) => setData(response.drinks.slice(0, 12)))
+      allDrinksList()
+        .then((response) => setData(response.drinks))
         .catch((error) => alert('Algo inesperado aconteceu:', error));
     }
   };
   return (
     <div className="categories">
-      {categories.map((categ, i) => (i <= 4 ? (
-        <div className="categorie">
-          <button
-            type="button"
-            key={categ.strCategory}
-            data-testid={`${categ.strCategory}-category-filter`}
-            onClick={handleClick}
-            value={categ.strCategory}
-          >{categ.strCategory}</button>
-        </div>
-      ) : null
-      ))}
+      {categories.map((categ, i) =>
+        i <= 4 ? (
+          <div className="categorie">
+            <button
+              type="button"
+              key={categ.strCategory}
+              data-testid={`${categ.strCategory}-category-filter`}
+              onClick={handleClick}
+              value={categ.strCategory}
+            >
+              {categ.strCategory}
+            </button>
+          </div>
+        ) : null
+      )}
       <div className="categorie">
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          value="All"
-          onClick={handleClick}
-        >All</button>
+        <button type="button" data-testid="All-category-filter" value="All" onClick={handleClick}>
+          All
+        </button>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ const recipeConstructor = (ingredient) => {
     .filter((value) => ingredient[value] !== '' && ingredient[value] !== null);
   const quantities = Object.keys(ingredient)
     .filter((qtIngridients) => qtIngridients.includes('strMeasure'))
-    .filter((value) => ingredient[value] !== '' && ingredient[value] !== null);
+    .filter((value) => ingredient[value] !== ' ' && ingredient[value] !== null);
   // construindo um array de ingredientes
   const allIngredients = items.map((value) => ingredient[value]);
   // construindo um array de medidas dos ingredientes

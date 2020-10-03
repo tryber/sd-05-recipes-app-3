@@ -5,12 +5,13 @@ import copy from 'clipboard-copy';
 import shareIcon from '../../images/shareIcon.svg';
 
 function copyToClipboard(url, id) {
+  console.log(url);
   document.getElementById(`share-button-${id}`).innerHTML = 'Link copiado!';
-  if (url.type.includes('comida')) {
+  if (url.includes('comida')) {
     copy(`http://localhost:3000/comidas/${id}`)
     .then(() => alert('Link copiado'));
   }
-  if (url.type.includes('bebida')) {
+  if (url.includes('bebida')) {
     copy(`http://localhost:3000/bebidas/${id}`)
     .then(() => alert('Link copiado'));
   }

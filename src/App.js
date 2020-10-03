@@ -57,3 +57,4 @@ function App() {
 }
 
 export default App;
+// const { match: { params: { idRecipe }, url }, type = 'comida' } = props;

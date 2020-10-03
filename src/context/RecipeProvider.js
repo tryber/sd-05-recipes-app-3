@@ -9,11 +9,11 @@ const RecipeProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState([]);
   const [page, setPage] = useState('MainFood');
-  const [details, setDetails] = useState(['data']);
+  const [details, setDetails] = useState([]);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState('');
   const [done, setDone] = useState(false);
-  const [ongoing, setOngoing] = useState(['data']);
+  const [ongoing, setOngoing] = useState([]);
   const [isIngrFilter, setIsIngrFilter] = useState(false);
 
   const context = {

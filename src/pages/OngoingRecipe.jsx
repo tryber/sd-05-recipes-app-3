@@ -15,23 +15,28 @@ import FavoriteContext from '../context/FavoriteContext';
 import '../css/details.css';
 
 function State(setFetching, setOngoing, favorite, url, idRecipe) {
+  const recipe = JSON.parse(localStorage.getItem('InProgressRecipes'));
+  //
   useEffect(() => {
-    // console.log(url);
+    console.log(url);
     setFetching(true);
     if (url.includes('comidas')) {
-      console.log(url);
       lookUpIdMeal(idRecipe)
-        .then((food) => setOngoing(food.meals))
-        .then(
-          localStorage.setItem('InProgressRecipes', JSON.stringify({ meals: { [idRecipe]: [] } })))
-        .catch((error) => alert('comida', error));
+        .then((food) => {
+          console.log(food.meals);
+          if (food.meals) setOngoing(food.meals[0]);
+        })
+
+        .catch((error) => alert('Erro no Servidor', error));
+      //
     } else if (url.includes('bebidas')) {
       lookUpIdDrink(idRecipe)
-        .then((drink) => setOngoing(drink.drinks))
-        .then(
-          localStorage.setItem('InProgressRecipes',
-            JSON.stringify({ cocktails: { [idRecipe]: [] } })))
-        .catch((error) => alert('bebida', error));
+        .then((drink) => {
+          console.log(drink.drinks);
+          if (drink.drinks) setOngoing(drink.drinks[0]);
+        })
+
+        .catch((error) => alert('Erro no Servidor', error));
     }
     setFetching(false);
   }, [favorite]);
@@ -39,26 +44,42 @@ function State(setFetching, setOngoing, favorite, url, idRecipe) {
 
 function OngoingRecipe(props) {
   const { setFetching, ongoing, setOngoing } = useContext(RecipeContext);
-  const { strMealThumb, strMeal, strDrinkThumb, strDrink } = ongoing[0];
-  const { strInstructions, strCategory, strArea = '', strAlcoholic = '' } = ongoing[0];
+  const { strMealThumb = '', strMeal = '', strDrinkThumb = '', strDrink = '' } = ongoing;
+  const { strInstructions, strCategory, strArea = '', strAlcoholic = '' } = ongoing;
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
-  const { match: { params: { idRecipe }, url }, type } = props;
-//
-  const isItFavorite = readFromStorage('favoriteRecipes') ? readFromStorage('favoriteRecipes')
-  .some((itIs) => itIs.id === idRecipe) : false;
-//
+  const {
+    match: {
+      params: { idRecipe },
+      url,
+    },
+    type,
+  } = props;
+  console.log(url);
+  const isItFavorite = readFromStorage('favoriteRecipes')
+    ? readFromStorage('favoriteRecipes').some((itIs) => itIs.id === idRecipe)
+    : false;
+  //
   const [favorite, setFavorite] = useState(isItFavorite);
   const name = strMeal || strDrink;
   const image = strMealThumb || strDrinkThumb;
-//
-  const favoritedRecipe = { id: 'id', type, area: strArea, category: strCategory, alcoholicOrNot: strAlcoholic, name, image };
+  //
+  const favoritedRecipe = {
+    id: 'id',
+    type,
+    area: strArea,
+    category: strCategory,
+    alcoholicOrNot: strAlcoholic,
+    name,
+    image,
+  };
   function handleFavorite(favoriteRecipeId) {
     favoritedRecipe.id = favoriteRecipeId;
     isFavorite(favoritedRecipe, !favorite);
     setFavorite(!favorite);
   }
-//
-  const { allIngredients, allMeasures } = recipeConstructor(ongoing[0]);
+  //
+  const { allIngredients, allMeasures } = recipeConstructor(ongoing);
+  console.log(allIngredients, allMeasures);
   State(setFetching, setOngoing, favorite, url, idRecipe);
   return (
     <div className="body-details">
@@ -69,9 +90,14 @@ function OngoingRecipe(props) {
         func={handleFavorite}
         favorite={favorite}
       />
-      <ShareButton literals={'share-btn'} alt={name} url={props} id={idRecipe} />
+      <ShareButton literals={'share-btn'} alt={name} url={url} id={idRecipe} />
       <CardDetail strOption={strMeal || strDrink} strCategory={strCategory} />
-      <IngredientOngoing ingredient={allIngredients} measure={allMeasures} idRecipe={idRecipe} />
+      <IngredientOngoing
+        ingredient={allIngredients}
+        measure={allMeasures}
+        idRecipe={idRecipe}
+        type={type}
+      />
       <InstructionsDetail instructions={strInstructions} />
       <FinishRecipeButton literals={'/receitas-feitas'} id={idRecipe} type={type} />
     </div>
@@ -87,81 +113,3 @@ OngoingRecipe.propTypes = {
   }).isRequired,
   type: PropTypes.string.isRequired,
 };
-
-
-// useEffect(() => {
-//   console.log(url);
-//   setFetching(true);
-//   if (url.includes('comidas')) {
-//     console.log(url);
-//     lookUpIdMeal(idRecipe)
-//       .then((food) => setOngoing(food.meals))
-//       .then(
-//         localStorage.setItem('InProgressRecipes', JSON.stringify({ meals: { [idRecipe]: [] } })))
-//       .catch((error) => alert('comida', error));
-//   } else if (url.includes('bebidas')) {
-//     lookUpIdDrink(idRecipe)
-//       .then((drink) => setOngoing(drink.drinks))
-//       .then(
-//         localStorage.setItem('InProgressRecipes',
-//           JSON.stringify({ cocktails: { [idRecipe]: [] } })))
-//       .catch((error) => alert('bebida', error));
-//   }
-//   setFetching(false);
-// }, [favorite]);
-
-/*
-dateModified: "2016-08-31 19:32:08"
-idDrink: "13501"
-strAlcoholic: "Alcoholic"
-strCategory: "Shot"
-strCreativeCommonsConfirmed: "No"
-strDrink: "ABC"
-strDrinkAlternate: null
-strDrinkDE: null
-strDrinkES: null
-strDrinkFR: null
-strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/tqpvqp1472668328.jpg"
-strDrinkZH-HANS: null
-strDrinkZH-HANT: null
-strGlass: "Shot glass"
-strIBA: null
-strIngredient1: "Amaretto"
-strIngredient2: "Baileys irish cream"
-strIngredient3: "Cognac"
-strIngredient4: null
-strIngredient5: null
-strIngredient6: null
-strIngredient7: null
-strIngredient8: null
-strIngredient9: null
-strIngredient10: null
-strIngredient11: null
-strIngredient12: null
-strIngredient13: null
-strIngredient14: null
-strIngredient15: null
-strInstructions: "Layered in a shot glass."
-strInstructionsDE: "Schichtaufbau in einem Schnapsglas."
-strInstructionsES: null
-strInstructionsFR: null
-strInstructionsZH-HANS: null
-strInstructionsZH-HANT: null
-strMeasure1: "1/3 "
-strMeasure2: "1/3 "
-strMeasure3: "1/3 "
-strMeasure4: null
-strMeasure5: null
-strMeasure6: null
-strMeasure7: null
-strMeasure8: null
-strMeasure9: null
-strMeasure10: null
-strMeasure11: null
-strMeasure12: null
-strMeasure13: null
-strMeasure14: null
-strMeasure15: null
-strTags: null
-strVideo: null
-*/

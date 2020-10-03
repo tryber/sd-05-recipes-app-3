@@ -10,11 +10,24 @@ import CardDetail from '../components/details/CardDetail';
 import IngredientDetail from '../components/details/IngredientDetail';
 import InstructionsDetail from '../components/details/InstructionsDetail';
 import VideoDetails from '../components/details/VideoDetails';
-import StartRecipe from '../components/details/StartRecipe';
+import StartRecipeButton from '../components/details/StartRecipeButton';
 import ShareButton from '../components/details/ShareButton';
 import CarroselDetails from '../components/details/CarroselDetails';
 import FavoriteButton from '../components/details/FavoriteButton';
 import FavoriteContext from '../context/FavoriteContext';
+const checking = async (param, id) => {
+  const progress = JSON.parse(
+    localStorage.getItem('InProgressRecipes' || '{ meals: {}, cocktails: {}}')
+  );
+  if (progress.meals[id]) {
+    return (await (progress.meals[id].length === param.length))
+      ? (document
+          .querySelector('.start-recipe-button')
+          .getElementsByTagName('button')[0].style.display = 'none')
+      : false;
+  }
+  return;
+};
 
 const SocialButtons = (ide, fav, u, func, name) => (
   <div className="icon-details">
@@ -24,29 +37,58 @@ const SocialButtons = (ide, fav, u, func, name) => (
 );
 
 function FoodDetails(props) {
-  const { match: { params: { idRecipe }, url }, type = 'comida' } = props;
-  const local = { type: url };
+  const {
+    match: {
+      params: { idRecipe },
+      url,
+    },
+    type = 'comida',
+  } = props;
+  //
   const { readFromStorage, isFavorite } = useContext(FavoriteContext);
   const { fetching, setFetching, setDetails, details } = useContext(RecipeContext);
-  const { strMealThumb, strMeal, strInstructions, strYoutube, strAlcoholic= '', strCategory, strArea = '' } = details[0];
-  const { allIngredients, allMeasures } = recipeConstructor(details[0]);
-  const isItFavorite = readFromStorage('favoriteRecipes') ? readFromStorage('favoriteRecipes')
-    .some((itIs) => itIs.id === idRecipe) : false;
+  const {
+    strMealThumb,
+    strMeal,
+    strInstructions,
+    strYoutube,
+    strAlcoholic = '',
+    strCategory,
+    strArea = '',
+  } = details;
+  console.log(details);
+  const { allIngredients, allMeasures } = recipeConstructor(details);
+  checking(allIngredients, idRecipe);
+  const isItFavorite = readFromStorage('favoriteRecipes')
+    ? readFromStorage('favoriteRecipes').some((itIs) => itIs.id === idRecipe)
+    : false;
   const [favorite, setFavorite] = useState(isItFavorite);
   function handleFavorite(favoriteRecipeId) {
-    const favoritedRecipe = favorite ? idRecipe : { id: favoriteRecipeId, type, area: strArea, category: strCategory, alcoholicOrNot: '', name: strMeal, image: strMealThumb };
-    // recipes = recipes.filter((card) => card.id !== favoriteRecipeId);
-    // console.log(favorite ? 'Receita desfavoritada:' : 'Receita favoritada:', favoritedRecipe);
+    const favoritedRecipe = favorite
+      ? idRecipe
+      : {
+        id: favoriteRecipeId,
+        type,
+        area: strArea,
+        category: strCategory,
+        alcoholicOrNot: '',
+        name: strMeal,
+        image: strMealThumb,
+      };
+
     isFavorite(favoritedRecipe, !favorite);
     setFavorite(!favorite);
   }
-  // uma saida no console pra vc saber o que esta manipulado
-  // console.log(allIngredients, allMeasures);
+
   useEffect(() => {
     setFetching(true);
-    lookUpIdMeal(idRecipe).then((food) => {
-      if (food.meals) setDetails(food.meals);
-    })
+    lookUpIdMeal(idRecipe)
+      .then((food) => {
+        if (food.meals) {
+          console.log(food.meals);
+          setDetails(food.meals[0]);
+        }
+      })
       .catch((error) => alert('Algo inesperado aconteceingredients.', error));
     setFetching(false);
   }, [favorite]);
@@ -57,13 +99,19 @@ function FoodDetails(props) {
     <div>
       <ImageDetail strOption={strMeal} thumb={strMealThumb} />
       <div className="body-details">
-        {SocialButtons(idRecipe, favorite, local, handleFavorite, strMeal)}
-        <CardDetail strOption={strMeal} strCategory={strCategory} alc={alc} strArea={strArea} type={type} />
+        {SocialButtons(idRecipe, favorite, url, handleFavorite, strMeal)}
+        <CardDetail
+          strOption={strMeal}
+          strCategory={strCategory}
+          alc={alc}
+          strArea={strArea}
+          type={type}
+        />
         <CarroselDetails />
         <IngredientDetail ingredient={allIngredients} measure={allMeasures} />
         <InstructionsDetail instructions={strInstructions} />
         <VideoDetails youtube={strYoutube} />
-        <StartRecipe literals={`${idRecipe}/in-progress`} />
+        <StartRecipeButton literals={`${idRecipe}/in-progress`} id={idRecipe} type={type} />
       </div>
     </div>
   ) : (
@@ -75,9 +123,7 @@ FoodDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.objectOf(String).isRequired,
   }).isRequired,
-  // location: PropTypes.shape({
-  //   pathname: PropTypes.objectOf(String).isRequired,
-  // }).isRequired,
+
   type: PropTypes.string.isRequired,
 };
 

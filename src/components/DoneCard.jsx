@@ -34,13 +34,17 @@ function DoneCard(props) {
             </div>
           ) : (
             <p data-testid={`${index}-horizontal-top-text`}>{alcoholic}</p>
-          /* <p data-testid={`${index}-${tags}-horizontal-tag`}>{tags}</p> */
-            )}
+          )}
           {Aga(type, id, index, name)}
           <h4 data-testid={`${index}-horizontal-done-date`}>{date}</h4>
         </div>
         <div className="icon">
-          <ShareButton literals={`${index}-horizontal-share-btn`} alt={name} url={url} id={id} />
+          <ShareButton
+            literals={`${index}-horizontal-share-btn`}
+            alt={name}
+            url={literal}
+            id={id}
+          />
         </div>
       </div>
     </div>
@@ -62,4 +66,3 @@ DoneCard.propTypes = {
   tags: PropTypes.arrayOf(String).isRequired,
   url: PropTypes.objectOf(String).isRequired,
 };
-

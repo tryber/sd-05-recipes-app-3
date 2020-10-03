@@ -24,7 +24,7 @@ function MainFood() {
     setPage('MainFood');
     if (!isIngrFilter) {
       allMealsList()
-        .then((response) => response.meals ? setData(response.meals.slice(0, 12)) : false)
+        .then((response) => setData(response.meals))
         .catch((error) => alert('Algo inesperado aconteceu:', error));
       setFetching(false);
     }
@@ -50,8 +50,8 @@ function MainFood() {
       <Header title="Comidas" />
       <div className="list-of-cards">
         {data.map((item, index) => (
-          /* (index < 12) ?  */<Food key={item.idMeal} food={item} idx={index} />
-          /* : false */))}
+          (index < 12) ? <Food key={item.idMeal} food={item} idx={index} />
+          : false))}
       </div>
       <Footer />
     </div>
@@ -59,11 +59,3 @@ function MainFood() {
 }
 
 export default MainFood;
-
-//   return (
-//     <div>
-//       <p>Redirecting...{console.log(data)}</p>
-//       {alert('Não foi possível encontrar uma receita para esse filtro.')}
-//     </div>
-//   );
-// }

@@ -20,7 +20,6 @@ const mapRecipe = (recipes, reload, setReload) =>
       recipes={array}
       setReload={setReload}
       reload={reload}
-      url={item}
     />
   ));
 
@@ -30,18 +29,22 @@ function FavoriteRecipes() {
   const [recipes, setRecipes] = useState(readFromStorage('favoriteRecipes'));
   useEffect(() => setRecipes(readFromStorage('favoriteRecipes')), [reload]);
   const handletype = (type) => {
-    switch (type) {
-      case 'comida':
-        return setRecipes(
-          readFromStorage('favoriteRecipes').filter((caso) => caso.type === type));
-      case 'bebida':
-        return setRecipes(
-          readFromStorage('favoriteRecipes').filter((caso) => caso.type === type));
-      default:
-        return setRecipes(readFromStorage('favoriteRecipes'));
+    if (recipes !== null) {
+      switch (type) {
+        case 'comida':
+          return setRecipes(
+            readFromStorage('favoriteRecipes').filter((caso) => caso.type === type)
+          );
+        case 'bebida':
+          return setRecipes(
+            readFromStorage('favoriteRecipes').filter((caso) => caso.type === type)
+          );
+        default:
+          return setRecipes(readFromStorage('favoriteRecipes'));
+      }
     }
   };
-//
+  //
   return (
     <div className="body">
       <Header title="Receitas Favoritas" />
